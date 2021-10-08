@@ -34,6 +34,7 @@ return packer.startup(function()
 		config = function()
 			require("circles").setup({
 				icons = { empty = "", filled = "" },
+				lsp = false,
 			})
 		end,
 	})
