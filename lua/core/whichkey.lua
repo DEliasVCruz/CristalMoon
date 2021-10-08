@@ -73,6 +73,8 @@ local nmappings = {
 		u = { "gU", "UpperCase" },
 		w = { "<cmd>MatchupWhereAmI??<cr>", "WhereAmI" },
 		y = { '"+y', "Yank Clipboard" },
+		t = { "<cmd>setlocal scrolloff=0<CR>ztM<cmd>silent setlocal scrolloff=8<CR>", "TopLine" },
+		b = { "<cmd>setlocal scrolloff=0<CR>zbM<cmd>silent setlocal scrolloff=8<CR>", "TopLine" },
 		-- i = { -- Maby we don't need indentention acctions
 		-- name = "+Indent",
 		-- l = { ">", "Formawrd" },
