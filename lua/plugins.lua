@@ -226,6 +226,19 @@ return packer.startup(function()
 			require("core.quickfix")
 		end,
 	})
+	use({
+		"https://gitlab.com/yorickpeterse/nvim-pqf.git",
+		config = function()
+			require("pqf").setup({
+				signs = {
+					error = "",
+					warning = "",
+					info = "כֿ",
+					hint = "",
+				},
+			})
+		end,
+	})
 
 	-- Better serching
 	use({ "romainl/vim-cool", event = "CmdlineEnter" })

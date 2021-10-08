@@ -30,3 +30,8 @@ vim.cmd([[hi Folded guifg=#96e2f0 guibg=NONE]])
 vim.cmd([[highlight WhichKeyFloat guibg=#10081D]])
 vim.cmd([[hi default link WhichKeyDesc Keyword]])
 vim.cmd([[hi default link WhichKeyGroup Identifier]])
+
+-- Qf colors
+vim.cmd([[highlight qfPath guifg=#FF5C8F]])
+vim.cmd([[highlight qfPosition guifg=#64657E]])
+vim.cmd([[highlight QuickFixLine gui=bold guifg=none]])
