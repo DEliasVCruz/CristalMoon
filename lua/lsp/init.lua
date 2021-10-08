@@ -7,11 +7,18 @@ lspSymbol("Hint", "")
 lspSymbol("Info", "")
 lspSymbol("Warn", "")
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-	virtual_text = {
-		prefix = "   ",
-	},
-})
+local diagnostic_cfg = {
+	underline = true,
+	virtual_text = { spacing = 3, prefix = "" },
+	signs = true,
+	update_in_insert = false,
+	severity_sort = true,
+}
+
+vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+	vim.lsp.diagnostic.on_publish_diagnostics,
+	diagnostic_cfg
+)
 
 local handlers = vim.lsp.handlers
 local popup_opts = { border = "rounded", max_width = 80 }

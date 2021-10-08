@@ -10,7 +10,7 @@ M.setup = function()
 	})
 	vim.defer_fn(function()
 		vim.cmd([[
-                    silent! bufdo e
+                    if &ft == "packer" | echo "" | else | silent! e %
                 ]])
 	end, 10)
 end
