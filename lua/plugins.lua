@@ -202,7 +202,7 @@ return packer.startup(function()
     wants = "friendly-snippets",
     after = "nvim-cmp",
     config = function()
-      require "core.completion.luasnip"
+      require "core.completion.snippets"
     end,
   }
   use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
