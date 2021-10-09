@@ -15,6 +15,7 @@ M.setup_lsp = function(attach)
         debounce_text_changes = 150,
       },
       settings = {},
+      init_options = {},
     }
 
     if server.name == "pyright" then
@@ -25,6 +26,21 @@ M.setup_lsp = function(attach)
           },
           disableOrganizeImports = true,
         },
+      }
+    end
+
+    if server.name == "gopls" then
+      opts.settings = {
+        gopls = {
+          analysis = {
+            unusedparams = true,
+          },
+          staticcheck = true,
+        },
+      }
+      opts.init_options = {
+        usePlaceholders = true,
+        completeUnimported = true,
       }
     end
 
