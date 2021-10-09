@@ -16,6 +16,7 @@ M.setup_lsp = function(attach)
       },
       settings = {},
       init_options = {},
+      filetypes = {},
     }
 
     if server.name == "pyright" then
@@ -42,6 +43,10 @@ M.setup_lsp = function(attach)
         usePlaceholders = true,
         completeUnimported = true,
       }
+    end
+
+    if server.name == "bashls" then
+      opts.filetypes = { "sh", "zsh" }
     end
 
     server:setup(opts)
