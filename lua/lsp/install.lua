@@ -27,8 +27,6 @@ M.setup_lsp = function(attach)
         debounce_text_changes = 150,
       },
       settings = {},
-      init_options = {},
-      filetypes = {},
     }
 
     if server.name == "pyright" then
