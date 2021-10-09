@@ -35,7 +35,7 @@ return packer.startup(function()
     "Pocco81/Catppuccino.nvim",
     opt = true,
     config = function()
-      require "colors.catppuccino"
+      require "colors.catppuccino_conf"
     end,
   }
   use { -- todo: Use the apis for checking colorschemes
