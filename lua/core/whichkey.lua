@@ -87,7 +87,7 @@ local nmappings = {
     j = { "<cmd>BufferLineCyclePrev<cr>", "Cycle Previous" },
     k = { "<cmd>BufferLineCycleNext<cr>", "Cycle Next" },
     p = { "<C-^>", "Previous" },
-    q = { "<cmd>Bdelete<cr>", "Close" },
+    q = { "<cmd>Bdelete<cr>", "Quit" },
     s = { "<cmd>BufferLinePick<cr>", "Select" },
     m = {
       name = "+Move",
@@ -154,7 +154,7 @@ local nmappings = {
   w = {
     name = "+Window",
     a = { "<cmd>lua require('winshift').cmd_winshift()<cr>", "Arrange" },
-    q = { "<cmd>q!<cr>", "Close" },
+    q = { "<cmd>q!<cr>", "Quit" },
     n = {
       name = "+New",
       h = { "<cmd>above vnew<cr>", "Right" },
@@ -244,7 +244,7 @@ local nmappings = {
       name = "+Peek",
       d = { "<cmd>lua require('goto-preview').goto_preview_definition()<cr>", "Definition" },
       i = { "<cmd>lua require('goto-preview').goto_preview_implementation()<cr>", "Implementation" },
-      q = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "Close" },
+      q = { "<cmd>lua require('goto-preview').close_all_win()<cr>", "Quit" },
     },
   },
   -- r = {
