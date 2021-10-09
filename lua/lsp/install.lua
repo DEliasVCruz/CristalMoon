@@ -57,10 +57,6 @@ M.setup_lsp = function(attach)
       }
     end
 
-    if server.name == "bashls" then
-      opts.filetypes = { "sh", "zsh" }
-    end
-
     if server.name == "texlab" then
       opts.settings = {
         latex = {
