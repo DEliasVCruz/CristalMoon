@@ -325,7 +325,7 @@ return packer.startup(function()
     "monaqa/dial.nvim",
     module = "dial",
     config = function()
-      require("core.dial").config()
+      require("core.dialer").config()
     end,
   }
   use {
