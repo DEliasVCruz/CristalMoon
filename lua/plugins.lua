@@ -32,14 +32,14 @@ return packer.startup(function()
 		"Pocco81/Catppuccino.nvim",
 		opt = true,
 		config = function()
-			require("colorschemes.catppuccino")
+			require("colors.catppuccino")
 		end,
 	})
 	use({ -- todo: Use the apis for checking colorschemes
 		"ghifarit53/tokyonight-vim",
 		opt = true,
 		setup = function()
-			require("colorschemes.tokyo_conf")
+			require("colors.tokyo_conf")
 		end,
 	})
 	use({ -- todo: Use the apis for checking colorschemes
@@ -53,7 +53,7 @@ return packer.startup(function()
 		"nxvu699134/vn-night.nvim",
 		event = "VimEnter",
 		config = function()
-			require("colorschemes.vn_night")
+			require("colors.vn_night")
 		end,
 	})
 
