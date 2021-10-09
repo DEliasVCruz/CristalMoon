@@ -25,19 +25,6 @@ M.setup_lsp = function(attach)
           },
         },
       }
-
-      opts.on_attach = function(client, bufnr)
-        local function buf_set_keymap(...)
-          vim.api.nvim_buf_set_keymap(bufnr, ...)
-        end
-
-        -- Run nvchad's attach
-        attach(client, bufnr)
-
-        -- Use nvim-code-action-menu for code actions for rust
-        buf_set_keymap(bufnr, "n", "<leader>ca", ":CodeActionMenu<CR>", { noremap = true, silent = true })
-        buf_set_keymap(bufnr, "v", "<leader>ca", ":CodeActionMenu<CR>", { noremap = true, silent = true })
-      end
     end
 
     server:setup(opts)
