@@ -10,10 +10,6 @@ M.conf = function()
   handlers["textDocument/hover"] = vim.lsp.with(handlers.hover, popup_opts)
   handlers["textDocument/signatureHelp"] = vim.lsp.with(handlers.signature_help, popup_opts)
 
-  -- Tell lsp about nvim-cmp
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
-
   -- suppress error messages from lang servers
   vim.notify = function(msg, log_level, _opts)
     if msg:match "exit code" then
