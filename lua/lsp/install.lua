@@ -63,6 +63,12 @@ M.setup_lsp = function(attach)
       }
     end
 
+    if server.name == "jsonls" then
+      opts.init_options = {
+        provideFormatter = false,
+      }
+    end
+
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
   end)
