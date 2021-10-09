@@ -13,9 +13,9 @@ vim.opt.shiftwidth = 2
 -- })
 
 -- Formatting
-require("utils.augroup").define_augroups({
-	_formatting_lua = { { "BufWritePost", "*.md", "lua require('core.formatter').md()" } },
-})
+require("utils.augroup").define_augroups {
+  _formatting_lua = { { "BufWritePost", "*.md", "lua require('core.formatter').md()" } },
+}
 
 -- require("lsp.ltex")
 

@@ -2,15 +2,15 @@ local opt = vim.opt
 -- vim.g.python3_host_prog = "/home/danielv/.pyenv/versions/py3nvim/bin/python"
 
 -- Paths
-CACHE_PATH = vim.fn.stdpath("cache")
+CACHE_PATH = vim.fn.stdpath "cache"
 
 -- Menu options
 opt.completeopt = { "menuone", "noselect" }
 
 -- Setting Different Options
-opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|.
-opt.viewoptions:append({ "slash", "unix" })
-opt.viewoptions:remove({ "cursor", "curdir" })
+opt.shortmess:append "c"
+opt.viewoptions:append { "slash", "unix" }
+opt.viewoptions:remove { "cursor", "curdir" }
 opt.fileencoding = "utf-8" -- The encoding written to file
 opt.guicursor = "n-sm:block,i-ci-ve-c:ver25-Cursor,r-cr-o-v:hor20,n-v-c-i:blinkon10,i:blinkwait10"
 opt.hidden = true
@@ -46,6 +46,6 @@ opt.updatetime = 50
 opt.timeoutlen = 250
 
 -- Folding style
-opt.fillchars:append({ vert = "┃", fold = "·" })
+opt.fillchars:append { vert = "┃", fold = "·" }
 opt.foldmethod = "manual" -- not as cool as syntax, but faster
 opt.foldlevelstart = 99 -- start unfolded

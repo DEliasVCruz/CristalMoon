@@ -24,16 +24,16 @@ vim.api.nvim_set_keymap("n", "J", "mzJ`z", { noremap = true, silent = true })
 
 -- Jumplist mutations
 vim.api.nvim_set_keymap(
-	"n",
-	"k",
-	[[(v:count > 2 ? "m'" . v:count : "") . 'k']],
-	{ expr = true, noremap = true, silent = true }
+  "n",
+  "k",
+  [[(v:count > 2 ? "m'" . v:count : "") . 'k']],
+  { expr = true, noremap = true, silent = true }
 )
 vim.api.nvim_set_keymap(
-	"n",
-	"j",
-	[[(v:count > 2 ? "m'" . v:count : "") . 'j']],
-	{ expr = true, noremap = true, silent = true }
+  "n",
+  "j",
+  [[(v:count > 2 ? "m'" . v:count : "") . 'j']],
+  { expr = true, noremap = true, silent = true }
 )
 
 -- Center Scrolling

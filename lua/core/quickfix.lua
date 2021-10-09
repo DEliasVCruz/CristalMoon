@@ -1,15 +1,15 @@
 local status_ok, bqf = pcall(require, "bqf")
 if not status_ok then
-	return
+  return
 end
 
-bqf.setup({
-	preview = {
-		auto_preview = false,
-		delay_syntax = 10,
-		win_vheight = 10,
-	},
-})
+bqf.setup {
+  preview = {
+    auto_preview = false,
+    delay_syntax = 10,
+    win_vheight = 10,
+  },
+}
 
 -- Keybidings
 vim.api.nvim_set_keymap("n", "<C-j>", ":cnext<CR>zzzv", { noremap = true, silent = true })
