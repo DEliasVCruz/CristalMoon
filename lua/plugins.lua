@@ -28,16 +28,6 @@ return packer.startup(function()
 		"kyazdani42/nvim-web-devicons",
 		after = "vn-night.nvim",
 	})
-	use({
-		"projekt0n/circles.nvim",
-		after = { "vn-night.nvim", "nvim-web-devicons" },
-		config = function()
-			require("circles").setup({
-				icons = { empty = "", filled = "" },
-				lsp = false,
-			})
-		end,
-	})
 	use({ -- todo: Use the apis for checking colorschemes
 		"Pocco81/Catppuccino.nvim",
 		opt = true,
