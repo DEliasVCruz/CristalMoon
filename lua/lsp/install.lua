@@ -49,6 +49,20 @@ M.setup_lsp = function(attach)
       opts.filetypes = { "sh", "zsh" }
     end
 
+    if server.name == "texlab" then
+      opts.settings = {
+        latex = {
+          build = {
+            onSave = true,
+            forwardSearchAfter = true,
+          },
+          forwardSearch = {
+            executable = "zathura",
+          },
+        },
+      }
+    end
+
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
   end)
