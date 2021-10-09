@@ -17,12 +17,13 @@ M.setup_lsp = function(attach)
       settings = {},
     }
 
-    if server.name == "rust_analyzer" then
+    if server.name == "pyright" then
       opts.settings = {
-        ["rust-analyzer"] = {
-          experimental = {
-            procAttrMacros = true,
+        pyright = {
+          analysis = {
+            useLibraryCodeForTypes = true,
           },
+          disableOrganizeImports = true,
         },
       }
     end
