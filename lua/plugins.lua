@@ -27,6 +27,9 @@ return packer.startup(function()
   use {
     "kyazdani42/nvim-web-devicons",
     after = "vn-night.nvim",
+    config = function()
+      require "core.icons_conf"
+    end,
   }
   use { -- todo: Use the apis for checking colorschemes
     "Pocco81/Catppuccino.nvim",
