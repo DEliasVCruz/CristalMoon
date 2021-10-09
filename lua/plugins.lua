@@ -63,6 +63,7 @@ return packer.startup(function()
   -- Lsp config
   use {
     "williamboman/nvim-lsp-installer",
+    event = "BufRead",
     config = function()
       local attach = require("lsp").attach
       require("lsp.install").setup_lsp(attach)
