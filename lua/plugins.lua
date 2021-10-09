@@ -317,7 +317,7 @@ return packer.startup(function()
     "norcalli/nvim-colorizer.lua",
     ft = { "css", "scss", "js", "reactjs", "html" },
     config = function()
-      require("core.colorizer").config()
+      require("colors.preview_color").config()
       vim.cmd "ColorizerReloadAllBuffers"
     end,
   }
