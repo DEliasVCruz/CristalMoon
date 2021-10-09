@@ -119,7 +119,7 @@ return packer.startup(function()
   use {
     "nvim-telescope/telescope.nvim",
     config = function()
-      require("core.telescope").config()
+      require("core.telescope_conf").config()
     end,
     module = "telescope",
   }
