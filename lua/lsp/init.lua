@@ -1,40 +1,28 @@
-local function lspSymbol(name, icon)
-  vim.fn.sign_define("DiagnosticSign" .. name, { text = icon, numhl = "DiagnosticDefault" .. name })
-end
+local M = {}
 
-lspSymbol("Error", "")
-lspSymbol("Hint", "")
-lspSymbol("Info", "")
-lspSymbol("Warn", "")
+M.conf = function()
+  -- Define diagnostic sumbols and colors
+  require "lsp.diagnos_conf"
 
-local diagnostic_cfg = {
-  underline = true,
-  virtual_text = { spacing = 3, prefix = "" },
-  signs = true,
-  update_in_insert = false,
-  severity_sort = true,
-}
+  -- Define some handlres
+  local handlers = vim.lsp.handlers
+  local popup_opts = { border = "rounded", max_width = 80 }
+  handlers["textDocument/hover"] = vim.lsp.with(handlers.hover, popup_opts)
+  handlers["textDocument/signatureHelp"] = vim.lsp.with(handlers.signature_help, popup_opts)
 
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics,
-  diagnostic_cfg
-)
+  -- Tell lsp about nvim-cmp
+  local capabilities = vim.lsp.protocol.make_client_capabilities()
+  capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
-local handlers = vim.lsp.handlers
-local popup_opts = { border = "rounded", max_width = 80 }
-handlers["textDocument/hover"] = vim.lsp.with(handlers.hover, popup_opts)
-handlers["textDocument/signatureHelp"] = vim.lsp.with(handlers.signature_help, popup_opts)
-
-vim.lsp.handlers["textDocument/formatting"] = function(err, _, result, _, bufnr)
-  if err ~= nil or result == nil then
-    return
-  end
-  if not vim.api.nvim_buf_get_option(bufnr, "modified") then
-    local view = vim.fn.winsaveview()
-    vim.lsp.util.apply_text_edits(result, bufnr)
-    vim.fn.winrestview(view)
-    if bufnr == vim.api.nvim_get_current_buf() then
-      vim.cmd "noautocmd :update"
+  -- suppress error messages from lang servers
+  vim.notify = function(msg, log_level, _opts)
+    if msg:match "exit code" then
+      return
+    end
+    if log_level == vim.log.levels.ERROR then
+      vim.api.nvim_err_writeln(msg)
+    else
+      vim.api.nvim_echo({ { msg } }, true, {})
     end
   end
 end
@@ -106,4 +94,4 @@ function lsp_config.common_on_attach(client)
   documentFormatting(client)
 end
 
-return lsp_config
+return M
