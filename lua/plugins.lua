@@ -62,10 +62,20 @@ return packer.startup(function()
 
   -- Lsp config
   use {
+    "williamboman/nvim-lsp-installer",
+    config = function()
+      local attach = require("lsp").attach
+      require("lsp.install").setup_lsp(attach)
+    end,
+  }
+  use {
     "neovim/nvim-lspconfig",
     module = "lspconfig",
     setup = function()
       require("lsp.conf").setup()
+    end,
+    config = function()
+      require("lsp").conf()
     end,
   }
   use {
@@ -198,7 +208,11 @@ return packer.startup(function()
   use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
   use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
   use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-  use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
+  use {
+    "hrsh7th/cmp-nvim-lsp",
+    module = "cmp_nvim_lsp",
+    after = "nvim-lspconfig",
+  }
   use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
   use { "hrsh7th/cmp-path", after = "cmp-buffer" }
   -- How to configure coq https://alpha2phi.medium.com/new-neovim-completion-plugins-you-should-try-b5e1a3661623
