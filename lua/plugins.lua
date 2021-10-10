@@ -81,6 +81,13 @@ return packer.startup(function()
     end,
   }
   use {
+    "jose-elias-alvarez/null-ls.nvim",
+    after = "nvim-lspconfig",
+    config = function()
+      require("lsp.format").config()
+    end,
+  }
+  use {
     "mhartington/formatter.nvim",
     event = "BufWritePre",
     config = function()
