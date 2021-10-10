@@ -332,7 +332,10 @@ return packer.startup(function()
   }
   use {
     "nacro90/numb.nvim",
-    module = "numb",
+    event = "CmdlineEnter",
+    config = function()
+      require("numb").setup()
+    end,
   }
   use {
     "szw/vim-maximizer",

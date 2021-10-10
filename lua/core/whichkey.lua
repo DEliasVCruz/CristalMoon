@@ -205,10 +205,6 @@ local nmappings = {
     e = { "<cmd>NvimTreeToggle<cr>", "Explorer" }, -- Possibe "File Explorer"
     -- e = { "<cmd>CHADopen<cr>", "Explorer" }, -- Possibe "File Explorer"
     u = { "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", "Undotree" },
-    m = {
-      name = "+Miscs",
-      n = { "<cmd>lua require('numb').setup()<cr>", "Numb" },
-    },
     q = { "<cmd>lua require 'utils.quickfix'.quick_fix_toggle()<cr>", "Quickfix" },
     s = { "<cmd>setlocal spell!<CR>", "SpellCheck" },
     y = { "<cmd>lua require('neoclip').toggle()<cr>", "Yank History" },
