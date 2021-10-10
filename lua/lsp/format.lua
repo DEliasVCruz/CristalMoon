@@ -4,6 +4,18 @@ if not ok then
   return
 end
 
+local helpers = require "null-ls.helpers"
+
+local autoimportpy = {
+  method = null_ls.methods.FORMATTING,
+  filetypes = { "python" },
+  generator = helpers.formatter_factory {
+    command = "autoimport",
+    args = { "-" },
+    to_stdin = true,
+  },
+}
+
 local b = null_ls.builtins
 
 local sources = {
@@ -31,6 +43,15 @@ local sources = {
   -- Shell
   b.formatting.shfmt,
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
+
+  -- Python
+  b.diagnostics.flake8.with {
+    args = { "--ignore=E501", "--stdin-display-name", "$FILENAME", "-" },
+    diagnostics_format = "%f:%l:%c: %m",
+  },
+  autoimportpy,
+  b.formatting.isort,
+  b.formatting.black,
 }
 
 local M = {}
