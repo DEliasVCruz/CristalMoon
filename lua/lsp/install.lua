@@ -70,6 +70,13 @@ M.setup_lsp = function(attach)
     end
 
     if server.name == "jsonls" then
+      opts.settings = {
+        json = {
+          format = {
+            enable = false,
+          },
+        },
+      }
       opts.init_options = {
         provideFormatter = false,
       }
