@@ -6,8 +6,3 @@ vim.o.conceallevel = 0 -- So that I can see `` in markdown files
 -- Tabbing
 vim.opt.tabstop = 2
 vim.opt.shiftwidth = 2
-
--- Formatting
-require("utils.augroup").define_augroups {
-  _formatting_lua = { { "BufWritePost", "*.md", "lua require('core.formatter').md()" } },
-}

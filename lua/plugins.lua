@@ -88,13 +88,6 @@ return packer.startup(function()
     end,
   }
   use {
-    "mhartington/formatter.nvim",
-    event = "BufWritePre",
-    config = function()
-      require "core.formatter"
-    end,
-  }
-  use {
     "mattn/emmet-vim",
     module = "lsp.emmet_lsp",
   }
