@@ -8,6 +8,14 @@ local b = null_ls.builtins
 
 local sources = {
 
+  -- Markdown
+  b.formatting.markdownlint.with {
+    filetypes = { "markdown", "markdown.pandoc" },
+  },
+  b.diagnostics.markdownlint.with {
+    filetypes = { "markdown", "markdown.pandoc" },
+  },
+
   -- JS html css stuff
   b.formatting.prettierd.with {
     filetypes = { "html", "json", "markdown.pandoc", "markdown", "scss", "css", "javascript", "javascriptreact" },
