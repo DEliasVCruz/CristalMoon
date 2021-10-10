@@ -2,7 +2,7 @@ local M = {}
 
 M.conf = function()
   -- Define diagnostic sumbols and colors
-  require "lsp.diagnos_conf"
+  require("lsp.diagnos").config()
 
   -- Define some handlres
   local handlers = vim.lsp.handlers
