@@ -41,7 +41,7 @@ M.config = function()
     },
     numhl = false,
     linehl = false,
-    keymaps = nil,
+    keymaps = {},
     watch_gitdir = {
       interval = 100,
       follow_files = true,
