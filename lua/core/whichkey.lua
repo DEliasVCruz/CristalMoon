@@ -64,7 +64,7 @@ local nmappings = {
     c = { "Comment" },
     -- c = { "<cmd>lua require('commented').toggle_comment('n')<cr>", "Comment" },
     d = { "<cmd>lua require'dial'.cmd.increment_normal(1)<cr>b", "Dial" },
-    f = { "mzgqgq`z", "Format" },
+    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
     l = { "gu", "LowerCase" },
     o = { "<cmd>execute 'silent! !xdg-open ' . shellescape(expand('<cfile>'), 1)<cr>", "Open URL" },
     p = { '"+p', "Paste Clipboard" },
@@ -348,6 +348,7 @@ local veopts = {
 
 local vmappings = {
   ["p"] = { '"_dP', "Paste" },
+  ["f"] = { '<cmd>lua vim.lsp.buf.range_formatting()<cr>', "Format" },
   -- ["i"] = { "IncreSelec" },
   -- ["d"] = { "DecreSelec" },
   ["s"] = { "ScopeSelec" },
