@@ -36,6 +36,9 @@ local sources = {
     command = "eslint_d",
   },
 
+  -- R code
+  b.formatting.styler,
+
   -- Lua
   b.formatting.stylua,
   b.diagnostics.luacheck.with { extra_args = { "--global vim" } },
