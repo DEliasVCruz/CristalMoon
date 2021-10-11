@@ -115,6 +115,8 @@ return packer.startup(function()
   -- use{"goolord/nvim-clap-lsp"} -- nvim-lsp handlers with fancy ui
   -- use{"weilbith/nvim-code-action-menu"} -- A fancy menu for code actions with diff
   -- use{"ericpubu/lsp_codelens_extensions.nvim"} -- Adds client-side code for codelenses commands that are not available in the language servers
+  -- use{"kosayoda/nvim-lightbulb"} -- Display a lightbulb next to lines with code actions
+  -- use("WhoIsSethDaniel/toggle-lsp-diagnostics.nvim") -- Toggle diagnostics on and off
 
   -- Telescope
   use { "nvim-lua/plenary.nvim", event = "BufRead" }
