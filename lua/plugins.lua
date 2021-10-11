@@ -104,9 +104,7 @@ return packer.startup(function()
         post_open_hook = function()
           vim.cmd "set nonumber norelativenumber scrolloff=0"
           vim.defer_fn(function()
-            vim.cmd [[
-                            normal zt
-                        ]]
+            vim.cmd [[ normal zt ]]
           end, 1)
         end,
       }
