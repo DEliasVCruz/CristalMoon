@@ -289,6 +289,15 @@ return packer.startup(function()
       require "core.toggleterm"
     end,
   }
+  use {
+    "lukas-reineke/indent-blankline.nvim",
+    event = "BufRead",
+    config = function()
+      vim.opt.list = true
+      vim.opt.listchars:append "eol:↴"
+      require "core.blankline"
+    end,
+  }
   -- use({ "ms-jpq/chadtree", cmd = "CHADopen", branch = "chad", run = "python3 -m chadtree deps" })
   -- use({ "rcarriga/nvim-notify" }) -- Fancy notification ui WIP
   -- use{"lukas-reineke/headlines.nvim"} -- Pretty headlines for headers and sections
