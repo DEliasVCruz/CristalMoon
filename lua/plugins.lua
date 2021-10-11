@@ -499,15 +499,6 @@ return packer.startup(function()
   -- use {"kwkarlwang/bufresize.nvim"} -- Keep split sizing when rizing
 
   -- Spell checking
-  use { "inkarkat/vim-ingo-library", cmd = "SpellCheck" }
-  use {
-    "inkarkat/vim-SpellCheck",
-    after = "vim-ingo-library",
-    setup = function()
-      vim.g.SpellCheck_DefineAuxiliaryCommands = 0
-      vim.g.SpellCheck_OnNospell = ""
-    end,
-  }
   -- Spell checking lsp "https://teddit.net/r/neovim/comments/pf2pk5"
 
   -- Markdown and Rmarkdown
