@@ -394,7 +394,18 @@ return packer.startup(function()
   -- Neovim startup fixes
   use { "antoinemadec/FixCursorHold.nvim" }
   use { "lewis6991/impatient.nvim" }
-  use { "nathom/filetype.nvim" }
+  use {
+    "nathom/filetype.nvim",
+    config = function()
+      require("filetype").setup {
+        overrides = {
+          extensions = {
+            md = "markdown.pandoc",
+          },
+        },
+      }
+    end,
+  }
 
   -- Movement and text objects
   use { "machakann/vim-sandwich", keys = { "s" } }
@@ -495,7 +506,7 @@ return packer.startup(function()
   }
   use {
     "vim-pandoc/vim-pandoc-syntax",
-    ft = { "markdown" },
+    ft = { "markdown.pandoc" },
   }
 
   -- Debugger and testing framework
