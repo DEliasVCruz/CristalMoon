@@ -373,8 +373,6 @@ return packer.startup(function()
     "tami5/sqlite.lua",
     module = "sqlite",
   }
-  use { "antoinemadec/FixCursorHold.nvim" }
-  use { "lewis6991/impatient.nvim" }
   use {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
