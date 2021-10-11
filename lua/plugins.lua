@@ -393,6 +393,11 @@ return packer.startup(function()
   -- use{"rmagatti/auto-session"} -- Could be a replacement for vim-stay
   -- use {"lazytanuki/nvim-mapper"} -- Great way to document your keymaps (Could integrate to whichkey)
 
+  -- Neovim startup fixes
+  use { "antoinemadec/FixCursorHold.nvim" }
+  use { "lewis6991/impatient.nvim" }
+  use { "nathom/filetype.nvim" }
+
   -- Movement and text objects
   use { "machakann/vim-sandwich", keys = { "s" } }
   use { "tommcdo/vim-exchange", keys = "cx" }

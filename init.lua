@@ -1,4 +1,6 @@
+-- Startup optimizations
 require "impatient"
+vim.g.did_load_filetypes = 1
 
 -- Disable pluggins
 local disabled_built_ins = {
