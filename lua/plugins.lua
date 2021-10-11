@@ -512,10 +512,6 @@ return packer.startup(function()
 
   -- Markdown and Rmarkdown
   use {
-    "godlygeek/tabular",
-    ft = { "markdown", "rmd", "tex", "latex", "mom", "groff" },
-  }
-  use {
     "vim-pandoc/vim-pandoc-syntax",
     ft = { "markdown.pandoc" },
   }
