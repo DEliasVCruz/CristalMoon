@@ -84,7 +84,8 @@ return packer.startup(function()
     "jose-elias-alvarez/null-ls.nvim",
     after = "nvim-lspconfig",
     config = function()
-      require("lsp.format").config()
+      local attach = require("lsp").attach
+      require("lsp.format").config(attach)
     end,
   }
   use {
