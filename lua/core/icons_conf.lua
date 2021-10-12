@@ -140,5 +140,30 @@ icons.setup {
       color = "#F9F900",
       name = "zip",
     },
+    ["git"] = {
+      icon = "",
+      color = "#F14C28",
+      name = "GitLogo",
+    },
+    [".gitattributes"] = {
+      icon = "",
+      color = "#F14C28",
+      name = "GitAttributes",
+    },
+    [".gitignore"] = {
+      icon = "",
+      color = "#F14C28",
+      name = "GitIgnore",
+    },
+    [".gitmodules"] = {
+      icon = "",
+      color = "#F14C28",
+      name = "GitModules",
+    },
+    ["COMMIT_EDITMSG"] = {
+      icon = "",
+      color = "#F14C28",
+      name = "GitCommit",
+    },
   },
 }
