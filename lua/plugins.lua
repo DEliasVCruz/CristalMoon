@@ -231,6 +231,7 @@ return packer.startup(function()
   use {
     "kevinhwang91/nvim-bqf",
     module = "utils.quickfix",
+    event = "QuickFixCmdPre",
     config = function()
       require "core.quickfix"
     end,
