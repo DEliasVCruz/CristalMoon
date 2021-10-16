@@ -1,6 +1,7 @@
 -- Startup optimizations
 require "impatient"
 vim.g.did_load_filetypes = 1
+vim.g.cursorhold_updatetime = 100
 
 -- Disable pluggins
 local disabled_built_ins = {
@@ -30,8 +31,6 @@ local disabled_built_ins = {
 for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1
 end
-
-vim.g.cursorhold_updatetime = 100
 
 -- Load core config
 require "settings"
