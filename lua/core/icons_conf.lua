@@ -155,6 +155,11 @@ icons.setup {
       color = "#F14C28",
       name = "GitIgnore",
     },
+    [".gitconfig"] = {
+      icon = "",
+      color = "#F14C28",
+      name = "GitConfig",
+    },
     [".gitmodules"] = {
       icon = "",
       color = "#F14C28",
