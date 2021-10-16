@@ -213,8 +213,7 @@ return packer.startup(function()
   use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
   use {
     "hrsh7th/cmp-nvim-lsp",
-    module = "cmp_nvim_lsp",
-    after = "nvim-lspconfig",
+    after = "cmp-nvim-lua",
   }
   use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
   use { "hrsh7th/cmp-path", after = "cmp-buffer" }

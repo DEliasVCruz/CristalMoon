@@ -23,6 +23,28 @@ M.conf = function()
   end
 end
 
+M.capabilities = function(capabilities)
+  capabilities.textDocument.completion.completionItem.documentationFormat = {
+    "markdown",
+    "markdown.pandoc",
+    "plaintext",
+  }
+  capabilities.textDocument.completion.completionItem.snippetSupport = true
+  capabilities.textDocument.completion.completionItem.preselectSupport = true
+  capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+  capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+  capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+  capabilities.textDocument.completion.completionItem.commitCharactersSupport = true
+  capabilities.textDocument.completion.completionItem.tagSupport = { valueSet = { 1 } }
+  capabilities.textDocument.completion.completionItem.resolveSupport = {
+    properties = {
+      "documentation",
+      "detail",
+      "additionalTextEdits",
+    },
+  }
+end
+
 M.attach = function(_, bufnr)
   -- Setup lsp attach actions
   local function buf_set_keymap(...)
