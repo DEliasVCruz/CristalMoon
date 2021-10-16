@@ -248,6 +248,7 @@ return packer.startup(function()
       }
     end,
   }
+  -- use {"onsails/diaglist.nvim"} -- Live update diagnostic in quickfix
 
   -- Better serching
   use { "romainl/vim-cool", event = "CmdlineEnter" }
@@ -400,6 +401,8 @@ return packer.startup(function()
   -- use{"nvim-telescope/telescope-cheat.nvim"} -- Acces cheat.sh from within nvim
   -- use{"rmagatti/auto-session"} -- Could be a replacement for vim-stay
   -- use {"lazytanuki/nvim-mapper"} -- Great way to document your keymaps (Could integrate to whichkey)
+  -- use {'pianocomposer321/yabs.nvim'} -- An async build system to run your tasks form vim
+  -- use {"chentau/marks.nvim"} -- A better user experience for interacting with and manipulating Vim marks (quickfix)
 
   -- Neovim startup fixes
   use { "antoinemadec/FixCursorHold.nvim" }
