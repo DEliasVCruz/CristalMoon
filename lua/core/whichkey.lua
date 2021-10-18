@@ -127,7 +127,7 @@ local nmappings = {
   j = {
     name = "+Jump",
     l = { "<cmd>setlocal scrolloff=0<CR>Lzz<cmd>silent setlocal scrolloff=8<CR>", "Low End" },
-    -- i = { "<cmd>setlocal scrolloff=0<CR>Lzz<cmd>silent setlocal scrolloff=8<CR>", "Initial Line" },
+    i = { "^", "Init Line" },
     a = { "<cmd>setlocal scrolloff=0<CR>Hzz<cmd>silent setlocal scrolloff=8<CR>", "On top" },
     c = { "M", "Center" },
     e = { "$", "End" },
