@@ -261,6 +261,7 @@ local nmappings = {
     },
     o = { "<cmd>lua require('telescope.builtin').git_status()<cr>", "Open changed file" },
     b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Blame Toggle" },
+    ["/"] = { "<cmd>lua require('neogit').open({kind = 'split'})<cr>", "CmdStation" },
     -- d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff Prev. HEAD" }, -- Not working
     -- s = { "Status" },
     -- f = { "Fetch" },
