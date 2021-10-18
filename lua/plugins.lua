@@ -248,6 +248,7 @@ return packer.startup(function()
       }
     end,
   }
+  use { "gabrielpoca/replacer.nvim", module = "replacer" }
   -- use {"onsails/diaglist.nvim"} -- Live update diagnostic in quickfix
 
   -- Better serching
