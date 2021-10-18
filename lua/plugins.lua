@@ -148,6 +148,16 @@ return packer.startup(function()
     end,
     after = "plenary.nvim",
   }
+  use {
+    "TimUntersberger/neogit",
+    module = "neogit",
+    config = function()
+      require("neogit").setup {
+        disable_hint = true,
+        disable_context_highlighting = true,
+      }
+    end,
+  }
   -- use({ "bobrown101/git-blame.nvim" }) -- This could be good
   -- use{"rhysd/committia.vim"} -- Easier way to wirte commit messages
 
