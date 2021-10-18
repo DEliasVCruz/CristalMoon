@@ -300,6 +300,7 @@ return packer.startup(function()
       require "core.blankline"
     end,
   }
+  use { "DanilaMihailov/beacon.nvim", event = "BufRead" }
   -- use({ "ms-jpq/chadtree", cmd = "CHADopen", branch = "chad", run = "python3 -m chadtree deps" })
   -- use({ "rcarriga/nvim-notify" }) -- Fancy notification ui WIP
   -- use{"lukas-reineke/headlines.nvim"} -- Pretty headlines for headers and sections
