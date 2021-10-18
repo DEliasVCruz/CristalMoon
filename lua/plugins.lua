@@ -481,6 +481,7 @@ return packer.startup(function()
     keys = { "c", "d", "y" },
     setup = [[vim.g.targets_jumpRanges = "rr rb rB bb bB BB ll al Al aa Aa AA"]],
   }
+  use { "chaoren/vim-wordmotion", event = "BufRead" }
   -- use {"michaeljsmith/vim-indent-object"} -- Text object to operate on indents
   -- use {"AndrewRadev/splitjoin.vim"} -- Expand constructs like {}
   -- use{"nvim-treesitter/nvim-treesitter-textobjects"} -- Create your own text object
