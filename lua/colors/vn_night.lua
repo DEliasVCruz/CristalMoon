@@ -35,3 +35,9 @@ vim.cmd [[hi default link WhichKeyGroup Identifier]]
 vim.cmd [[highlight qfPath guifg=#FF5C8F]]
 vim.cmd [[highlight qfPosition guifg=#64657E]]
 vim.cmd [[highlight QuickFixLine gui=bold guifg=none]]
+
+-- Color column
+vim.cmd [[highlight ColorColumn guibg=#211337]]
+
+-- Curosr Line Color
+vim.cmd [[highlight Cursorline guibg=#211337]]
