@@ -230,8 +230,7 @@ return packer.startup(function()
   -- Better quickfix
   use {
     "kevinhwang91/nvim-bqf",
-    module = "utils.quickfix",
-    event = "QuickFixCmdPre",
+    ft = "qf",
     config = function()
       require "core.quickfix"
     end,
