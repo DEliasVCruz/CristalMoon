@@ -162,6 +162,7 @@ return packer.startup(function()
       require("neogit").setup {
         disable_hint = true,
         disable_context_highlighting = true,
+        integrations = { diffview = true },
       }
     end,
   }
