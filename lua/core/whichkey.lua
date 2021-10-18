@@ -345,7 +345,7 @@ local veopts = {
 
 local vmappings = {
   ["p"] = { '"_dP', "Paste" },
-  ["f"] = { '<cmd>lua vim.lsp.buf.range_formatting()<cr>', "Format" },
+  ["f"] = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Format" },
   -- ["i"] = { "IncreSelec" },
   -- ["d"] = { "DecreSelec" },
   ["s"] = { "ScopeSelec" },
