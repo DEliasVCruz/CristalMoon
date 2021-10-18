@@ -148,6 +148,7 @@ return packer.startup(function()
     end,
     after = "plenary.nvim",
   }
+  use { "rhysd/committia.vim" }
   use {
     "TimUntersberger/neogit",
     module = "neogit",
