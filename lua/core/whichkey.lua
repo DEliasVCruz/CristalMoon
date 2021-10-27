@@ -259,7 +259,7 @@ local nmappings = {
       s = { "<cmd>Gitsigns stage_hunk<cr>", "Stage Hunk" },
       u = { "<cmd>Gitsigns undo_stage_hunk<cr>", "Unstage Hunk" },
     },
-    o = { "<cmd>lua require('telescope.builtin').git_status()<cr>", "Open changed file" },
+    s = { "<cmd>lua require('telescope.builtin').git_status()<cr>", "Status" },
     b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Blame Toggle" },
     ["/"] = { "<cmd>lua require('neogit').open({kind = 'split'})<cr>", "CmdStation" },
     -- d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff Prev. HEAD" }, -- Not working
