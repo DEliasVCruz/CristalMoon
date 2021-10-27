@@ -42,6 +42,12 @@ M.config = function()
           text_align = "center",
           padding = 1,
         },
+        {
+          filetype = "lsp-installer",
+          text = "",
+          text_align = "center",
+          padding = 1,
+        },
       },
       show_tab_indicators = false,
       show_close_icon = false,
