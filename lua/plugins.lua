@@ -96,19 +96,7 @@ return packer.startup(function()
     "rmagatti/goto-preview",
     module = "goto-preview",
     config = function()
-      require("goto-preview").setup {
-        width = 80, -- Width of the floating window
-        height = 12, -- Height of the floating window
-        default_mappings = false, -- Bind default mappings
-        debug = false, -- Print debug information
-        opacity = nil, -- 0-100 opacity level of the floating window where 100 is fully transparent.
-        post_open_hook = function()
-          vim.cmd "set nonumber norelativenumber scrolloff=0"
-          vim.defer_fn(function()
-            vim.cmd [[ normal zt ]]
-          end, 1)
-        end,
-      }
+      require("lsp.previewer").config()
     end,
   }
   -- use{"goolord/nvim-clap-lsp"} -- nvim-lsp handlers with fancy ui
