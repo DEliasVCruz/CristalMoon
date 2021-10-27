@@ -43,6 +43,12 @@ M.config = function()
           padding = 1,
         },
         {
+          filetype = "packer",
+          text = "",
+          text_align = "center",
+          padding = 1,
+        },
+        {
           filetype = "lsp-installer",
           text = "",
           text_align = "center",
