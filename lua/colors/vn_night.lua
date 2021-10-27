@@ -42,3 +42,6 @@ vim.cmd [[highlight ColorColumn guibg=#211337]]
 -- Curosr Line Color
 vim.cmd [[highlight Cursorline guibg=#211337]]
 vim.cmd [[highlight Beacon guibg=white]]
+
+-- Transparent background floating
+vim.cmd [[highlight NormalFloat guibg=none]]
