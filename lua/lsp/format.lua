@@ -50,7 +50,6 @@ local sources = {
   -- Python
   b.diagnostics.flake8.with {
     args = { "--ignore=E501", "--stdin-display-name", "$FILENAME", "-" },
-    diagnostics_format = "%f:%l:%c: %m",
   },
   autoimportpy,
   b.formatting.isort,
