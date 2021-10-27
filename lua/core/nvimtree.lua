@@ -16,7 +16,7 @@ M.setup = function()
   }
 
   vim.g.nvim_tree_icons = {
-    default = " ",
+    default = "",
     symlink = " ",
     git = {
       unstaged = "",
