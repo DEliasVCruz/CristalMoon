@@ -3,5 +3,7 @@ require("utils.augroup").define_augroups {
 }
 
 vim.opt.colorcolumn = ""
+vim.opt.signcolumn = "yes:1"
+vim.opt.number = false
 
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>ar", ':lua require("replacer").run()<cr>', { silent = true })
