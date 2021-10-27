@@ -16,5 +16,5 @@ require("indent_blankline").setup {
     "if_statement",
     "with_statement",
   },
-  filetype_exclude = { "NvimTree", "help" },
+  filetype_exclude = { "NvimTree", "help", "packer", "lsp-installer" },
 }
