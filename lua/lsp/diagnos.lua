@@ -6,7 +6,7 @@ M.config = function()
   end
 
   lspSymbol("Error", "")
-  lspSymbol("Hint", "")
+  lspSymbol("Hint", "")
   lspSymbol("Info", "")
   lspSymbol("Warn", "")
 
