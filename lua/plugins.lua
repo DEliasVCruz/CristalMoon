@@ -320,7 +320,7 @@ return packer.startup(function()
     "windwp/nvim-autopairs",
     after = { "nvim-cmp" },
     config = function()
-      require "core.completion.autopairs"
+      require("core.completion.autopairs").config()
     end,
   }
   use { -- TODO: could be lazy load individually wiht <plug> look dial
