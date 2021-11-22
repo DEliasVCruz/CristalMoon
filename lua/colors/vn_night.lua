@@ -13,8 +13,8 @@ vim.cmd [[hi Conceal guifg=#fe8019]]
 -- vim.cmd([[hi Conceal guifg=#a884f3]])
 -- vim.cmd([[hi default link Conceal markdownRule]])
 -- vim.cmd([[hi pandocDelimitedCodeBlock guifg=#a884f3]])
-vim.cmd [[hi pandocDelimitedCodeBlock gui=bold guibg=#333333 guifg=#84CE5C]]
-vim.cmd [[hi pandocNoFormatted guibg=#333333 guifg=#CF4F6D]]
+vim.cmd [[hi pandocDelimitedCodeBlock guifg=#b9f27c]]
+vim.cmd [[hi pandocNoFormatted guifg=#CF4F6D]]
 
 -- Highligh Folding
 vim.cmd [[highlight Folded guibg=none]]
