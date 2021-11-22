@@ -40,6 +40,16 @@ M.setup_lsp = function(attach)
       }
     end
 
+    if server.name == "sumneko_lua" then
+      opts.settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      }
+    end
+
     if server.name == "gopls" then
       opts.settings = {
         gopls = {
