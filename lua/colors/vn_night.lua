@@ -45,3 +45,5 @@ vim.cmd [[highlight Beacon guibg=white]]
 
 -- Transparent background floating
 vim.cmd [[highlight NormalFloat guibg=none]]
+-- Match brackets colors
+vim.cmd [[hi MatchParen cterm=italic gui=italic]]
