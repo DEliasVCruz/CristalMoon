@@ -160,12 +160,12 @@ return packer.startup(function()
     after = "plenary.nvim",
   }
   use { "rhysd/committia.vim" }
-  use {
-    "sindrets/diffview.nvim",
-    config = function()
-      require "core.diff_view"
-    end,
-  }
+  -- use {
+  -- "sindrets/diffview.nvim",
+  -- config = function()
+  -- require "core.diff_view"
+  -- end,
+  -- }
   use {
     "TimUntersberger/neogit",
     module = "neogit",
