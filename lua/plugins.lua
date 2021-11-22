@@ -90,7 +90,7 @@ return packer.startup(function()
   }
   use {
     "mattn/emmet-vim",
-    module = "lsp.emmet_lsp",
+    ft = { "html", "css" },
   }
   use {
     "rmagatti/goto-preview",
