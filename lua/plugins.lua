@@ -24,6 +24,7 @@ return packer.startup(function()
       require("colors_conf").config()
     end,
   }
+  -- use { "EdenEast/nightfox.nvim" } -- Curly underline diagnosis, matchparen, cmp
   use {
     "kyazdani42/nvim-web-devicons",
     after = "vn-night.nvim",
@@ -103,11 +104,28 @@ return packer.startup(function()
     "b0o/schemastore.nvim",
     module = "schemastore",
   }
+  -- use {
+  -- "filipdutescu/renamer.nvim",
+  -- branch = "master",
+  -- module = "renamer",
+  -- config = function()
+  -- local mappings_utils = require "renamer.mappings.utils"
+  -- require("renamer").setup {
+  -- mappings = {
+  -- ["<c-e>"] = mappings_utils.set_cursor_to_end,
+  -- ["<c-c>"] = execute_in_nomral(vim.api.nvim_input, "<cmd>q!<cr>")
+  -- ["<c-u>"] = mappings_utils.clear_line,
+  -- },
+  -- }
+  -- end,
+  -- }
+  -- use {"jubnzv/virtual-types.nvim"} -- Show type annotation with CodeLens
+  -- use { "https://gitlab.com/yorickpeterse/nvim-dd.git" } -- Needs more work
   -- use{"goolord/nvim-clap-lsp"} -- nvim-lsp handlers with fancy ui
   -- use{"weilbith/nvim-code-action-menu"} -- A fancy menu for code actions with diff
   -- use{"ericpubu/lsp_codelens_extensions.nvim"} -- Adds client-side code for codelenses commands that are not available in the language servers
   -- use{"kosayoda/nvim-lightbulb"} -- Display a lightbulb next to lines with code actions
-  -- use("WhoIsSethDaniel/toggle-lsp-diagnostics.nvim") -- Toggle diagnostics on and off
+  -- use{"nvim-lua/lsp-status.nvim"} -- Utility to get diagnistic and lsp messages to use in statusline
 
   -- Telescope
   use { "nvim-lua/plenary.nvim", event = "BufRead" }
@@ -127,6 +145,7 @@ return packer.startup(function()
     run = "make",
   }
   -- use({ "nvim-telescope/telescope-smart-history.nvim" }) -- Smart history based on project
+  -- use{"mrjones2014/tldr.nvim"} -- Brwose tldr from telescope (needs installed client)
 
   -- Version management
   use {
@@ -160,6 +179,7 @@ return packer.startup(function()
   }
   -- use({ "bobrown101/git-blame.nvim" }) -- This could be good
   -- use{"rhysd/committia.vim"} -- Easier way to wirte commit messages
+  -- ues{"rhysd/git-messenger.vim"} -- View commit messages and olders
 
   -- Treesitter
   use {
@@ -173,6 +193,7 @@ return packer.startup(function()
     "windwp/nvim-ts-autotag",
     ft = { "html", "css", "scss", "js" },
   }
+  -- use {"SmiteshP/nvim-gps"} -- Status line component that show scope
   -- use{"RRethy/nvim-treesitter-textsubjects"} -- simple text objects
   -- use{"David-Kunz/treesitter-unit/"} -- Only deal with units (not complex)
   -- use{"Jason-M-Chan/ts-textobjects"} -- Move acoress the object tree
@@ -199,7 +220,7 @@ return packer.startup(function()
     module = "core.bufferline",
   }
   -- use {"GustavoKatel/sidebar.nvim"} -- Sidebar with helfpfull custom info
-  -- use{"windwp/windline.nvim"} -- A status line with animations
+  -- use{"windwp/windline.nvim"} -- A status line with animations (faster than feline)
   -- use{'nanozuki/tabby.nvim'} -- A nice tab visualizer (for window layout multiplexing)
 
   -- Completion
@@ -312,12 +333,13 @@ return packer.startup(function()
   }
   use { "DanilaMihailov/beacon.nvim", event = "BufRead" }
   -- use({ "ms-jpq/chadtree", cmd = "CHADopen", branch = "chad", run = "python3 -m chadtree deps" })
-  -- use({ "rcarriga/nvim-notify" }) -- Fancy notification ui WIP
+  -- use({ "rcarriga/nvim-notify" }) -- Fancy notification ui (requires config)
   -- use{"lukas-reineke/headlines.nvim"} -- Pretty headlines for headers and sections
   -- use{"MunifTanjim/nui.nvim"} -- component library to create your own ui
   -- Guide: <https://muniftanjim.dev/blog/neovim-build-ui-using-nui-nvim/>
   -- use{"haringsrob/nvim_context_vt"} -- Using virtual text as context print (treesiter)
   -- use{"Pocco81/HighStr.nvim"} -- highlighting visual selections like in a normal document editor
+  -- use {"luukvbaal/stabilize.nvim"} -- Don't move windows when opening splits below
 
   -- Quality of life
   use { -- TODO: configure colors of <A-e> and configure special rules
@@ -415,6 +437,7 @@ return packer.startup(function()
   -- use {"lazytanuki/nvim-mapper"} -- Great way to document your keymaps (Could integrate to whichkey)
   -- use {'pianocomposer321/yabs.nvim'} -- An async build system to run your tasks form vim
   -- use {"chentau/marks.nvim"} -- A better user experience for interacting with and manipulating Vim marks (quickfix)
+  -- use { "vim-scripts/RelOps" } -- Does not work but it has ideas
 
   -- Neovim startup fixes
   use { "antoinemadec/FixCursorHold.nvim" }
