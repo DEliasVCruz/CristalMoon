@@ -7,10 +7,7 @@ whichkey.setup {
   plugins = {
     marks = false, -- shows a list of your marks on ' and `
     registers = true, -- shows your registers on " in NORMAL or <C-r> in INSERT mode
-    spelling = {
-      enabled = true, -- enabling this will show WhichKey when pressing z= to select spelling suggestions
-      suggestions = 10, -- how many suggestions should be shown in the list?
-    },
+    spelling = { enabled = false },
     presets = {
       operators = false, -- adds help for operators like d, y, ...
       motions = false, -- adds help for motions
@@ -65,6 +62,7 @@ local nmappings = {
     -- c = { "<cmd>lua require('commented').toggle_comment('n')<cr>", "Comment" },
     d = { "<cmd>lua require'dial'.cmd.increment_normal(1)<cr>b", "Dial" },
     f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    g = { "<cmd>lua require('utils.functions').misspellings()<cr>", "Grammar Check" },
     l = { "gu", "LowerCase" },
     o = { "<cmd>execute 'silent! !xdg-open ' . shellescape(expand('<cfile>'), 1)<cr>", "Open URL" },
     p = { '"+p', "Paste Clipboard" },
@@ -322,18 +320,18 @@ local nmappings = {
   -- }
 }
 
-local reopts = {
-  mode = "n", -- NORMAL mode
-  prefix = "<leader>",
-  buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
-  silent = true, -- use `silent` when creating keymaps
-  noremap = false, -- use `noremap` when creating keymaps
-  nowait = false, -- use `nowait` when creating keymaps
-}
+-- local reopts = {
+-- mode = "n", -- NORMAL mode
+-- prefix = "<leader>",
+-- buffer = nil, -- Global mappings. Specify a buffer number for buffer local mappings
+-- silent = true, -- use `silent` when creating keymaps
+-- noremap = false, -- use `noremap` when creating keymaps
+-- nowait = false, -- use `nowait` when creating keymaps
+-- }
 
-local rmappings = {
-  ["ag"] = { "z=", "Grammar Check" },
-}
+-- local rmappings = {
+-- ["ag"] = { "<cmd>lua require('utils.functions').misspellings()<cr>", "Grammar Check" },
+-- }
 
 local veopts = {
   mode = "v", -- NORMAL mode
@@ -366,5 +364,5 @@ local vmappings = {
 }
 
 whichkey.register(nmappings, noreopts)
-whichkey.register(rmappings, reopts)
+-- whichkey.register(rmappings, reopts)
 whichkey.register(vmappings, veopts)

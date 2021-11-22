@@ -58,6 +58,16 @@ function funcs.find_commands()
   require("telescope.builtin").commands(opts)
 end
 
+function funcs.misspellings()
+  local opts = require("telescope.themes").get_cursor {
+    layout_config = {
+      height = 12,
+      width = 21,
+    },
+  }
+  require("telescope.builtin").spell_suggest(opts)
+end
+
 function funcs.find_options()
   local opts = {
     winblend = 10,
