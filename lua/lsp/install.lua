@@ -84,6 +84,7 @@ M.setup_lsp = function(attach)
         json = {
           format = {
             enable = false,
+            schemas = require("schemastore").json.schemas(),
           },
         },
       }

@@ -99,6 +99,10 @@ return packer.startup(function()
       require("lsp.previewer").config()
     end,
   }
+  use {
+    "b0o/schemastore.nvim",
+    module = "schemastore",
+  }
   -- use{"goolord/nvim-clap-lsp"} -- nvim-lsp handlers with fancy ui
   -- use{"weilbith/nvim-code-action-menu"} -- A fancy menu for code actions with diff
   -- use{"ericpubu/lsp_codelens_extensions.nvim"} -- Adds client-side code for codelenses commands that are not available in the language servers
