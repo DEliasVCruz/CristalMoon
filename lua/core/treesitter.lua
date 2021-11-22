@@ -11,7 +11,6 @@ M.config = function()
     matchup = {
       enable = true, -- mandatory, false will disable the whole extension
     },
-    indent = { enable = true, disable = { "yaml" } },
     autotag = { enable = true },
     incremental_selection = {
       enable = true,
