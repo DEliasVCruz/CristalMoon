@@ -30,11 +30,12 @@ end
 -- Needs more configs
 function funcs.curbuf()
   local opts = {
-    winblend = 10,
+    -- winblend = 10,
     border = true,
     previewer = false,
     path_display = { "absolute" },
     layout_strategy = "horizontal",
+    skip_empty_lines = true,
     layout_config = {
       height = 20,
       width = 0.40,
