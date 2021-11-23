@@ -104,21 +104,20 @@ return packer.startup(function()
     "b0o/schemastore.nvim",
     module = "schemastore",
   }
-  -- use {
-  -- "filipdutescu/renamer.nvim",
-  -- branch = "master",
-  -- module = "renamer",
-  -- config = function()
-  -- local mappings_utils = require "renamer.mappings.utils"
-  -- require("renamer").setup {
-  -- mappings = {
-  -- ["<c-e>"] = mappings_utils.set_cursor_to_end,
-  -- ["<c-c>"] = execute_in_nomral(vim.api.nvim_input, "<cmd>q!<cr>")
-  -- ["<c-u>"] = mappings_utils.clear_line,
-  -- },
-  -- }
-  -- end,
-  -- }
+  use {
+    "filipdutescu/renamer.nvim",
+    branch = "master",
+    module = "renamer",
+    config = function()
+      local mappings_utils = require "renamer.mappings.utils"
+      require("renamer").setup {
+        mappings = {
+          ["<c-e>"] = mappings_utils.set_cursor_to_end,
+          ["<c-u>"] = mappings_utils.clear_line,
+        },
+      }
+    end,
+  }
   -- use {"jubnzv/virtual-types.nvim"} -- Show type annotation with CodeLens
   -- use { "https://gitlab.com/yorickpeterse/nvim-dd.git" } -- Needs more work
   -- use{"goolord/nvim-clap-lsp"} -- nvim-lsp handlers with fancy ui
