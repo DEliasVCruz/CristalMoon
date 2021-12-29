@@ -59,8 +59,8 @@ M.attach = function(_, bufnr)
 
   -- Diagnostic Mappings.
   local opts = { noremap = true, silent = true }
-  buf_set_keymap("n", "<C-p>", "<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>", opts)
-  buf_set_keymap("n", "<C-n>", "<cmd>lua vim.lsp.diagnostic.goto_next()<CR>", opts)
+  buf_set_keymap("n", "<C-p>", "<cmd>lua vim.diagnostic.goto_prev({popup_opts = { border = 'single' }})<CR>", opts)
+  buf_set_keymap("n", "<C-n>", "<cmd>lua vim.diagnostic.goto_next({popup_opts = { border = 'single' }})<CR>", opts)
 end
 
 return M
