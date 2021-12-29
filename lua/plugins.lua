@@ -531,6 +531,20 @@ return packer.startup(function()
       }
     end,
   }
+  use {
+    "caenrique/swap-buffers.nvim",
+    module = "swap-buffers",
+    config = function()
+      require("swap-buffers").setup {
+        ignore_filetypes = {
+          "NvimTree",
+          "packer",
+          "lsp-installer",
+          "undotree",
+        },
+      }
+    end,
+  }
   -- use {"beauwilliams/focus.nvim"} -- Autofocus splits
   -- use {'kwkarlwang/bufjump.nvim'} -- More easilly move inside the buffer stack
   -- use {"kwkarlwang/bufresize.nvim"} -- Keep split sizing when rizing
