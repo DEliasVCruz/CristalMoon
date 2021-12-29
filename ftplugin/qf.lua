@@ -7,3 +7,4 @@ vim.opt.signcolumn = "yes:1"
 vim.opt.number = false
 
 vim.api.nvim_buf_set_keymap(0, "n", "<leader>ar", ':lua require("replacer").run()<cr>', { silent = true })
+vim.api.nvim_buf_set_keymap(0, "n", "q", ':q!<cr>', { silent = true })
