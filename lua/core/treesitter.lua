@@ -3,7 +3,7 @@ M.config = function()
   -- Treesitter Highlihgt module setting
   Treesitter = {
     ensure_installed = {},
-    ignore_install = {},
+    ignore_install = {"markdown"},
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
