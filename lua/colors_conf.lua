@@ -20,20 +20,20 @@ M.config = function()
   -- Transperency
   -- vim.cmd([[hi SignColumn guibg=none]])
   -- vim.cmd([[hi CursorLineNR guibg=None]])
-  -- vim.cmd([[highlight Normal guibg=none]])
+  -- vim.cmd([[hi Normal guibg=none]])
 
-  vim.cmd [[highlight ColorColumn ctermbg=0 guibg=grey]]
-  vim.cmd [[highlight LineNr guifg=#5eacd3]]
-  vim.cmd [[hi TelescopeBorder guifg=#5eacd]]
+  vim.cmd [[hi ColorColumn ctermbg=0 guibg=grey]]
+  vim.cmd [[hi LineNr guifg='#5eacd3']]
+  vim.cmd [[hi TelescopeBorder guifg='#5eacd]']
 
   -- Highligh Folding
-  vim.cmd [[highlight Folded guibg=none]]
+  vim.cmd [[hi Folded guibg=none]]
 
   -- Highlight Yank
-  vim.cmd [[hi YankHighlight guibg=#b47109]]
+  vim.cmd [[hi YankHighlight guibg='#b47109']]
 
   -- Bufferline selection
-  -- vim.cmd([[highlight TabLineSel guibg=#e78a4e]])
+  -- vim.cmd([[hi TabLineSel guibg=#e78a4e]])
 
   -- Gitblame colors
   vim.cmd [[hi default link GitSignsCurrentLineBlame SpecialComment]]
@@ -46,7 +46,10 @@ M.config = function()
   vim.cmd [[hi QuickScopeSecondary guifg='#5fffff' gui=bold]]
 
   -- Markdown support
-  vim.cmd [[hi Conceal guifg=#fe8019]]
+  vim.cmd [[hi Conceal guifg='#fe8019']]
+
+  -- Signature help
+  vim.cmd [[hi LspSignatureActiveParameter guifg='#f79617']]
 end
 
 return M
