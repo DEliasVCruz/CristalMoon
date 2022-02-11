@@ -32,7 +32,9 @@ return packer.init {
     prompt_border = "single",
   },
   git = {
-    clone_timeout = 600, -- Timeout, in seconds, for git clones
+    clone_timeout = 6000, -- Timeout, in seconds, for git clones
   },
+  auto_clean = true,
+  compile_on_sync = true,
   compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
 }
