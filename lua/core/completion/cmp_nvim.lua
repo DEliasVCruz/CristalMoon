@@ -4,7 +4,9 @@ if not present then
   return
 end
 
--- vim.opt.pumblend = 20
+-- Pmenu options
+vim.opt.completeopt = "menuone,noselect"
+vim.opt.pumheight = 7 -- Makes popup menu smaller
 
 -- nvim-cmp setup
 cmp.setup {
@@ -24,56 +26,86 @@ cmp.setup {
 
       vim_item.menu = ({
         nvim_lsp = "[LSP]",
-        nvim_lua = "[Lua]",
-        buffer = "[BUF]",
+        nvim_lua = "[LUA]",
+        rg = "[RG]",
+        fuzzy_buffer = "[FZF]",
       })[entry.source.name]
 
       return vim_item
     end,
   },
   mapping = {
-    ["<C-p>"] = cmp.mapping.select_prev_item(),
-    ["<C-n>"] = cmp.mapping.select_next_item(),
-    ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.close(),
-    ["<CR>"] = cmp.mapping.confirm {
-      select = true,
-      behavior = cmp.ConfirmBehavior.Insert,
+    ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
+    ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
+    ["<A-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c" }),
+    ["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c" }),
+    ["<C-e>"] = cmp.mapping {
+      i = cmp.mapping.abort(),
+      c = cmp.mapping.close(),
     },
+    ["<C-k>"] = cmp.mapping.confirm { select = true },
   },
-  sources = {
+  sources = cmp.config.sources {
+    { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "buffer" },
-    { name = "nvim_lua" },
-    { name = "path" },
+    { name = "fuzzy_path" },
+    { name = "rg", keyword_length = 4, max_item_count = 5 },
+    { name = "fuzzy_buffer", keyword_length = 5, max_item_count = 5 },
+  },
+  experimental = {
+    ghost_text = true,
+  },
+  documentation = {
+    border = "single",
+    winhighlight = "NormalFloat:CmpDocWin",
+  },
+  sorting = {
+    comparators = {
+      cmp.config.compare.offset,
+      cmp.config.compare.exact,
+      cmp.config.compare.score,
+      require("cmp-under-comparator").under,
+      cmp.config.compare.kind,
+      cmp.config.compare.sort_text,
+      cmp.config.compare.length,
+      cmp.config.compare.order,
+    },
   },
 }
+
+cmp.setup.cmdline("/", {
+  sources = cmp.config.sources {
+    { name = "fuzzy_buffer" },
+  },
+})
+
+cmp.setup.cmdline(":", {
+  sources = cmp.config.sources({
+    { name = "fuzzy_path" },
+  }, {
+    { name = "cmdline" },
+  }),
+})
+
 -- Mappings
--- Esc from insert mode
--- vim.api.nvim_set_keymap("i", "jk", "<ESC>", { noremap = true })
-
--- Movement in insert mode
-vim.api.nvim_set_keymap("i", "<C-j>", "<Left>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-k>", "<Right>", { noremap = true })
-
 -- Undo break points
-vim.api.nvim_set_keymap("i", ",", ",<c-g>u", { noremap = true })
-vim.api.nvim_set_keymap("i", ".", ".<c-g>u", { noremap = true })
-vim.api.nvim_set_keymap("i", "!", "!<c-g>u", { noremap = true })
-vim.api.nvim_set_keymap("i", "?", "?<c-g>u", { noremap = true })
-vim.api.nvim_set_keymap("i", "=", "=<c-g>u", { noremap = true })
-vim.api.nvim_set_keymap("i", '"', '"<c-g>u', { noremap = true })
+vim.keymap.set("i", ",", ",<c-g>u", { noremap = true })
+vim.keymap.set("i", ".", ".<c-g>u", { noremap = true })
+vim.keymap.set("i", "!", "!<c-g>u", { noremap = true })
+vim.keymap.set("i", "?", "?<c-g>u", { noremap = true })
+vim.keymap.set("i", "=", "=<c-g>u", { noremap = true })
+vim.keymap.set("i", '"', '"<c-g>u', { noremap = true })
 
 -- Paste mapping
-vim.api.nvim_set_keymap("i", "<C-v>", '<C-r>"', { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-y>", "<C-r>+", { noremap = true })
+vim.keymap.set("i", "<C-v>", '<C-r>"', { noremap = true })
+vim.keymap.set("i", "<C-y>", "<C-r>+", { noremap = true })
 
 -- Indentation
-vim.api.nvim_set_keymap("i", "<C-o>", "<C-t>", { noremap = true })
+vim.keymap.set("i", "<C-o>", "<C-t>", { noremap = true })
 
--- Compe confirm & close
-vim.api.nvim_set_keymap("i", "<CR>", "compe#confirm('<CR>')", { noremap = true, silent = true, expr = true })
-
--- Capitalization
--- vim.api.nvim_set_keymap("i", "<C-t>", "<esc>b~ea", { noremap = true })
+-- Signature help
+vim.keymap.set("i", "<C-s>", function()
+  vim.lsp.buf.signature_help()
+end, { buffer = true, noremap = true, silent = true })
