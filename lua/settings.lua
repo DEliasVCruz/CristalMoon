@@ -4,13 +4,11 @@ local opt = vim.opt
 -- Paths
 CACHE_PATH = vim.fn.stdpath "cache"
 
--- Menu options
-opt.completeopt = { "menuone", "noselect" }
-
 -- Setting Different Options
 opt.shortmess:append "c"
 opt.viewoptions:append { "slash", "unix" }
 opt.viewoptions:remove { "cursor", "curdir" }
+opt.fillchars:append { eob = " " }
 opt.fileencoding = "utf-8" -- The encoding written to file
 opt.guicursor = "n-sm:block,i-ci-ve-c:ver25-Cursor,r-cr-o-v:hor20,n-v-c-i:blinkon10,i:blinkwait10"
 opt.hidden = true
@@ -35,11 +33,11 @@ opt.colorcolumn = "92"
 opt.termguicolors = true -- set term gui colors most terminals support this
 opt.showmode = false -- We don't need to see things like -- INSERT -- anymore
 opt.showcmd = false -- We don't need to see things like -- INSERT -- anymore
-opt.pumheight = 10 -- Makes popup menu smaller
 opt.lazyredraw = true
 opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 opt.grepformat = "%f:%l:%c:%m"
 opt.splitbelow = true
+opt.cursorline = true
 
 -- Having longer update leads to noticeable delays and poor user experience
 opt.updatetime = 50
