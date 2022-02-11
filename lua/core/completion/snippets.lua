@@ -10,5 +10,5 @@ luasnip.config.set_config {
 require("luasnip/loaders/from_vscode").load()
 
 -- Snippet Expansion
-vim.api.nvim_set_keymap("i", "<C-l>", "<cmd>lua require'luasnip'.expand_or_jump()<cr>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-t>", "<cmd>lua require'luasnip'.jump(-1)<cr>", { noremap = true })
+vim.keymap.set("i", "<C-l>", "<cmd>lua require'luasnip'.expand_or_jump()<cr>", { noremap = true })
+vim.keymap.set("i", "<C-t>", "<cmd>lua require'luasnip'.jump(-1)<cr>", { noremap = true })

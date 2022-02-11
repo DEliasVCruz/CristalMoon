@@ -12,5 +12,5 @@ bqf.setup {
 }
 
 -- Keybidings
-vim.api.nvim_set_keymap("n", "<C-j>", ":cnext<CR>zzzv", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "<C-k>", ":cprev<CR>zzzv", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-j>", ":cnext<CR>zzzv", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-k>", ":cprev<CR>zzzv", { noremap = true, silent = true })

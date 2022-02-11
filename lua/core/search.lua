@@ -2,25 +2,25 @@
 vim.g["asterisk#keeppos"] = 1
 
 -- Keymaps
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   "n",
   "n",
   "<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>zzzv",
   { noremap = true, silent = true }
 )
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   "n",
   "N",
   "<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>zzzv",
   { noremap = true, silent = true }
 )
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   "",
   "*",
   "<Plug>(asterisk-z*)<Cmd>lua require('hlslens').start()<CR>",
   { noremap = false, silent = true }
 )
-vim.api.nvim_set_keymap(
+vim.keymap.set(
   "",
   "g*",
   "<Plug>(asterisk-gz*)<Cmd>lua require('hlslens').start()<CR>",

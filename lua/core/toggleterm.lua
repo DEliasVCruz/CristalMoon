@@ -29,4 +29,4 @@ term.setup {
 }
 
 -- Insert leave mapping
-vim.api.nvim_set_keymap("t", "<C-f>", "<C-\\><C-n>", { noremap = true })
+vim.keymap.set("t", "<C-f>", "<C-\\><C-n>", { noremap = true })
