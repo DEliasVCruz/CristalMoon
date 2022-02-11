@@ -19,16 +19,16 @@ M.config = function()
 
     -- Defaults
     defaults = {
-      prompt_prefix = " ",
+      prompt_prefix = "  ",
       selection_caret = " ",
       entry_prefix = " ",
       initial_mode = "insert",
       selection_strategy = "reset",
-      sorting_strategy = "descending",
+      sorting_strategy = "ascending",
       layout_strategy = "horizontal",
       layout_config = {
         width = 0.75,
-        prompt_position = "bottom",
+        prompt_position = "top",
         preview_cutoff = 120,
         preview_width = 0.6,
         horizontal = { mirror = false },
@@ -42,7 +42,6 @@ M.config = function()
       border = {},
       borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
       color_devicons = true,
-      use_less = true,
       set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
       file_previewer = require("telescope.previewers").vim_buffer_cat.new,
       grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
