@@ -11,7 +11,7 @@ local use = packer.use
 
 return packer.startup(function()
   -- Packer can manage itself as an optional plugin
-  use { "wbthomason/packer.nvim", module = "packer" }
+  use { "wbthomason/packer.nvim" }
 
   -- Colorschemes
   use {
@@ -113,6 +113,9 @@ return packer.startup(function()
       require("renamer").setup {
         mappings = {
           ["<c-e>"] = mappings_utils.set_cursor_to_end,
+          ["<c-c>"] = function()
+            vim.api.nvim_input "<esc>"
+          end,
           ["<c-u>"] = mappings_utils.clear_line,
         },
       }
@@ -134,13 +137,15 @@ return packer.startup(function()
       require("core.telescope_conf").config()
     end,
     module = "telescope",
+    -- commit = "6f82c6630cea83b591beeebdc760705cafa3e426",
   }
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
-    config = function()
+    module = { "cmp", "telescope" },
+    after = { "telescope.nvim" },
+    config = function ()
       require("telescope").load_extension "fzf"
     end,
-    after = "telescope.nvim",
     run = "make",
   }
   -- use({ "nvim-telescope/telescope-smart-history.nvim" }) -- Smart history based on project
@@ -150,6 +155,9 @@ return packer.startup(function()
   use {
     "mbbill/undotree",
     cmd = "UndotreeToggle",
+    setup = function()
+      vim.g.undotree_SplitWidth = 35
+    end,
   }
   use {
     "lewis6991/gitsigns.nvim",
@@ -238,15 +246,16 @@ return packer.startup(function()
       require "core.completion.snippets"
     end,
   }
-  use { "rafamadriz/friendly-snippets", event = "InsertEnter" }
+  use { "rafamadriz/friendly-snippets", event = { "InsertEnter", "CmdlineEnter" } }
   use { "saadparwaiz1/cmp_luasnip", after = "LuaSnip" }
   use { "hrsh7th/cmp-nvim-lua", after = "cmp_luasnip" }
-  use {
-    "hrsh7th/cmp-nvim-lsp",
-    after = "cmp-nvim-lua",
-  }
-  use { "hrsh7th/cmp-buffer", after = "cmp-nvim-lsp" }
-  use { "hrsh7th/cmp-path", after = "cmp-buffer" }
+  use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
+  use { "lukas-reineke/cmp-under-comparator", module = "cmp-under-comparator" }
+  use { "lukas-reineke/cmp-rg", after = "cmp-nvim-lsp" }
+  use { "tzachar/fuzzy.nvim", after = "cmp-rg" }
+  use { "tzachar/cmp-fuzzy-buffer", after = "fuzzy.nvim" }
+  use { "tzachar/cmp-fuzzy-path", after = "fuzzy.nvim" }
+  use { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" }
   -- How to configure coq https://alpha2phi.medium.com/new-neovim-completion-plugins-you-should-try-b5e1a3661623
   -- use({
   -- "ms-jpq/coq_nvim",
@@ -303,6 +312,7 @@ return packer.startup(function()
       require "core.whichkey"
     end,
     keys = "<leader>",
+    -- branch = "patch-1",
   }
   use {
     "kyazdani42/nvim-tree.lua",
@@ -339,6 +349,10 @@ return packer.startup(function()
   -- use{"haringsrob/nvim_context_vt"} -- Using virtual text as context print (treesiter)
   -- use{"Pocco81/HighStr.nvim"} -- highlighting visual selections like in a normal document editor
   -- use {"luukvbaal/stabilize.nvim"} -- Don't move windows when opening splits below
+
+  -- Symbols
+  -- use {"stevearc/aerial.nvim/"} -- A simple simbols explorer bar
+  -- use {"simrat39/symbols-outline.nvim"} -- A tree like view for symbols
 
   -- Quality of life
   use { -- TODO: configure colors of <A-e> and configure special rules
@@ -403,11 +417,13 @@ return packer.startup(function()
     -- event = "TextYankPost",
     config = function()
       require("neoclip").setup {
-        enable_persistant_history = false,
+        enable_persistent_history = false,
         keys = {
-          i = {
-            paste = "<c-y>",
-            paste_behind = "<c-b>",
+          telescope = {
+            i = {
+              paste = "<c-y>",
+              paste_behind = "<c-b>",
+            },
           },
         },
       }
@@ -437,6 +453,7 @@ return packer.startup(function()
   -- use {'pianocomposer321/yabs.nvim'} -- An async build system to run your tasks form vim
   -- use {"chentau/marks.nvim"} -- A better user experience for interacting with and manipulating Vim marks (quickfix)
   -- use { "vim-scripts/RelOps" } -- Does not work but it has ideas
+  -- use {"VonHeikemen/fine-cmdline.nvim"} -- A floting window based Ex: cmd line
 
   -- Neovim startup fixes
   use { "antoinemadec/FixCursorHold.nvim" }
@@ -468,13 +485,6 @@ return packer.startup(function()
     end,
   }
   use { "tpope/vim-repeat", keys = "." }
-  use { -- Extends the capabilities of %
-    "andymass/vim-matchup",
-    module = "nvim-treesitter",
-    setup = function()
-      vim.g.matchup_matchparen_offscreen = { method = "popup" }
-    end,
-  }
   use { -- TODO: could be repalced with hop.nvim or ligthspeed.nvim
     "unblevable/quick-scope",
     keys = { "f", "F" },
@@ -550,7 +560,7 @@ return packer.startup(function()
   -- use {"kwkarlwang/bufresize.nvim"} -- Keep split sizing when rizing
 
   -- Spell checking
-  -- Spell checking lsp "https://teddit.net/r/neovim/comments/pf2pk5"
+  -- use { "brymer-meneses/grammar-guard.nvim" } -- Spell checking lsp
 
   -- Markdown and Rmarkdown
   use {
