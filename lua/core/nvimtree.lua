@@ -15,23 +15,23 @@ M.setup = function()
   }
 
   vim.g.nvim_tree_icons = {
-    default = "",
+    default = " ",
     symlink = " ",
     git = {
-      unstaged = "",
+      unstaged = " ",
       staged = "S",
-      unmerged = "",
-      renamed = "➜",
-      deleted = "",
+      unmerged = " ",
+      renamed = "➜ ",
+      deleted = " ",
       untracked = "U",
-      ignored = "◌",
+      ignored = "◌ ",
     },
     folder = {
-      default = "",
-      open = "",
-      empty = "",
-      empty_open = "",
-      symlink = "",
+      default = " ",
+      open = " ",
+      empty = " ",
+      empty_open = " ",
+      symlink = " ",
     },
   }
 end
@@ -49,10 +49,10 @@ M.config = function()
     diagnostics = {
       enable = true,
       icons = {
-        hint = "",
-        info = "",
-        warning = "",
-        error = "",
+        hint = " ",
+        info = " ",
+        warning = " ",
+        error = " ",
       },
     },
     update_focused_file = {
