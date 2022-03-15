@@ -52,6 +52,9 @@ local noreopts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
+-- Set background color
+vim.api.nvim_set_hl(0, "WhichKeyFloat", {bg = nil})
+
 local nmappings = {
   ["q"] = { "<cmd>qa!<cr>", "Quit" },
   ["s"] = { "<cmd>up<cr>", "Save" },
