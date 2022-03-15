@@ -19,7 +19,7 @@ cmp.setup {
     format = function(entry, vim_item)
       -- load lspkind icons
       vim_item.kind = string.format(
-        "%s %s",
+        "%s",
         require("core.completion.lspkind_icons").icons[vim_item.kind],
         vim_item.kind
       )
@@ -29,6 +29,8 @@ cmp.setup {
         nvim_lua = "[LUA]",
         rg = "[RG]",
         fuzzy_buffer = "[FZF]",
+        luasnip = "[SNIP]",
+        fuzzy_path = "[PATH]",
       })[entry.source.name]
 
       return vim_item
@@ -55,7 +57,7 @@ cmp.setup {
     { name = "fuzzy_buffer", keyword_length = 5, max_item_count = 5 },
   },
   experimental = {
-    ghost_text = true,
+    ghost_text = false,
   },
   documentation = {
     border = "single",
