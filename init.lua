@@ -37,7 +37,3 @@ require "settings"
 require "keymappings"
 require "packer_compiled"
 require "utils.autocomands"
-
--- Languages
--- Still need to configure the RDBMS
--- require("lsp.sql_lsp")
