@@ -41,6 +41,9 @@ M.config = function()
     },
     numhl = false,
     linehl = false,
+    -- diff_opts = {
+      -- algorithm = "histogram",
+    -- },
     keymaps = {},
     watch_gitdir = {
       interval = 100,
