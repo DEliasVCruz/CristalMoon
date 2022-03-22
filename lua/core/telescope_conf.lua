@@ -57,7 +57,7 @@ M.config = function()
           ["<C-c>"] = actions.close,
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
+          ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
           -- To disable a keymap, put [map] = false
           -- So, to not map "<C-n>", just put
           -- ["<c-x>"] = false,
@@ -75,7 +75,7 @@ M.config = function()
         n = {
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<C-f>"] = actions.smart_send_to_qflist + actions.open_qflist,
+          ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
           -- ["<C-i>"] = my_cool_custom_action,
         },
       },
