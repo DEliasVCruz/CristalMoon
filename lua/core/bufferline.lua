@@ -14,9 +14,9 @@ M.config = function()
       left_mouse_command = nil,
       middle_mouse_command = nil,
       indicator_icon = "▎",
-      modified_icon = "●",
-      left_trunc_marker = "",
-      right_trunc_marker = "",
+      modified_icon = "● ",
+      left_trunc_marker = " ",
+      right_trunc_marker = " ",
       diagnostics = "nvim_lsp",
       diagnostics_indicator = function(count, level, diagnostics_dict, context)
         if context.buffer:current() then
@@ -24,7 +24,7 @@ M.config = function()
         end
         local s = " "
         for e, n in pairs(diagnostics_dict) do
-          local sym = e == "error" and " " or (e == "warning" and " " or "")
+          local sym = e == "error" and " " or (e == "warning" and " " or " ")
           s = s .. n .. sym
         end
         return s
@@ -32,6 +32,12 @@ M.config = function()
       offsets = {
         {
           filetype = "NvimTree",
+          text = "EXPLORER",
+          text_align = "center",
+          padding = 1,
+        },
+        {
+          filetype = "neo-tree",
           text = "EXPLORER",
           text_align = "center",
           padding = 1,
