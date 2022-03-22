@@ -285,6 +285,11 @@ return packer.startup(function()
           hint = "",
         },
       }
+  use {
+    "folke/trouble.nvim",
+    module = "trouble",
+    config = function()
+      require("core.trouble_conf").config()
     end,
   }
   use { "gabrielpoca/replacer.nvim", module = "replacer" }
@@ -322,6 +327,15 @@ return packer.startup(function()
     end,
     config = function()
       require("core.nvimtree").config()
+    end,
+  }
+  -- Guide: <https://muniftanjim.dev/blog/neovim-build-ui-using-nui-nvim/>
+  use { "MunifTanjim/nui.nvim" }
+  use {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v1.x",
+    config = function()
+      require("core.neotree").config()
     end,
   }
   use {
@@ -362,14 +376,11 @@ return packer.startup(function()
       require("core.completion.autopairs").config()
     end,
   }
-  use { -- TODO: could be lazy load individually wiht <plug> look dial
-    "winston0410/commented.nvim",
-    after = { "which-key.nvim" },
+  use {
+    "numToStr/Comment.nvim",
+    module = "Comment",
     config = function()
-      require("commented").setup {
-        keybindings = { n = "<leader>ac", v = "<leader>c" },
-        ex_mode_cmd = false,
-      }
+      require("core.commenting").config()
     end,
   }
   use {
