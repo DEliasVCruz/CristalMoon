@@ -24,7 +24,13 @@ return packer.startup(function()
       require("colors_conf").config()
     end,
   }
-  -- use { "EdenEast/nightfox.nvim" } -- Curly underline diagnosis, matchparen, cmp
+  use {
+    "EdenEast/nightfox.nvim",
+    opt = true,
+    config = function()
+      require "colors.fox_conf"
+    end,
+  } -- Curly underline diagnosis, matchparen, cmp
   use {
     "kyazdani42/nvim-web-devicons",
     after = "vn-night.nvim",
@@ -40,13 +46,6 @@ return packer.startup(function()
     end,
   }
   use { -- todo: Use the apis for checking colorschemes
-    "ghifarit53/tokyonight-vim",
-    opt = true,
-    setup = function()
-      require "colors.tokyo_conf"
-    end,
-  }
-  use { -- todo: Use the apis for checking colorschemes
     "srcery-colors/srcery-vim",
     opt = true,
     setup = function()
@@ -58,6 +57,7 @@ return packer.startup(function()
     event = "VimEnter",
     config = function()
       require "colors.vn_night"
+      require("lightspeed").init_highlight(true)
     end,
   }
 
@@ -90,6 +90,26 @@ return packer.startup(function()
     end,
   }
   use {
+    "lukas-reineke/lsp-format.nvim",
+    module = "lsp-format",
+    config = function()
+      require("lsp-format").setup {}
+    end,
+  }
+  --[[ use { -- TODO: Modifiy the source code plugin
+    "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+    config = function()
+      require("lsp_lines").register_lsp_virtual_lines()
+    end,
+  } ]]
+  --[[ use { -- TODO: Needs more polish
+    "j-hui/fidget.nvim",
+    after = "nvim-lspconfig",
+    config = function()
+      require("fidget").setup { text = { spinner = "arc" } }
+    end,
+  } ]]
+  use {
     "mattn/emmet-vim",
     ft = { "html", "css" },
   }
@@ -105,24 +125,21 @@ return packer.startup(function()
     module = "schemastore",
   }
   use {
-    "filipdutescu/renamer.nvim",
-    branch = "master",
+    "abzcoding/renamer.nvim",
+    branch = "develop",
     module = "renamer",
     config = function()
-      local mappings_utils = require "renamer.mappings.utils"
-      require("renamer").setup {
-        mappings = {
-          ["<c-e>"] = mappings_utils.set_cursor_to_end,
-          ["<c-c>"] = function()
-            vim.api.nvim_input "<esc>"
-          end,
-          ["<c-u>"] = mappings_utils.clear_line,
-        },
-      }
+      require("core.various").rename_conf()
     end,
   }
   -- use {"jubnzv/virtual-types.nvim"} -- Show type annotation with CodeLens
-  -- use { "https://gitlab.com/yorickpeterse/nvim-dd.git" } -- Needs more work
+  use {
+    "https://gitlab.com/yorickpeterse/nvim-dd.git",
+    after = "nvim-lspconfig",
+    config = function()
+      require("core.various").config "dd"
+    end,
+  }
   -- use{"goolord/nvim-clap-lsp"} -- nvim-lsp handlers with fancy ui
   -- use{"weilbith/nvim-code-action-menu"} -- A fancy menu for code actions with diff
   -- use{"ericpubu/lsp_codelens_extensions.nvim"} -- Adds client-side code for codelenses commands that are not available in the language servers
@@ -137,13 +154,12 @@ return packer.startup(function()
       require("core.telescope_conf").config()
     end,
     module = "telescope",
-    -- commit = "6f82c6630cea83b591beeebdc760705cafa3e426",
   }
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
     module = { "cmp", "telescope" },
     after = { "telescope.nvim" },
-    config = function ()
+    config = function()
       require("telescope").load_extension "fzf"
     end,
     run = "make",
@@ -166,7 +182,6 @@ return packer.startup(function()
     end,
     after = "plenary.nvim",
   }
-  use { "rhysd/committia.vim" }
   -- use {
   -- "sindrets/diffview.nvim",
   -- config = function()
@@ -177,21 +192,18 @@ return packer.startup(function()
     "TimUntersberger/neogit",
     module = "neogit",
     config = function()
-      require("neogit").setup {
-        disable_hint = true,
-        disable_context_highlighting = true,
-        integrations = { diffview = true },
-      }
+      require("core.various").config "neogit"
     end,
   }
   -- use({ "bobrown101/git-blame.nvim" }) -- This could be good
-  -- use{"rhysd/committia.vim"} -- Easier way to wirte commit messages
   -- ues{"rhysd/git-messenger.vim"} -- View commit messages and olders
 
   -- Treesitter
   use {
     "nvim-treesitter/nvim-treesitter",
     event = "BufRead",
+    -- event = { "BufReadPost", "BufWritePost", "BufNewFile" },
+    -- module = "nvim-treesitter",
     config = function()
       require("core.treesitter").config()
     end,
@@ -205,6 +217,9 @@ return packer.startup(function()
   -- use{"David-Kunz/treesitter-unit/"} -- Only deal with units (not complex)
   -- use{"Jason-M-Chan/ts-textobjects"} -- Move acoress the object tree
   -- use{"LhKipp/nvim-nu"} -- Basic editor treesiter syntax support for nushell
+
+  -- Filetype support
+  use { "flniu/er.vim", ft = { "er" } }
 
   -- Status Line
   use {
@@ -267,24 +282,19 @@ return packer.startup(function()
   -- Help on setting up coq with lsp <https://teddit.net/r/neovim/comments/plj9mx>
 
   -- Better quickfix
-  use {
+  --[[ use {
     "kevinhwang91/nvim-bqf",
     ft = "qf",
     config = function()
       require "core.quickfix"
     end,
-  }
-  use {
+  } ]]
+  --[[ use { -- TODO: see how it formats qf
     "https://gitlab.com/yorickpeterse/nvim-pqf.git",
     config = function()
-      require("pqf").setup {
-        signs = {
-          error = "",
-          warning = "",
-          info = "כֿ",
-          hint = "",
-        },
-      }
+      require("core.various").config "pqf"
+    end,
+  } ]]
   use {
     "folke/trouble.nvim",
     module = "trouble",
@@ -292,32 +302,43 @@ return packer.startup(function()
       require("core.trouble_conf").config()
     end,
   }
-  use { "gabrielpoca/replacer.nvim", module = "replacer" }
-  -- use {"onsails/diaglist.nvim"} -- Live update diagnostic in quickfix
+  -- use { "gabrielpoca/replacer.nvim", module = "replacer" }
 
   -- Better serching
   use { "romainl/vim-cool", event = "CmdlineEnter" }
-  use { -- TODO: make backgroudn transparent
+  use {
+    "petertriho/nvim-scrollbar",
+    -- event = "BufRead",
+    config = function()
+      require("core.various").config "scrollbar"
+      require("scrollbar.handlers.search").setup()
+    end,
+  }
+  use {
     "kevinhwang91/nvim-hlslens",
     event = "CmdlineEnter",
+    module = "hlslens",
     keys = { "*", "g*" },
     config = function()
       require "core.search"
     end,
   }
+  -- use {"VonHeikemen/searchbox.nvim"} -- highlighting isn't working
   use {
     "haya14busa/vim-asterisk",
     module = "hlslens",
   }
+  -- use { "VonHeikemen/fine-cmdline.nvim" }
 
   -- Interface & UI
   use {
     "folke/which-key.nvim",
     config = function()
       require "core.whichkey"
+      -- Set background color
+      vim.api.nvim_set_hl(0, "WhichKeyFloat", { bg = nil })
     end,
     keys = "<leader>",
-    -- branch = "patch-1",
   }
   use {
     "kyazdani42/nvim-tree.lua",
@@ -354,12 +375,15 @@ return packer.startup(function()
       require "core.blankline"
     end,
   }
-  use { "DanilaMihailov/beacon.nvim", event = "BufRead" }
-  -- use({ "ms-jpq/chadtree", cmd = "CHADopen", branch = "chad", run = "python3 -m chadtree deps" })
+  use {
+    "edluffy/specs.nvim",
+    module = "specs",
+    config = function()
+      require("core.various").beam_conf()
+    end,
+  }
   -- use({ "rcarriga/nvim-notify" }) -- Fancy notification ui (requires config)
   -- use{"lukas-reineke/headlines.nvim"} -- Pretty headlines for headers and sections
-  -- use{"MunifTanjim/nui.nvim"} -- component library to create your own ui
-  -- Guide: <https://muniftanjim.dev/blog/neovim-build-ui-using-nui-nvim/>
   -- use{"haringsrob/nvim_context_vt"} -- Using virtual text as context print (treesiter)
   -- use{"Pocco81/HighStr.nvim"} -- highlighting visual selections like in a normal document editor
   -- use {"luukvbaal/stabilize.nvim"} -- Don't move windows when opening splits below
@@ -386,10 +410,10 @@ return packer.startup(function()
   use {
     "norcalli/nvim-colorizer.lua",
     ft = { "css", "scss", "js", "reactjs", "html" },
-    opt = true,
+    module = "colorizer",
+    -- opt = true,
     config = function()
       require("colors.preview_color").config()
-      vim.cmd "ColorizerReloadAllBuffers"
     end,
   }
   use { -- Only works for booleans
@@ -407,19 +431,15 @@ return packer.startup(function()
     end,
   }
   use {
-    "szw/vim-maximizer",
-    cmd = "MaximizerToggle",
+    "nyngwang/NeoZoom.lua",
+    module = "neo-zoom",
   }
   -- use({ "wsdjeg/vim-fetch", keys = "gF" }) -- Follow files on line and colum
-  use { "zhimsel/vim-stay", event = "BufRead" }
+  -- use { "zhimsel/vim-stay", event = "BufRead" }
   use {
     "abecodes/tabout.nvim",
     config = function()
-      local status_ok, tab = pcall(require, "tabout")
-      if not status_ok then
-        return
-      end
-      tab.setup()
+      require("core.various").config "tabout"
     end,
     after = "nvim-cmp",
   }
@@ -427,33 +447,19 @@ return packer.startup(function()
     "AckslD/nvim-neoclip.lua",
     -- event = "TextYankPost",
     config = function()
-      require("neoclip").setup {
-        enable_persistent_history = false,
-        keys = {
-          telescope = {
-            i = {
-              paste = "<c-y>",
-              paste_behind = "<c-b>",
-            },
-          },
-        },
-      }
+      require("core.various").config "neoclip"
     end,
   }
-  use {
-    "tami5/sqlite.lua",
-    module = "sqlite",
-  }
+  -- use {
+  -- "tami5/sqlite.lua",
+  -- module = "sqlite",
+  -- }
   use {
     "max397574/better-escape.nvim",
     event = "InsertEnter",
     after = "nvim-cmp",
     config = function()
-      require("better_escape").setup {
-        mapping = { "jk" },
-        timeout = 200,
-        keys = "<esc>l",
-      }
+      require("core.various").config "better_escape"
     end,
   }
   -- use({ "danymat/neogen" }) -- Annotation generator for classes and functions
@@ -472,46 +478,35 @@ return packer.startup(function()
   use {
     "nathom/filetype.nvim",
     config = function()
-      require("filetype").setup {
-        overrides = {
-          extensions = {
-            md = "markdown.pandoc",
-          },
-        },
-      }
+      require("core.various").config "filetype"
+    end,
+  }
+  use {
+    "ethanholz/nvim-lastplace",
+    config = function()
+      require("core.various").config "nvim-lastplace"
     end,
   }
 
   -- Movement and text objects
-  use { "machakann/vim-sandwich", keys = { "s" } }
+  -- use { "machakann/vim-sandwich", keys = { "s" } }
+  --[[ use {
+    "echasnovski/mini.nvim",
+    -- module = "mini.surround",
+    config = function()
+      require("core.various").config "mini.surround"
+    end,
+  } ]]
+  use { "ggandor/lightspeed.nvim", event = "BufRead" }
   use { "tommcdo/vim-exchange", keys = "cx" }
   use {
     "mizlan/iswap.nvim",
     module = "iswap",
     config = function()
-      require("iswap").setup {
-        grey = "disable",
-        hl_selection = "Comment",
-      }
+      require("core.various").config "iswap"
     end,
   }
   use { "tpope/vim-repeat", keys = "." }
-  use { -- TODO: could be repalced with hop.nvim or ligthspeed.nvim
-    "unblevable/quick-scope",
-    keys = { "f", "F" },
-    setup = function()
-      vim.g.qs_highlight_on_keys = { "f", "F", "t", "T" }
-      vim.g.qs_max_chars = 150
-    end,
-  }
-  use { -- Hints to move anywhere in the file TODO: Figure oout the API
-    "phaazon/hop.nvim",
-    -- "IndianBoy42/hop.nvim", -- treesitter extras
-    module = "hop",
-    config = function()
-      require("hop").setup { create_hl_autocmd = false }
-    end,
-  }
   use { -- Expands vim native objects capabilities (inner '')
     "wellle/targets.vim",
     keys = { "c", "d", "y" },
@@ -523,47 +518,25 @@ return packer.startup(function()
   -- use{"nvim-treesitter/nvim-treesitter-textobjects"} -- Create your own text object
   -- use{ "ooSoft/vim-argwrap"} -- Arrange arguments as list and as inline (notreesiter)
 
-  -- Window movement and arrangement
   use {
-    "https://gitlab.com/yorickpeterse/nvim-window.git",
-    module = "nvim-window",
+    "ten3roberts/window-picker.nvim",
+    module = "window-picker",
     config = function()
-      require("nvim-window").setup {
-        chars = { "v", "k", "j", "a", "f", "l", "d", "s", "g", "h" },
-        normal_hl = "Todo",
-        hint_hl = "Bold",
-        border = "single",
-      }
+      require("core.various").config "window-picker"
     end,
   }
   use { -- Help moving windows around
     "sindrets/winshift.nvim",
     module = "winshift",
     config = function()
-      require("winshift").setup {
-        highlight_moving_win = true, -- Highlight the window being moved
-        focused_hl_group = "Visual", -- The highlight group used for the moving window
-        moving_win_options = {
-          wrap = false,
-          cursorline = false,
-          cursorcolumn = false,
-          colorcolumn = "",
-        },
-      }
+      require("core.various").config "winshift"
     end,
   }
   use {
     "caenrique/swap-buffers.nvim",
     module = "swap-buffers",
     config = function()
-      require("swap-buffers").setup {
-        ignore_filetypes = {
-          "NvimTree",
-          "packer",
-          "lsp-installer",
-          "undotree",
-        },
-      }
+      require("core.various").config "swap-buffers"
     end,
   }
   -- use {"beauwilliams/focus.nvim"} -- Autofocus splits
