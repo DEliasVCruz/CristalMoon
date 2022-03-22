@@ -1,3 +1,4 @@
 vim.api.nvim_buf_set_keymap(0, "n", "q", ":q!<cr>", { silent = true })
 vim.opt.list = false
 vim.opt.colorcolumn = ""
+vim.opt.buflisted = false
