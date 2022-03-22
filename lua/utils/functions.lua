@@ -27,6 +27,29 @@ function funcs.search_notes()
   }
 end
 
+function funcs.jump_behaviour(key)
+  local prefix = ""
+  if vim.v.count > 2 then
+    prefix = "m'" .. vim.v.count
+  end
+  local suffix = ""
+  if vim.v.count > 10 then
+    suffix = "<cmd>lua require('specs').show_specs()<cr>"
+  end
+  return prefix .. key .. suffix
+end
+
+-- Toggle colorizer
+function funcs.colorizer_toggle()
+  local color = require "colorizer"
+  if color.is_buffer_attached(0) then
+    color.detach_from_buffer(0)
+  else
+    color.attach_to_buffer(0)
+  end
+  -- color.reload_all_buffers()
+end
+
 -- Needs more configs
 function funcs.curbuf()
   local opts = {
