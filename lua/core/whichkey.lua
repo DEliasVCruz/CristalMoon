@@ -13,7 +13,7 @@ whichkey.setup {
       motions = false, -- adds help for motions
       text_objects = false, -- help for text objects triggered after entering an operator
       windows = false, -- default bindings on <c-w>
-      nav = true, -- misc bindings to work with windows
+      nav = false, -- misc bindings to work with windows
       z = true, -- bindings for folds, spelling and others prefixed with z
       g = false, -- bindings for prefixed with g
     },
@@ -36,7 +36,7 @@ whichkey.setup {
     height = { min = 4, max = 25 }, -- min and max height of the columns
     width = { min = 20, max = 50 }, -- min and max width of the columns
     spacing = 3, -- spacing between columns
-    align = "center"
+    align = "center",
   },
   ignore_missing = true,
   hidden = { "<silent>", "<cmd>", "<Cmd>", "<CR>", "call", "lua", "^:", "^ " }, -- hide mapping boilerplate
@@ -52,33 +52,41 @@ local noreopts = {
   nowait = false, -- use `nowait` when creating keymaps
 }
 
--- Set background color
-vim.api.nvim_set_hl(0, "WhichKeyFloat", {bg = nil})
-
 local nmappings = {
   ["q"] = { "<cmd>qa!<cr>", "Quit" },
   ["s"] = { "<cmd>up<cr>", "Save" },
-  ["/"] = { "<cmd>lua require('utils.functions').curbuf()<cr>", "Search" },
-  ["<space>"] = { "<cmd>silent! lua require('utils.functions').find_commands()<cr>", "Commands" },
+  ["<space>"] = {
+    function()
+      require("utils.functions").find_commands()
+    end,
+    "Commands",
+  },
   -- ["r"] = { "<cmd>checktime<cr>", "Reload" },
   -- d = {
   -- name = "+Debug",
   -- },
   a = {
     name = "+Action",
-    c = { "Comment" },
-    -- c = { "<cmd>lua require('commented').toggle_comment('n')<cr>", "Comment" },
-    d = { "<cmd>lua require'dial'.cmd.increment_normal(1)<cr>b", "Dial" },
-    f = { "<cmd>lua vim.lsp.buf.formatting()<cr>", "Format" },
+    d = {
+      name = "+Dial",
+      f = { "Forward" },
+      b = { "Back" },
+    },
+    --[[ f = {
+      function()
+        vim.lsp.buf.formatting()
+      end,
+      "Format",
+    }, ]]
     g = { "<cmd>lua require('utils.functions').misspellings()<cr>", "Grammar Check" },
     l = { "gu", "LowerCase" },
     o = { "<cmd>execute 'silent! !xdg-open ' . shellescape(expand('<cfile>'), 1)<cr>", "Open URL" },
-    p = { '"+p', "Paste Clipboard" },
+    -- p = { '"+p', "Paste Clipboard" },
     s = { "<cmd>lua require('nvim-treesitter.incremental_selection').init_selection()<cr>", "SelectNode" },
     e = { "<cmd>lua require('iswap').iswap_with()<cr>", "ExchArgs" },
     u = { "gU", "UpperCase" },
-    w = { "<cmd>MatchupWhereAmI??<cr>", "WhereAmI" },
-    y = { '"+y', "Yank Clipboard" },
+    w = { "<cmd>lua require('specs').show_specs()<cr>", "WhereAmI" },
+    -- y = { '"+y', "Yank Clipboard" },
     t = { "<cmd>setlocal scrolloff=0<CR>ztM<cmd>silent setlocal scrolloff=8<CR>", "TopLine" },
     b = { "<cmd>setlocal scrolloff=0<CR>zbM<cmd>silent setlocal scrolloff=8<CR>", "BotLine" },
     -- i = { -- Maby we don't need indentention acctions
@@ -105,6 +113,15 @@ local nmappings = {
       l = { "<cmd>BufferLineCloseRight<cr>", "Right" },
       h = { "<cmd>BufferLineCloseLeft<cr>", "Left" },
     },
+  },
+  ["/"] = {
+    name = "+Comment",
+    ["/"] = { '<cmd>lua require("Comment.api").call("toggle_current_linewise_op")<cr>g@$', "Out" },
+    b = { '<cmd>lua require("Comment.api").call("toggle_blockwise_op")<cr>g@', "Block" },
+    l = { '<cmd>lua require("Comment.api").call("toggle_linewise_op")<cr>g@', "Lines" },
+    o = { '<cmd>lua require("Comment.api").locked.insert_linewise_above()<cr>', "Over" },
+    d = { '<cmd>lua require("Comment.api").locked.insert_linewise_below()<cr>', "Down" },
+    e = { '<cmd>lua require("Comment.api").locked.insert_linewise_eol()<cr>', "End" },
   },
   c = {
     name = "+Code",
@@ -134,24 +151,14 @@ local nmappings = {
     name = "+Jump",
     l = { "<cmd>setlocal scrolloff=0<CR>Lzz<cmd>silent setlocal scrolloff=8<CR>", "Low End" },
     i = { "^", "Init Line" },
-    a = { "<cmd>setlocal scrolloff=0<CR>Hzz<cmd>silent setlocal scrolloff=8<CR>", "On top" },
+    u = { "<cmd>setlocal scrolloff=0<CR>Hzz<cmd>silent setlocal scrolloff=8<CR>", "Upper End" },
     c = { "M", "Center" },
     e = { "$", "End" },
     b = { "0", "Begining" },
-    j = {
-      "<cmd>lua require('hop').hint_lines({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<cr>",
-      "Line Down",
-    },
-    k = {
-      "<cmd>lua require('hop').hint_lines({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>",
-      "Line Up",
-    },
     o = {
-      "<cmd>lua require('hop').hint_words({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>",
       "Above",
     },
     d = {
-      "<cmd>lua require('hop').hint_words({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<cr>",
       "Down Cursor",
     },
     -- s = {"", "Sidebacks"}
@@ -182,6 +189,12 @@ local nmappings = {
       l = { "<cmd>vertical resize +5<cr>", "Horizontal Increase" },
       h = { "<cmd>vertical resize -5<cr>", "Horizontal Decrease" },
     },
+    e = {
+      function()
+        require("window-picker").swap()
+      end,
+      "Exchange",
+    },
     m = {
       name = "+Move",
       l = { "<cmd>lua require('winshift').cmd_winshift('right')<cr>", "Right" },
@@ -195,16 +208,26 @@ local nmappings = {
         j = { "<cmd>lua require('winshift').cmd_winshift('far_down')<cr>", "Down" },
         k = { "<cmd>lua require('winshift').cmd_winshift('far_up')<cr>", "Up" },
       },
+      e = {
+        name = "+Exchange",
+        h = { "<cmd>lua require('swap-buffers').swap_buffers('h')<CR>", "Left" },
+        l = { "<cmd>lua require('swap-buffers').swap_buffers('l')<CR>", "Right" },
+        j = { "<cmd>lua require('swap-buffers').swap_buffers('j')<CR>", "Down" },
+        k = { "<cmd>lua require('swap-buffers').swap_buffers('k')<CR>", "Up" },
+      },
     },
-    e = {
-      name = "+Exchange",
-      h = { "<cmd>lua require('swap-buffers').swap_buffers('h')<CR>", "Left" },
-      l = { "<cmd>lua require('swap-buffers').swap_buffers('l')<CR>", "Right" },
-      j = { "<cmd>lua require('swap-buffers').swap_buffers('j')<CR>", "Down" },
-      k = { "<cmd>lua require('swap-buffers').swap_buffers('k')<CR>", "Up" },
+    f = {
+      function()
+        require("neo-zoom").neo_zoom()
+      end,
+      "Focus",
     },
-    f = { "<cmd>MaximizerToggle<cr>", "Focus" },
-    i = { "<cmd>lua require('nvim-window').pick()<cr>", "Instant Jump" },
+    i = {
+      function()
+        require("window-picker").pick()
+      end,
+      "Instant Jump",
+    },
     p = { "<C-W>p", "Previous" },
     k = { "<C-w>k", "Up" },
     j = { "<C-w>j", "Down" },
@@ -213,13 +236,30 @@ local nmappings = {
   },
   t = {
     name = "+Toggle",
-    -- c = { "<cmd>ColorizerToggle<cr>", "Colorizer" },
-    e = { "<cmd>NvimTreeToggle<cr>", "Explorer" }, -- Possibe "File Explorer"
-    -- e = { "<cmd>CHADopen<cr>", "Explorer" }, -- Possibe "File Explorer"
-    u = { "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", "Undotree" },
-    q = { "<cmd>lua require 'utils.quickfix'.quick_fix_toggle()<cr>", "Quickfix" },
+    c = {
+      function()
+        require("utils.functions").colorizer_toggle()
+      end,
+      "Colorizer",
+    },
+    e = { "<cmd>NeoTreeFocusToggle<cr>", "Explorer" }, -- Possibe "File Explorer"
     s = { "<cmd>setlocal spell!<CR>", "SpellCheck" },
+    u = { "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", "Undotree" },
+    p = {
+      function()
+        require("trouble").toggle()
+      end,
+      "Panel",
+    },
+    -- q = { "<cmd>lua require 'utils.quickfix'.quick_fix_toggle()<cr>", "Quickfix" },
+    q = {
+      function()
+        require("trouble").toggle "quickfix"
+      end,
+      "Quickfix",
+    },
     y = { "<cmd>lua require('neoclip').toggle()<cr>", "Yank History" },
+    -- l = {"", "List"}
     -- e or f = {
     -- name = "+Environment or FrameWork",
     -- t = { "", "Testing" },
@@ -241,11 +281,35 @@ local nmappings = {
     h = { "<cmd>lua vim.lsp.buf.hover()<CR>", "Hover Docs" },
     r = { "<cmd>lua require('renamer').rename()<CR>", "Rename" },
     s = { "<cmd>lua vim.lsp.buf.signature_help()<CR>", "Signature Help" },
+    --[[ m = { -- NOTE: Use wiht diaglist
+      function()
+        require("diaglist").open_all_diagnostics()
+      end,
+      "Diagnostics",
+    }, ]]
+    d = {
+      function()
+        require("trouble").toggle "workspace_diagnostics"
+      end,
+      "Diagnostics",
+    },
     g = {
       name = "+GoTo",
-      d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+      -- d = { "<cmd>lua vim.lsp.buf.definition()<CR>", "Definition" },
+      d = {
+        function()
+          require("telescope.builtin").lsp_definitions()
+        end,
+        "Definition",
+      },
       D = { "<cmd>lua vim.lsp.buf.declaration()<CR>", "Declaration" },
-      r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+      -- r = { "<cmd>lua vim.lsp.buf.references()<CR>", "References" },
+      r = {
+        function()
+          require("trouble").toggle "lsp_references"
+        end,
+        "References",
+      },
       i = { "<cmd>lua vim.lsp.buf.implementation()<CR>", "Implementation" },
     },
     p = {
@@ -295,6 +359,7 @@ local nmappings = {
   },
   f = {
     name = "+Find",
+    ["/"] = { "<cmd>lua require('utils.functions').curbuf()<cr>", "Search" },
     g = {
       name = "+Git",
       b = { "<cmd>lua require('telescope.builtin').git_branches()<cr>", "Branchs" },
@@ -315,8 +380,19 @@ local nmappings = {
       },
     },
     l = { "<cmd>lua require('utils.functions').local_files()<cr>", "Local Files" },
-    m = { "<cmd>lua require('telescope.builtin').man_pages()<cr>", "ManPages" },
+    h = { "<cmd>lua require('telescope.builtin').man_pages()<cr>", "Help" },
     t = { "<cmd>lua require('telescope.builtin').live_grep()<cr>", "Text" },
+    --[[ t = {
+      function()
+        local actions = require "telescope.actions"
+        require("telescope.builtin").live_grep {
+          mappings = {
+            ["<CR>"] = actions.select_default + actions.center,
+          },
+        }
+      end,
+      "Text",
+    }, ]]
     w = {
       "<cmd>lua require('telescope.builtin').grep_string { search = vim.fn.expand('<cword>') }<cr>",
       "Word",
@@ -328,6 +404,7 @@ local nmappings = {
       "<cmd>lua require'utils.functions'.search_notes()<cr>",
       "Notes",
     },
+    m = { "<cmd>lua require('telescope').extensions.macroscope.default()<cr>", "Macros" },
   },
   -- o = {
   -- name = "+Org",
@@ -356,6 +433,11 @@ local veopts = {
 }
 
 local vmappings = {
+  ["/"] = {
+    mane = "+Comment",
+    l = { '<esc><cmd>lua require("Comment.api").locked.toggle_linewise_op(vim.fn.visualmode())<cr>', "Lines" },
+    b = { '<esc><cmd>lua require("Comment.api").locked.toggle_blockwise_op(vim.fn.visualmode())<cr>', "Block" },
+  },
   ["p"] = { '"_dP', "Paste" },
   ["f"] = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Format" },
   -- ["i"] = { "IncreSelec" },
@@ -366,15 +448,7 @@ local vmappings = {
   -- ["c"] = { "<cmd>lua require('commented').toggle_comment('v')<cr>", "Comment" },
   ["e"] = { "$", "End" },
   ["b"] = { "0", "Begining" },
-  ["y"] = { '"+y', "Yank Clipboard" },
-  ["j"] = {
-    "<cmd>lua require('hop').hint_lines({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR })<cr>",
-    "Extend Down",
-  },
-  ["k"] = {
-    "<cmd>lua require('hop').hint_lines({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR })<cr>",
-    "Extend Up",
-  },
+  -- ["y"] = { '"+y', "Yank Clipboard" },
 }
 
 whichkey.register(nmappings, noreopts)
