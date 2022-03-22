@@ -5,7 +5,7 @@ end
 
 -- Treesitter Highlihgt module setting
 local default = {
-  ignore_install = {"markdown", "phpdoc"},
+  ignore_install = { "markdown", "phpdoc" },
   highlight = {
     enable = true,
     use_languagetree = true,
