@@ -8,7 +8,3 @@ luasnip.config.set_config {
   updateevents = "TextChanged,TextChangedI",
 }
 require("luasnip/loaders/from_vscode").load()
-
--- Snippet Expansion
-vim.keymap.set("i", "<C-l>", "<cmd>lua require'luasnip'.expand_or_jump()<cr>", { noremap = true })
-vim.keymap.set("i", "<C-t>", "<cmd>lua require'luasnip'.jump(-1)<cr>", { noremap = true })
