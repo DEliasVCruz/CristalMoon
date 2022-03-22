@@ -46,6 +46,6 @@ opt.updatetime = 50
 opt.timeoutlen = 250
 
 -- Folding style
-opt.fillchars:append { vert = "┃", fold = "·" }
+-- opt.fillchars:append { vert = "┃", fold = "·" }
 opt.foldmethod = "manual" -- not as cool as syntax, but faster
 opt.foldlevelstart = 99 -- start unfolded
