@@ -45,7 +45,7 @@ M.capabilities = function(capabilities)
   }
 end
 
-M.attach = function(_, bufnr)
+M.attach = function(client, bufnr)
   -- Setup lsp attach actions
   local function buf_set_keymap(...)
     vim.api.nvim_buf_set_keymap(bufnr, ...)
@@ -56,6 +56,9 @@ M.attach = function(_, bufnr)
 
   -- Enable completion triggered by <c-x><c-o>
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
+
+  -- Setup lsp attach
+  require "lsp-format".on_attach(client)
 
   -- Diagnostic Mappings.
   local opts = { noremap = true, silent = true }
