@@ -1,18 +1,51 @@
 local M = {}
 
 M.config = function()
-  local dial = require "dial"
+  local augend = require "dial.augend"
 
-  dial.augends["custom#boolean"] = dial.common.enum_cyclic {
-    name = "boolean",
-    strlist = { "true", "false" },
+  require("dial.config").augends:register_group {
+    default = {
+      augend.integer.alias.decimal_int,
+      augend.date.alias["%Y/%m/%d"],
+      augend.date.alias["%m/%d/%Y"],
+      augend.date.alias["%d/%m/%Y"],
+      augend.constant.alias.bool,
+      augend.constant.alias.alpha,
+      augend.constant.alias.Alpha,
+      augend.semver.alias.semver,
+      augend.constant.new{
+        elements = {"and", "or"},
+        word = true,
+        cyclic = true,
+      },
+      augend.constant.new{
+        elements = { "*", "+"},
+        word = false,
+        cyclic = true,
+      },
+      augend.constant.new {
+        elements = { "True", "False" },
+        word = true,
+        cyclic = true,
+      },
+      augend.constant.new{
+        elements = {"&", "|"},
+        word = false,
+        cyclic = true,
+      },
+      augend.constant.new {
+        elements = {"&&", "||"},
+        word = false,
+        cyclic = true,
+      },
+      augend.constant.new{
+        elements = { "pick", "fixup", "reword", "squash" },
+        word = true,
+        cyclic = true
+      }
+    },
   }
-  table.insert(dial.config.searchlist.normal, "custom#boolean")
-  dial.augends["custom#rebase"] = dial.common.enum_cyclic {
-    name = "rebase",
-    strlist = { "pick", "fixup", "reword", "squash" },
-  }
-  table.insert(dial.config.searchlist.normal, "custom#rebase")
+
 end
 
 return M
