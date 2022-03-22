@@ -38,6 +38,8 @@ opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 opt.grepformat = "%f:%l:%c:%m"
 opt.splitbelow = true
 opt.cursorline = true
+opt.clipboard = "unnamedplus"
+opt.laststatus = 3
 
 -- Having longer update leads to noticeable delays and poor user experience
 opt.updatetime = 50

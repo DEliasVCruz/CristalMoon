@@ -32,6 +32,20 @@ for _, plugin in pairs(disabled_built_ins) do
   vim.g["loaded_" .. plugin] = 1
 end
 
+-- Setup clipboard manager
+vim.g.clipboard = {
+  name = "xsel",
+  copy = {
+    ["+"] = "xsel --nodetach -i -b",
+    ["*"] = "xsel --nodetach -i -p",
+  },
+  paste = {
+    ["+"] = "xsel -o -b",
+    ["*"] = "xsel -o -p",
+  },
+  cache_enabled = 1,
+}
+
 -- Load core config
 require "settings"
 require "keymappings"
