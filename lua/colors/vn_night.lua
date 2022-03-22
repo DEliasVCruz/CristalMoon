@@ -2,11 +2,16 @@ require("vn-night").setup()
 
 local highlights = {
   -- Highlight Yank
-  YankHighlight = { bg = "#b47109" },
+  YankHighlight = { bold = true, fg = "white", bg = "#f79617" },
+
+  -- Fidget Spinner
+  --[[ FidgetTitle = { bg = "red", fg = "orange" },
+  FidgetTask = { bg = "red", fg = "orange"}, ]]
 
   -- -- Transperency
   SignColumn = { fg = "#E3E4FD", bg = nil },
-  CursorLineNR = { bold = true, fg = "#f79617", bg = nil },
+  -- CursorLineNR = { bold = true, fg = "white", bg = "#4a358c" },
+  CursorLineNR = { bold = true, fg = "white", bg = "#ea9999" },
   Normal = { fg = "#E3E4FD", bg = nil },
 
   -- Markdown support
@@ -61,8 +66,30 @@ local highlights = {
   -- Visual mode
   Visual = { bg = "#333954" },
   Search = { bg = "#333954" },
+
+  -- Beacon/Specs cursor jump
+  SpecsCursorJump = { bg = "#E3E4FD" },
+
+  -- Special character diferential
+  SpecialKey = { fg = "#61AFEF" },
+  SpecialKeyWin = { fg = "#3B4048" },
+
+  -- Scrollbar highlights
+  ScrollbarHandle = { fg = nil, bg = "#EEEADE" },
+  ScrollbarSearchHandle = { bold = true, fg = "#f79617", bg = "#EEEADE" },
+  ScrollbarSearch = { bold = false, fg = "#f79617", bg = nil },
+  ScrollbarErrorHandle = { bold = true, fg = "red", bg = "#EEEADE" },
+  ScrollbarError = { bold = true, fg = "red", bg = nil },
+  ScrollbarWarnHandle = { bold = true, fg = "DarkYellow", bg = "#EEEADE" },
+  ScrollbarWarn = { bold = false, fg = "DarkYellow", bg = nil },
+  ScrollbarInfoHandle = { bold = true, fg = "LightBlue", bg = "#EEEADE" },
+  ScrollbarInfo = { bold = false, fg = "LightBlue", bg = nil },
+  ScrollbarHintHandle = { bold = true, fg = "LightGrey", bg = "#EEEADE" },
+  ScrollbarHint = { bold = false, fg = "LightGrey", bg = nil },
 }
 
 for group, options in pairs(highlights) do
   vim.api.nvim_set_hl(0, group, options)
 end
+
+vim.opt.winhighlight = "SpecialKey:SpecialKeyWin"
