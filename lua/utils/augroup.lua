@@ -1,16 +1,10 @@
 local funcs = {}
 
-function funcs.define_augroups(definitions)
-  for group_name, definition in pairs(definitions) do
-    vim.cmd("augroup " .. group_name)
-    vim.cmd "autocmd!"
-
-    for _, def in pairs(definition) do
-      local command = table.concat(vim.tbl_flatten { "autocmd", def }, " ")
-      vim.cmd(command)
-    end
-
-    vim.cmd "augroup END"
+function funcs.create_commands(table, group)
+  for event, arguments in pairs(table) do
+    local pattern = arguments[1]
+    local command = arguments[2]
+    vim.api.nvim_create_autocmd(event, { pattern = pattern, callback = command, group = group })
   end
 end
 
