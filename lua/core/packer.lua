@@ -11,9 +11,9 @@ if not present then
   vim.fn.system {
     "git",
     "clone",
-    "https://github.com/wbthomason/packer.nvim",
     "--depth",
-    "20",
+    "1",
+    "https://github.com/wbthomason/packer.nvim",
     packer_path,
   }
 
@@ -36,5 +36,6 @@ return packer.init {
   },
   auto_clean = true,
   compile_on_sync = true,
+  autoremove = true,
   compile_path = vim.fn.stdpath "config" .. "/lua/packer_compiled.lua",
 }

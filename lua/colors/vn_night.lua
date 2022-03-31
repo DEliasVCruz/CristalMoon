@@ -8,6 +8,12 @@ local highlights = {
   --[[ FidgetTitle = { bg = "red", fg = "orange" },
   FidgetTask = { bg = "red", fg = "orange"}, ]]
 
+  -- Basic colors
+  -- TSField = { fg = "#96CDFB" },
+  -- String = { fg = "#ABE9B3" },
+  TSField = { fg = "#89DCEB" },
+  -- TSField = { fg = "aqua" }, -- Needs more contrast
+
   -- -- Transperency
   SignColumn = { fg = "#E3E4FD", bg = nil },
   -- CursorLineNR = { bold = true, fg = "white", bg = "#4a358c" },
@@ -44,14 +50,27 @@ local highlights = {
 
   -- Transparent background floating
   NormalFloat = { bg = "#10081D" },
-  CmpDocWin = { bg = nil },
+  CmpDocWin = { bold = false, bg = nil },
   Pmenu = { bg = nil },
   PmenuSbar = { bg = nil },
   PmenuThumb = { bg = "white" },
   PmenuSel = { bold = true, fg = "#24283b", bg = "#b9f27c" },
   CmpItemAbbrMatchFuzzyDefault = { fg = "#b9f27c" },
   CmpItemAbbrMatch = { fg = "orange" },
-  CmpItemAbbr = { link = "Comment" },
+  -- CmpItemAbbr = { link = "Comment" },
+  CmpItemAbbr = { fg = "white" },
+  CmpItemAbbrDeprecated = { bg = nil, strikethrough = true, fg = "#808080" },
+  CmpItemMenuDefault = { link = "Comment" },
+
+  -- CmpItemKindVariable = { link = "TSVariable" },
+  -- CmpItemKindVariable = { fg = "#96CDFB" },
+  -- CmpItemKindVariable = { fg = "#9CDCFE" },
+  CmpItemKindVariable = { fg = "aqua" },
+  -- CmpItemKindText = { fg = "#9CDCFE", bg = nil },
+  CmpItemKindText = { fg = "DarkGray", bg = nil },
+  CmpItemKindFunction = { link = "TSKeywordFunction" },
+  CmpItemKindSnippet = { fg = "#fb6b1d" },
+  CmpItemKindKeyword = { fg = "yellow" },
 
   -- Match brackets colors
   MatchParen = { italic = true },
@@ -77,7 +96,7 @@ local highlights = {
   -- Scrollbar highlights
   ScrollbarHandle = { fg = nil, bg = "#EEEADE" },
   ScrollbarSearchHandle = { bold = true, fg = "#f79617", bg = "#EEEADE" },
-  ScrollbarSearch = { bold = false, fg = "#f79617", bg = nil },
+  ScrollbarSearch = { bold = true, fg = "#f79617", bg = nil },
   ScrollbarErrorHandle = { bold = true, fg = "red", bg = "#EEEADE" },
   ScrollbarError = { bold = true, fg = "red", bg = nil },
   ScrollbarWarnHandle = { bold = true, fg = "DarkYellow", bg = "#EEEADE" },

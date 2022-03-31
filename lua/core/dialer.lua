@@ -13,13 +13,14 @@ M.config = function()
       augend.constant.alias.alpha,
       augend.constant.alias.Alpha,
       augend.semver.alias.semver,
-      augend.constant.new{
-        elements = {"and", "or"},
+      augend.misc.alias.markdown_header,
+      augend.constant.new {
+        elements = { "and", "or" },
         word = true,
         cyclic = true,
       },
-      augend.constant.new{
-        elements = { "*", "+"},
+      augend.constant.new {
+        elements = { "*", "+" },
         word = false,
         cyclic = true,
       },
@@ -28,24 +29,23 @@ M.config = function()
         word = true,
         cyclic = true,
       },
-      augend.constant.new{
-        elements = {"&", "|"},
+      augend.constant.new {
+        elements = { "&", "|" },
         word = false,
         cyclic = true,
       },
       augend.constant.new {
-        elements = {"&&", "||"},
+        elements = { "&&", "||" },
         word = false,
         cyclic = true,
       },
-      augend.constant.new{
+      augend.constant.new {
         elements = { "pick", "fixup", "reword", "squash" },
         word = true,
-        cyclic = true
-      }
+        cyclic = true,
+      },
     },
   }
-
 end
 
 return M

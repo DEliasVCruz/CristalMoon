@@ -15,29 +15,25 @@ vim.opt.pumheight = 7 -- Makes popup menu smaller
 
 -- nvim-cmp setup
 cmp.setup {
-  --[[ fields = {
-    cmp.ItemField.Kind,
-    cmp.ItemField.Abbr,
-    cmp.ItemField.Menu,
-  }, ]]
   snippet = {
     expand = function(args)
       require("luasnip").lsp_expand(args.body)
     end,
   },
   formatting = {
+    fields = { "kind", "abbr", "menu" },
     format = function(entry, vim_item)
+      vim_item.menu = ({
+        nvim_lsp = string.format("%s %s", vim_item.kind, "[LSP]"),
+        nvim_lua = string.format("%s %s", vim_item.kind, "[LUA]"),
+        rg = string.format("%s %s", vim_item.kind, "[RG]"),
+        fuzzy_buffer = string.format("%s %s", vim_item.kind, "[FZF]"),
+        luasnip = string.format("%s %s", vim_item.kind, "[SNIP]"),
+        path = string.format("%s %s", vim_item.kind, "[PATH]"),
+      })[entry.source.name]
+
       -- load lspkind icons
       vim_item.kind = string.format("%s", require("core.completion.lspkind_icons").icons[vim_item.kind], vim_item.kind)
-
-      vim_item.menu = ({
-        nvim_lsp = "[LSP]",
-        nvim_lua = "[LUA]",
-        rg = "[RG]",
-        fuzzy_buffer = "[FZF]",
-        luasnip = "[SNIP]",
-        fuzzy_path = "[PATH]",
-      })[entry.source.name]
 
       return vim_item
     end,
@@ -71,7 +67,7 @@ cmp.setup {
         -- vim.api.nvim_input("<C-d>")
         --[[ elseif neogen.jumpable(-1) then
 				vim.fn.feedkeys(t("<cmd>lua require('neogen').jump_prev()<CR>"), "") ]]
-			else
+      else
         fallback()
       end
     end, { "i", "s" }),
@@ -80,7 +76,7 @@ cmp.setup {
     { name = "nvim_lua" },
     { name = "nvim_lsp" },
     { name = "luasnip" },
-    { name = "fuzzy_path" },
+    { name = "path" },
     { name = "rg", keyword_length = 4, max_item_count = 5 },
     { name = "fuzzy_buffer", keyword_length = 5, max_item_count = 5 },
   },
@@ -106,14 +102,16 @@ cmp.setup {
 }
 
 cmp.setup.cmdline("/", {
-  sources = cmp.config.sources {
+  sources = cmp.config.sources({
+    { name = "nvim_lsp_document_symbol" },
+  }, {
     { name = "fuzzy_buffer" },
-  },
+  }),
 })
 
 cmp.setup.cmdline(":", {
   sources = cmp.config.sources({
-    { name = "fuzzy_path" },
+    { name = "path" },
   }, {
     { name = "cmdline" },
   }),

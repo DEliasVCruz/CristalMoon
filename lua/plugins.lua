@@ -74,9 +74,6 @@ return packer.startup(function()
   use {
     "neovim/nvim-lspconfig",
     module = "lspconfig",
-    setup = function()
-      require("lsp.conf").setup()
-    end,
     config = function()
       require("lsp").conf()
     end,
@@ -267,42 +264,11 @@ return packer.startup(function()
   use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
   use { "lukas-reineke/cmp-under-comparator", module = "cmp-under-comparator" }
   use { "lukas-reineke/cmp-rg", after = "cmp-nvim-lsp" }
+  use { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "cmp-nvim-lsp" }
   use { "tzachar/fuzzy.nvim", after = "cmp-rg" }
   use { "tzachar/cmp-fuzzy-buffer", after = "fuzzy.nvim" }
-  use { "tzachar/cmp-fuzzy-path", after = "fuzzy.nvim" }
+  use { "hrsh7th/cmp-path", after = "nvim-cmp" }
   use { "hrsh7th/cmp-cmdline", event = "CmdlineEnter" }
-  -- How to configure coq https://alpha2phi.medium.com/new-neovim-completion-plugins-you-should-try-b5e1a3661623
-  -- use({
-  -- "ms-jpq/coq_nvim",
-  -- branch = "coq",
-  -- event = "VimEnter",
-  -- config = "vim.cmd[[COQnow]]",
-  -- })
-  -- use({ "ms-jpq/coq.artifacts", branch = "artifacts" })
-  -- Help on setting up coq with lsp <https://teddit.net/r/neovim/comments/plj9mx>
-
-  -- Better quickfix
-  --[[ use {
-    "kevinhwang91/nvim-bqf",
-    ft = "qf",
-    config = function()
-      require "core.quickfix"
-    end,
-  } ]]
-  --[[ use { -- TODO: see how it formats qf
-    "https://gitlab.com/yorickpeterse/nvim-pqf.git",
-    config = function()
-      require("core.various").config "pqf"
-    end,
-  } ]]
-  use {
-    "folke/trouble.nvim",
-    module = "trouble",
-    config = function()
-      require("core.trouble_conf").config()
-    end,
-  }
-  -- use { "gabrielpoca/replacer.nvim", module = "replacer" }
 
   -- Better serching
   use { "romainl/vim-cool", event = "CmdlineEnter" }
@@ -340,21 +306,12 @@ return packer.startup(function()
     end,
     keys = "<leader>",
   }
-  use {
-    "kyazdani42/nvim-tree.lua",
-    cmd = "NvimTreeToggle",
-    setup = function()
-      require("core.nvimtree").setup()
-    end,
-    config = function()
-      require("core.nvimtree").config()
-    end,
-  }
   -- Guide: <https://muniftanjim.dev/blog/neovim-build-ui-using-nui-nvim/>
-  use { "MunifTanjim/nui.nvim" }
+  use { "MunifTanjim/nui.nvim", module = "nui" }
   use {
     "nvim-neo-tree/neo-tree.nvim",
-    branch = "v1.x",
+    branch = "v2.x",
+    module = "neo-tree",
     config = function()
       require("core.neotree").config()
     end,
@@ -382,6 +339,14 @@ return packer.startup(function()
       require("core.various").beam_conf()
     end,
   }
+  use {
+    "folke/trouble.nvim",
+    module = "trouble",
+    config = function()
+      require("core.trouble_conf").config()
+    end,
+  }
+  -- use { "gabrielpoca/replacer.nvim", module = "replacer" }
   -- use({ "rcarriga/nvim-notify" }) -- Fancy notification ui (requires config)
   -- use{"lukas-reineke/headlines.nvim"} -- Pretty headlines for headers and sections
   -- use{"haringsrob/nvim_context_vt"} -- Using virtual text as context print (treesiter)
@@ -435,7 +400,6 @@ return packer.startup(function()
     module = "neo-zoom",
   }
   -- use({ "wsdjeg/vim-fetch", keys = "gF" }) -- Follow files on line and colum
-  -- use { "zhimsel/vim-stay", event = "BufRead" }
   use {
     "abecodes/tabout.nvim",
     config = function()
@@ -460,6 +424,13 @@ return packer.startup(function()
     after = "nvim-cmp",
     config = function()
       require("core.various").config "better_escape"
+    end,
+  }
+  use {
+    "notomo/cmdbuf.nvim",
+    module = "cmdbuf",
+    config = function()
+      require("core.command_buf").config()
     end,
   }
   -- use({ "danymat/neogen" }) -- Annotation generator for classes and functions
@@ -498,7 +469,13 @@ return packer.startup(function()
     end,
   } ]]
   use { "ggandor/lightspeed.nvim", event = "BufRead" }
-  use { "tommcdo/vim-exchange", keys = "cx" }
+  use {
+    "gbprod/substitute.nvim",
+    module = "substitute",
+    config = function()
+      require("core.various").config "substitute"
+    end,
+  }
   use {
     "mizlan/iswap.nvim",
     module = "iswap",
@@ -510,7 +487,9 @@ return packer.startup(function()
   use { -- Expands vim native objects capabilities (inner '')
     "wellle/targets.vim",
     keys = { "c", "d", "y" },
-    setup = [[vim.g.targets_jumpRanges = "rr rb rB bb bB BB ll al Al aa Aa AA"]],
+    setup = function()
+      vim.g.targets_jumpRanges = "rr rb rB bb bB BB ll al Al aa Aa AA"
+    end,
   }
   use { "chaoren/vim-wordmotion", event = "BufRead" }
   -- use {"michaeljsmith/vim-indent-object"} -- Text object to operate on indents
@@ -518,6 +497,7 @@ return packer.startup(function()
   -- use{"nvim-treesitter/nvim-treesitter-textobjects"} -- Create your own text object
   -- use{ "ooSoft/vim-argwrap"} -- Arrange arguments as list and as inline (notreesiter)
 
+  -- Window manipulation
   use {
     "ten3roberts/window-picker.nvim",
     module = "window-picker",

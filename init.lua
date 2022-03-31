@@ -1,5 +1,14 @@
 -- Startup optimizations
-require "impatient"
+local ok, _ = pcall(require, "impatient")
+if not ok then
+  local status, _ = pcall(require, "plugins")
+  if status then
+    require("packer").sync()
+    require("packer").compile()
+  end
+end
+
+-- Basic global options
 vim.g.did_load_filetypes = 1
 vim.g.cursorhold_updatetime = 100
 

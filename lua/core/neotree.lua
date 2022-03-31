@@ -75,16 +75,16 @@ local settings = {
   },
   filesystem = {
     hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                            -- in whatever position is specified in window.position
-                          -- "open_split",  -- netrw disabled, opening a directory opens within the
-                                            -- window like netrw would, regardless of window.position
-                          -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+    -- in whatever position is specified in window.position
+    -- "open_split",  -- netrw disabled, opening a directory opens within the
+    -- window like netrw would, regardless of window.position
+    -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
     follow_current_file = true, -- This will find and focus the file in the active buffer every time
-                                 -- the current file is changed while the tree is open.
+    -- the current file is changed while the tree is open.
     use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
-                                    -- instead of relying on nvim autocmd events.
+    -- instead of relying on nvim autocmd events.
     window = { -- see https://github.com/MunifTanjim/nui.nvim/tree/main/lua/nui/popup for
-               -- possible options. These can also be functions that return these options.
+      -- possible options. These can also be functions that return these options.
       position = "left", -- left, right, float, split
       width = 40, -- applies to left and right positions
       popup = { -- settings that apply to float position only
@@ -125,15 +125,17 @@ local settings = {
         ["q"] = "close_window",
       },
     },
-    find_by_full_path_words = true,  -- `false` means it only searches the tail of a path.
-                                      -- `true` will change the filter into a full path
-                                      -- search with space as an implicit ".*", so
-                                      -- `fi init`
-                                      -- will match: `./sources/filesystem/init.lua
+    find_by_full_path_words = true, -- `false` means it only searches the tail of a path.
+    -- `true` will change the filter into a full path
+    -- search with space as an implicit ".*", so
+    -- `fi init`
+    -- will match: `./sources/filesystem/init.lua
     find_command = "fd",
-    find_args = {  -- you can specify extra args to pass to the find command.
-     "--exclude", ".git",
-     "--exclude",  "node_modules"
+    find_args = { -- you can specify extra args to pass to the find command.
+      "--exclude",
+      ".git",
+      "--exclude",
+      "node_modules",
     },
     ---- or use a function instead of list of strings
     --find_args = function(cmd, path, search_term, args)
@@ -157,11 +159,11 @@ local settings = {
     --  return args
     --end,
     search_limit = 50, -- max number of search results when using filters
-    filters = {
+    --[[ filters = {
       show_hidden = false,
       respect_gitignore = true,
       gitignore_source = "git check-ignored", -- or "git check-ignored", which may be faster in some repos
-    },
+    }, ]]
     bind_to_cwd = true, -- true creates a 2-way binding between vim's cwd and neo-tree's root
     -- The renderer section provides the renderers that will be used to render the tree.
     --   The first level is the node type.
@@ -284,14 +286,15 @@ local settings = {
   },
 }
 
-M.config = function ()
+M.config = function()
+  vim.g.neo_tree_remove_legacy_commands = 1
+  require("neo-tree").setup()
   --[[ local status_ok, tree = pcall(require, "neo-tree")
   if not status_ok then
     return
   end
 
-  tree.setup(settings) ]]
-
+  tree.setup (settings) ]]
 end
 
 return M

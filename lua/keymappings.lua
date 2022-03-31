@@ -9,8 +9,12 @@ vim.g.mapleader = " "
 vim.keymap.set("n", "<Enter>", "o<ESC>", { noremap = false })
 
 -- Command mode movement
-vim.keymap.set("c", "<C-j>", "<Left>", remap_silent)
-vim.keymap.set("c", "<C-k>", "<Right>", remap_silent)
+vim.keymap.set("c", "<C-j>", "<left>", { noremap = true })
+vim.keymap.set("c", "<C-k>", "<right>", { noremap = true })
+vim.keymap.set("c", "<C-f>", function()
+  require("cmdbuf").split_open(vim.o.cmdwinheight, { line = vim.fn.getcmdline(), column = vim.fn.getcmdpos() })
+  vim.api.nvim_input "<C-c>"
+end, { noremap = true })
 
 -- Move lines up an down in varous modes without deliting and pasting
 vim.keymap.set("n", "<A-p>", ":m .-2<CR>==", remap_silent)
@@ -20,7 +24,6 @@ vim.keymap.set("v", "<A-n>", ":m '>+1<CR>gv=gv", remap_silent)
 
 -- Avoid entering Ex mode and disable s
 vim.keymap.set("n", "Q", "<NOP>", remap_silent)
--- vim.keymap.set("n", "s", "<NOP>", remap_silent)
 
 -- Keep J centered
 vim.keymap.set("n", "J", "mzJ`z", remap_silent)
@@ -65,6 +68,17 @@ vim.keymap.set({ "v", "n" }, "<leader>jo", "<Plug>Lightspeed_S", { noremap = fal
 -- Visual begining mappings
 vim.keymap.set("v", "v", "o<esc>", remap_silent)
 vim.keymap.set("v", "V", "o<esc>", remap_silent)
+
+-- Replace motions
+vim.keymap.set("n", "r", function()
+  require("substitute").operator()
+end, remap_silent)
+vim.keymap.set("n", "rr", function()
+  require("substitute").line()
+end, remap_silent)
+vim.keymap.set("n", "R", function()
+  require("substitute").eol()
+end, remap_silent)
 
 -- Yank not move
 -- TODO: This can be made better with mode()

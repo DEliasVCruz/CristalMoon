@@ -72,6 +72,45 @@ local nmappings = {
       f = { "Forward" },
       b = { "Back" },
     },
+    e = {
+      name = "+Exchange",
+      l = {
+        function()
+          require("substitute.exchange").line()
+        end,
+        "Line",
+      },
+      c = {
+        function()
+          require("substitute.exchange").cancel()
+        end,
+        "Cancel",
+      },
+      i = {
+        function()
+          require("substitute.exchange").operator { motion = "i" }
+        end,
+        "Inner",
+      },
+      a = {
+        function()
+          require("substitute.exchange").operator { motion = "a" }
+        end,
+        "Around",
+      },
+      f = {
+        function()
+          require("substitute.exchange").operator { motion = "f" }
+        end,
+        "FrontFind",
+      },
+      b = {
+        function()
+          require("substitute.exchange").operator { motion = "b" }
+        end,
+        "BackFind",
+      },
+    },
     --[[ f = {
       function()
         vim.lsp.buf.formatting()
@@ -82,8 +121,8 @@ local nmappings = {
     l = { "gu", "LowerCase" },
     o = { "<cmd>execute 'silent! !xdg-open ' . shellescape(expand('<cfile>'), 1)<cr>", "Open URL" },
     -- p = { '"+p', "Paste Clipboard" },
-    s = { "<cmd>lua require('nvim-treesitter.incremental_selection').init_selection()<cr>", "SelectNode" },
-    e = { "<cmd>lua require('iswap').iswap_with()<cr>", "ExchArgs" },
+    i = { "<cmd>lua require('nvim-treesitter.incremental_selection').init_selection()<cr>", "IncrSelection" },
+    s = { "<cmd>lua require('iswap').iswap_with()<cr>", "SwapArgs" },
     u = { "gU", "UpperCase" },
     w = { "<cmd>lua require('specs').show_specs()<cr>", "WhereAmI" },
     -- y = { '"+y', "Yank Clipboard" },
@@ -222,6 +261,12 @@ local nmappings = {
       end,
       "Focus",
     },
+    c = {
+      function()
+        require("window-picker").zap()
+      end,
+      "Close Selec",
+    },
     i = {
       function()
         require("window-picker").pick()
@@ -236,13 +281,30 @@ local nmappings = {
   },
   t = {
     name = "+Toggle",
+    ["/"] = {
+      function()
+        require("cmdbuf").split_open(vim.o.cmdwinheight, { type = "vim/search/forward" })
+      end,
+      "SearchWin",
+    },
+    ["<space>"] = {
+      function()
+        require("cmdbuf").split_open(vim.o.cmdwinheight, { type = "lua/cmd" })
+      end,
+      "CmdWin",
+    },
     c = {
       function()
         require("utils.functions").colorizer_toggle()
       end,
       "Colorizer",
     },
-    e = { "<cmd>NeoTreeFocusToggle<cr>", "Explorer" }, -- Possibe "File Explorer"
+    e = {
+      function()
+        require("neo-tree").focus("", true, true)
+      end,
+      "Explorer",
+    }, -- Possibe "File Explorer"
     s = { "<cmd>setlocal spell!<CR>", "SpellCheck" },
     u = { "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", "Undotree" },
     p = {
@@ -337,7 +399,7 @@ local nmappings = {
     },
     s = { "<cmd>lua require('telescope.builtin').git_status()<cr>", "Status" },
     b = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Blame Toggle" },
-    ["/"] = { "<cmd>lua require('neogit').open({kind = 'split'})<cr>", "CmdStation" },
+    ["/"] = { "<cmd>lua require('neogit').open()<cr>", "CmdStation" },
     -- d = { "<cmd>Gitsigns diffthis HEAD<cr>", "Diff Prev. HEAD" }, -- Not working
     -- s = { "Status" },
     -- f = { "Fetch" },
@@ -434,20 +496,26 @@ local veopts = {
 
 local vmappings = {
   ["/"] = {
-    mane = "+Comment",
+    name = "+Comment",
     l = { '<esc><cmd>lua require("Comment.api").locked.toggle_linewise_op(vim.fn.visualmode())<cr>', "Lines" },
     b = { '<esc><cmd>lua require("Comment.api").locked.toggle_blockwise_op(vim.fn.visualmode())<cr>', "Block" },
   },
-  ["p"] = { '"_dP', "Paste" },
-  ["f"] = { "<cmd>lua vim.lsp.buf.range_formatting()<cr>", "Format" },
-  -- ["i"] = { "IncreSelec" },
-  -- ["d"] = { "DecreSelec" },
   ["s"] = { "ScopeSelec" },
-  ["c"] = { "Comment" },
   ["r"] = { ":s//g<left><left>", "Replace" },
   -- ["c"] = { "<cmd>lua require('commented').toggle_comment('v')<cr>", "Comment" },
-  ["e"] = { "$", "End" },
-  ["b"] = { "0", "Begining" },
+  e = {
+    function()
+      require("substitute.exchange").visual()
+    end,
+    "Exchange",
+  },
+  j = {
+    name = "+Jump",
+    o = { "Over" },
+    d = { "Down" },
+    e = { "$", "End" },
+    b = { "0", "Begining" },
+  },
   -- ["y"] = { '"+y', "Yank Clipboard" },
 }
 

@@ -40,16 +40,12 @@ local configs = {
     disable_hint = true,
     disable_context_highlighting = true,
     integrations = { diffview = true },
-  },
-
-  --[[ ["pqf"] = {
-    signs = {
-      error = " ",
-      warning = " ",
-      info = "כֿ ",
-      hint = " ",
+    disable_builtin_notifications = true,
+    commit_popup = {
+      kind = "split",
     },
-  }, ]]
+    kind = "vsplit",
+  },
 
   ["filetype"] = {
     overrides = {
@@ -90,8 +86,8 @@ local configs = {
     },
   },
 
-  ["nvim-lastplace"] = {
-    lastplace_ignore_buftype = { "quickfix", "nofile", "help", "terminal" },
+  ["tabout"] = {
+    backwards_tabkey = "<C-t>",
   },
 
   ["mini.surround"] = {
@@ -130,6 +126,7 @@ local configs = {
       "quickfix",
       "nofile",
       "help",
+      "packer",
       "terminal",
       "Trouble",
       "NeogitStatus",

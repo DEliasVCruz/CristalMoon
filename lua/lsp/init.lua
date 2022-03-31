@@ -1,5 +1,7 @@
 local M = {}
 
+require "lsp.setup"
+
 M.conf = function()
   -- Define diagnostic sumbols and colors
   require("lsp.diagnos").config()
@@ -58,7 +60,7 @@ M.attach = function(client, bufnr)
   buf_set_option("omnifunc", "v:lua.vim.lsp.omnifunc")
 
   -- Setup lsp attach
-  require "lsp-format".on_attach(client)
+  require("lsp-format").on_attach(client)
 
   -- Diagnostic Mappings.
   local opts = { noremap = true, silent = true }

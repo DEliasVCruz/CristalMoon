@@ -77,7 +77,12 @@ function funcs.local_files()
 end
 
 function funcs.find_commands()
-  local opts = require("telescope.themes").get_ivy()
+  -- local actions = require "telescope.actions"
+  local opts = require("telescope.themes").get_ivy {
+    --[[ mappings = {
+      i = { ["<CR>"] = actions.select_default },
+    }, ]]
+  }
   require("telescope.builtin").commands(opts)
 end
 
