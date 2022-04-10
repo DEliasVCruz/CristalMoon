@@ -40,11 +40,13 @@ vim.keymap.set("n", "k", function()
   return require("utils.functions").jump_behaviour "k"
 end, remap_silent_exp)
 
--- Center Scrolling
+-- Scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>:keepjumps normal M<cr>", remap_silent)
 vim.keymap.set("n", "<C-u>", "<C-u>:keepjumps normal M<cr>", remap_silent)
 vim.keymap.set("n", "<C-e>", "<C-e>:keepjumps normal M<cr>", remap_silent)
 vim.keymap.set("n", "<C-y>", "<C-y>:keepjumps normal M<cr>", remap_silent)
+vim.keymap.set("n", "<C-l>", "zL", remap_silent)
+vim.keymap.set("n", "<C-h>", "zH", remap_silent)
 
 -- Back and forward full words with ctrl instead of mayus
 vim.keymap.set("n", "<C-b>", "B", remap_silent)
