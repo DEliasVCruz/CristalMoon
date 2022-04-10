@@ -44,7 +44,7 @@ local sources = {
   b.diagnostics.luacheck.with { extra_args = { "--global vim" } },
 
   -- Shell
-  b.formatting.shfmt,
+  b.formatting.shfmt.with { filetypes = { "sh", "zsh", "bash" } },
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
 
   -- Python
@@ -60,7 +60,7 @@ local M = {}
 M.config = function(on_attach)
   null_ls.setup {
     sources = sources,
-    on_attach = on_attach
+    on_attach = on_attach,
   }
 end
 
