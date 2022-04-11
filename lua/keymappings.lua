@@ -72,13 +72,13 @@ vim.keymap.set("v", "v", "o<esc>", remap_silent)
 vim.keymap.set("v", "V", "o<esc>", remap_silent)
 
 -- Replace motions
-vim.keymap.set("n", "r", function()
+vim.keymap.set("n", "s", function()
   require("substitute").operator()
 end, remap_silent)
-vim.keymap.set("n", "rr", function()
+vim.keymap.set("n", "ss", function()
   require("substitute").line()
 end, remap_silent)
-vim.keymap.set("n", "R", function()
+vim.keymap.set("n", "S", function()
   require("substitute").eol()
 end, remap_silent)
 
