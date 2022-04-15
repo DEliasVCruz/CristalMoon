@@ -42,14 +42,24 @@ cmp.setup {
     ["<C-p>"] = cmp.mapping.select_prev_item { behavior = cmp.SelectBehavior.Insert, { "i", "c", "s" } },
     ["<C-n>"] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert, { "i", "c", "s" } },
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c", "s" }),
-    ["<A-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c", "s" }),
-    ["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c", "s" }),
+    -- Not working with st window scroll mappings
+    -- The `<A-u>` and `<A-d>` wouldn't work either
+    --[[ ["<A-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c", "s" }),
+    ["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c", "s" }), ]]
     ["<C-k>"] = cmp.mapping.confirm { select = true },
 
     ["<C-e>"] = cmp.mapping {
       i = cmp.mapping.abort(),
       c = cmp.mapping.close(),
     },
+
+    --[[ ["<C-x><C-s>"] = cmp.mapping.complete {
+      config = {
+        sources = {
+          { name = "path" },
+        },
+      },
+    }, ]]
 
     ["<C-l>"] = cmp.mapping(function(fallback)
       if luasnip.expand_or_jumpable() then
@@ -80,6 +90,9 @@ cmp.setup {
     { name = "rg", keyword_length = 4, max_item_count = 5 },
     { name = "fuzzy_buffer", keyword_length = 5, max_item_count = 5 },
   },
+  --[[ window = {
+    documentation = true,
+  }, ]]
   experimental = {
     ghost_text = false,
   },
