@@ -24,7 +24,7 @@ M.config = function()
 
   vim.cmd [[hi ColorColumn ctermbg=0 guibg=grey]]
   vim.cmd [[hi LineNr guifg='#5eacd3']]
-  vim.cmd [[hi TelescopeBorder guifg='#5eacd]']
+  vim.cmd [[hi TelescopeBorder guifg='#5eacd']]
 
   -- Highligh Folding
   vim.cmd [[hi Folded guibg=none]]
