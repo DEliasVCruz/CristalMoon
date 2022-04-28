@@ -82,13 +82,13 @@ cmp.setup {
       end
     end, { "i", "s" }),
   },
-  sources = cmp.config.sources {
-    { name = "nvim_lua" },
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-    { name = "path" },
-    { name = "rg", keyword_length = 4, max_item_count = 5 },
-    { name = "fuzzy_buffer", keyword_length = 5, max_item_count = 5 },
+  sources = {
+    { name = "nvim_lua", group_index = 1, priority = 70 },
+    { name = "nvim_lsp", group_index = 1, priority = 90 },
+    { name = "luasnip", group_index = 1, priority = 80 },
+    { name = "path", group_index = 2 },
+    { name = "rg", keyword_length = 4, max_item_count = 5, group_index = 3 },
+    { name = "fuzzy_buffer", keyword_length = 4, max_item_count = 5, group_index = 4 },
   },
   window = {
     documentation = {
