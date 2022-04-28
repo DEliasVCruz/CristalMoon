@@ -33,7 +33,7 @@ cmp.setup {
       })[entry.source.name]
 
       -- load lspkind icons
-      vim_item.kind = string.format("%s", require("core.completion.lspkind_icons").icons[vim_item.kind], vim_item.kind)
+      vim_item.kind = require("core.completion.lspkind_icons").icons[vim_item.kind]
 
       return vim_item
     end,
