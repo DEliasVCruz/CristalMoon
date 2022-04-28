@@ -118,6 +118,7 @@ local configs = {
   ["scrollbar"] = {
     show = true,
     set_highlights = false,
+    folds = true,
     handlers = {
       diagnostics = true,
       search = true,
