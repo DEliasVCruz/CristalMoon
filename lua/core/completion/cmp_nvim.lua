@@ -115,11 +115,9 @@ cmp.setup {
 }
 
 cmp.setup.cmdline("/", {
-  sources = cmp.config.sources({
-    { name = "nvim_lsp_document_symbol" },
-  }, {
+  sources = cmp.config.sources {
     { name = "fuzzy_buffer" },
-  }),
+  },
 })
 
 cmp.setup.cmdline(":", {

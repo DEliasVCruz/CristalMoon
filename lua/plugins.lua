@@ -265,7 +265,6 @@ return packer.startup(function()
   use { "hrsh7th/cmp-nvim-lsp", after = "cmp-nvim-lua" }
   use { "lukas-reineke/cmp-under-comparator", module = "cmp-under-comparator" }
   use { "lukas-reineke/cmp-rg", after = "cmp-nvim-lsp" }
-  use { "hrsh7th/cmp-nvim-lsp-document-symbol", after = "cmp-nvim-lsp" }
   use { "tzachar/fuzzy.nvim", after = "cmp-rg" }
   use { "tzachar/cmp-fuzzy-buffer", after = "fuzzy.nvim" }
   use { "hrsh7th/cmp-path", after = "nvim-cmp" }
