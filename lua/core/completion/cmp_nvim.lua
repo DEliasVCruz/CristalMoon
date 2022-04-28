@@ -90,15 +90,19 @@ cmp.setup {
     { name = "rg", keyword_length = 4, max_item_count = 5 },
     { name = "fuzzy_buffer", keyword_length = 5, max_item_count = 5 },
   },
-  --[[ window = {
-    documentation = true,
-  }, ]]
+  window = {
+    documentation = {
+      winhighlight = "NormalFloat:CmpDocWin",
+      border = "single",
+      max_width = 40,
+      max_height = 20,
+    },
+    completion = {
+      border = nil,
+    },
+  },
   experimental = {
     ghost_text = false,
-  },
-  documentation = {
-    border = "single",
-    winhighlight = "NormalFloat:CmpDocWin",
   },
   sorting = {
     comparators = {

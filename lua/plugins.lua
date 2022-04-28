@@ -246,7 +246,6 @@ return packer.startup(function()
   use {
     "hrsh7th/nvim-cmp",
     after = "friendly-snippets",
-    commit = "f573479528cac39ff5917a4679529e4435b71ffe",
     config = function()
       require "core.completion.cmp_nvim"
     end,
