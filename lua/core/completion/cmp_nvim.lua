@@ -44,8 +44,8 @@ cmp.setup {
     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c", "s" }),
     -- Not working with st window scroll mappings
     -- The `<A-u>` and `<A-d>` wouldn't work either
-    --[[ ["<A-j>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c", "s" }),
-    ["<A-k>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c", "s" }), ]]
+    ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(4), { "i", "c", "s" }),
+    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-4), { "i", "c", "s" }),
     ["<C-k>"] = cmp.mapping.confirm { select = true },
 
     ["<C-e>"] = cmp.mapping {
