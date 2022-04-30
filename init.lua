@@ -1,11 +1,9 @@
 -- Startup optimizations
 local ok, _ = pcall(require, "impatient")
 if not ok then
-  local status, _ = pcall(require, "plugins")
-  if status then
-    require("packer").sync()
-    require("packer").compile()
-  end
+  require "plugins"
+  require("packer").sync()
+  require("packer").compile()
 end
 
 -- Basic global options
