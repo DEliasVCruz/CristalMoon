@@ -26,7 +26,7 @@ local trim_white = {
 
 local _where_am_i = vim.api.nvim_create_augroup("WhereAmI", { clear = true })
 local beacon = {
-  [{ "WinEnter", "FocusGained" }] = {
+  [{ "WinEnter" }] = {
     "*",
     function()
       require("specs").show_specs()
