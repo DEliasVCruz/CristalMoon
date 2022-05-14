@@ -1,7 +1,9 @@
 local M = {}
 
 M.config = function()
-  require("nvim-lsp-installer").settings {
+  require("nvim-lsp-installer").setup {
+    ensure_installed = { "sumneko_lua", "vimls" },
+    automatic_installation = true,
     ui = {
       icons = {
         server_installed = "ﲏ ",
@@ -12,97 +14,96 @@ M.config = function()
   }
 end
 
-M.setup_lsp = function(attach)
-  local lsp_installer = require "nvim-lsp-installer"
+M.setup = function()
+  local lspconf = require "lspconfig"
+  local servers = {
+    -- "sumneko_lua",
+    "bashls",
+    "emmet_ls",
+    "html",
+    "taplo",
+    "texlab",
+    "vimls",
+    "yamlls",
+    "pyright",
+    "jsonls",
+    "gopls",
+    "tsserver",
+  }
+
+  local attach = require("lsp").attach
 
   -- Tell lsp about nvim-cmp
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require("lsp").capabilities(capabilities)
 
-  lsp_installer.on_server_ready(function(server)
-    local opts = {
-      on_attach = attach,
-      capabilities = capabilities,
+  for _, server in pairs(servers) do
+    lspconf[server].setup {
+      -- on_attach = attach,
+      -- capabilities = capabilities,
       flags = {
+        -- This will be the default in neovim 0.7+
         debounce_text_changes = 150,
       },
-      settings = {},
     }
+  end
 
-    if server.name == "pyright" then
-      opts.settings = {
-        pyright = {
-          analysis = {
-            useLibraryCodeForTypes = true,
-          },
-          disableOrganizeImports = true,
+  lspconf.sumneko_lua.setup {
+    settings = {
+      Lua = {
+        diagnostics = {
+          globals = { "vim" },
         },
-      }
-    end
+      },
+    },
+  }
 
-    if server.name == "sumneko_lua" then
-      opts.settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
+  lspconf.pyright.setup {
+    settings = {
+      pyright = {
+        analysis = {
+          useLibraryCodeForTypes = true,
         },
-      }
-    end
+        disableOrganizeImports = true,
+      },
+    },
+  }
 
-    if server.name == "gopls" then
-      opts.settings = {
-        gopls = {
-          analysis = {
-            unusedparams = true,
-          },
-          staticcheck = true,
+  lspconf.gopls.setup = {
+    settings = {
+      gopls = {
+        analysis = {
+          unusedparams = true,
         },
-      }
-      opts.init_options = {
-        usePlaceholders = true,
-        completeUnimported = true,
-      }
-    end
+        staticcheck = true,
+      },
+    },
+    init_options = {
+      usePlaceholders = true,
+      completeUnimported = true,
+    },
+  }
 
-    if server.name == "texlab" then
-      opts.settings = {
-        latex = {
-          build = {
-            onSave = true,
-            forwardSearchAfter = true,
-          },
-          forwardSearch = {
-            executable = "zathura",
-          },
+  lspconf.jsonls.setup = {
+    settings = {
+      json = {
+        format = {
+          enable = false,
+          schemas = require("schemastore").json.schemas(),
         },
-      }
-    end
-
-    if server.name == "jsonls" then
-      opts.settings = {
-        json = {
-          format = {
-            enable = false,
-            schemas = require("schemastore").json.schemas(),
-          },
-        },
-      }
-      opts.init_options = {
-        provideFormatter = false,
-      }
-    end
-
-    if server.name == "tsserver" then
-      opts.on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = false
-        client.resolved_capabilities.document_range_formatting = false
-        attach(client, bufnr)
-      end
-    end
-
-    server:setup(opts)
-  end)
+      },
+    },
+    init_options = {
+      provideFormatter = false,
+    },
+  }
+  lspconf.tsserver.setup {
+    on_attach = function(client, bufnr)
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+      attach(client, bufnr)
+    end,
+  }
 end
 
 return M

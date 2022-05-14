@@ -67,8 +67,7 @@ return packer.startup(function()
     event = "BufRead",
     config = function()
       require("lsp.install").config()
-      local attach = require("lsp").attach
-      require("lsp.install").setup_lsp(attach)
+      require("lsp.install").setup()
     end,
   }
   use {
