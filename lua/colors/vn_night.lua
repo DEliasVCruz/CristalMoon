@@ -62,6 +62,9 @@ local highlights = {
   CmpItemAbbrDeprecated = { bg = nil, strikethrough = true, fg = "#808080" },
   CmpItemMenuDefault = { link = "Comment" },
 
+  -- Python highlights
+  -- pythonTSComment = { bg = nil, fg = "#6EA8B7" },
+
   -- CmpItemKindVariable = { link = "TSVariable" },
   -- CmpItemKindVariable = { fg = "#96CDFB" },
   -- CmpItemKindVariable = { fg = "#9CDCFE" },
