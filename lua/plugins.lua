@@ -325,8 +325,6 @@ return packer.startup(function()
     "lukas-reineke/indent-blankline.nvim",
     event = "BufRead",
     config = function()
-      vim.opt.list = true
-      vim.opt.listchars:append "eol:↴"
       require "core.blankline"
     end,
   }
