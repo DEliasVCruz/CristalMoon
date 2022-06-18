@@ -148,6 +148,7 @@ return packer.startup(function()
     "nvim-telescope/telescope.nvim",
     config = function()
       require("core.telescope_conf").config()
+      vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = nil })
     end,
     module = "telescope",
   }
@@ -312,6 +313,7 @@ return packer.startup(function()
     module = "neo-tree",
     config = function()
       require("core.neotree").config()
+      vim.api.nvim_set_hl(0, "NeoTreeNormal", { bg = nil })
     end,
   }
   use {
