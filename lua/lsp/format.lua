@@ -49,7 +49,7 @@ local sources = {
 
   -- Python
   b.diagnostics.flake8.with {
-    args = { "--ignore=E501,W503", "--stdin-display-name", "$FILENAME", "-" },
+    args = { "--ignore=E501,W503,E203", "--stdin-display-name", "$FILENAME", "-" },
   },
   autoimportpy,
   b.formatting.isort,
