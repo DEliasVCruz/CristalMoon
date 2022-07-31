@@ -1,23 +1,24 @@
 local M = {}
 
 M.config = function()
-  require("nvim-lsp-installer").setup {
-    ensure_installed = { "sumneko_lua", "vimls" },
-    automatic_installation = true,
+  require("mason").setup {
     ui = {
       icons = {
-        server_installed = "ﲏ ",
-        server_pending = " ",
-        server_uninstalled = "✗",
+        package_installed = "ﲏ ",
+        package_pending = " ",
+        package_uninstalled = "✗",
       },
     },
+  }
+  require("mason-lspconfig").setup {
+    ensure_installed = { "sumneko_lua", "vimls" },
+    automatic_installation = true,
   }
 end
 
 M.setup = function()
   local lspconf = require "lspconfig"
   local servers = {
-    -- "sumneko_lua",
     "bashls",
     "emmet_ls",
     "html",

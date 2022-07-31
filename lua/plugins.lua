@@ -63,17 +63,17 @@ return packer.startup(function()
 
   -- Lsp config
   use {
-    "williamboman/nvim-lsp-installer",
-    event = "BufRead",
+    "williamboman/mason.nvim",
     config = function()
       require("lsp.install").config()
-      require("lsp.install").setup()
     end,
   }
+  use { "williamboman/mason-lspconfig.nvim", module = "mason-lspconfig" }
   use {
     "neovim/nvim-lspconfig",
     module = "lspconfig",
     config = function()
+      require("lsp.install").setup()
       require("lsp").conf()
     end,
   }
