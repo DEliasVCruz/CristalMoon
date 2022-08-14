@@ -19,6 +19,7 @@ end
 M.setup = function()
   local lspconf = require "lspconfig"
   local servers = {
+    "sumneko_lua",
     "bashls",
     "emmet_ls",
     "html",
@@ -40,8 +41,8 @@ M.setup = function()
 
   for _, server in pairs(servers) do
     lspconf[server].setup {
-      -- on_attach = attach,
-      -- capabilities = capabilities,
+      on_attach = attach,
+      capabilities = capabilities,
       flags = {
         -- This will be the default in neovim 0.7+
         debounce_text_changes = 150,
