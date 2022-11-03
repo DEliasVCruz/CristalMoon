@@ -154,13 +154,10 @@ local nmappings = {
     },
   },
   ["/"] = {
-    name = "+Comment",
-    ["/"] = { '<cmd>lua require("Comment.api").call("toggle_current_linewise_op")<cr>g@$', "Out" },
-    b = { '<cmd>lua require("Comment.api").call("toggle_blockwise_op")<cr>g@', "Block" },
-    l = { '<cmd>lua require("Comment.api").call("toggle_linewise_op")<cr>g@', "Lines" },
-    o = { '<cmd>lua require("Comment.api").locked.insert_linewise_above()<cr>', "Over" },
-    d = { '<cmd>lua require("Comment.api").locked.insert_linewise_below()<cr>', "Down" },
-    e = { '<cmd>lua require("Comment.api").locked.insert_linewise_eol()<cr>', "End" },
+    function()
+      require("Comment.api").toggle.linewise.current()
+    end,
+    "Comment",
   },
   c = {
     name = "+Code",
@@ -496,9 +493,13 @@ local veopts = {
 
 local vmappings = {
   ["/"] = {
-    name = "+Comment",
-    l = { '<esc><cmd>lua require("Comment.api").locked.toggle_linewise_op(vim.fn.visualmode())<cr>', "Lines" },
-    b = { '<esc><cmd>lua require("Comment.api").locked.toggle_blockwise_op(vim.fn.visualmode())<cr>', "Block" },
+    function()
+      local api = require "Comment.api"
+      local esc = vim.api.nvim_replace_termcodes("<ESC>", true, false, true)
+      vim.api.nvim_feedkeys(esc, "nx", false)
+      api.toggle.linewise(vim.fn.visualmode())
+    end,
+    "Comment",
   },
   ["s"] = { "ScopeSelec" },
   ["r"] = { ":s//g<left><left>", "Replace" },
