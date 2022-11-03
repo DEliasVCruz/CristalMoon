@@ -47,14 +47,6 @@ local configs = {
     kind = "vsplit",
   },
 
-  ["filetype"] = {
-    overrides = {
-      extensions = {
-        md = "markdown.pandoc",
-      },
-    },
-  },
-
   ["iswap"] = {
     grey = "disable",
     hl_selection = "Comment",

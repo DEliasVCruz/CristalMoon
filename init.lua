@@ -7,7 +7,6 @@ if not ok then
 end
 
 -- Basic global options
-vim.g.did_load_filetypes = 1
 vim.g.cursorhold_updatetime = 100
 
 -- Disable pluggins
@@ -51,6 +50,12 @@ vim.g.clipboard = {
     ["*"] = "xsel -o -p",
   },
   cache_enabled = 1,
+}
+
+vim.filetype.add {
+  extension = {
+    md = "markdown.pandoc",
+  },
 }
 
 -- Load core config

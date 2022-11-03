@@ -445,12 +445,6 @@ return packer.startup(function()
   use { "antoinemadec/FixCursorHold.nvim" }
   use { "lewis6991/impatient.nvim" }
   use {
-    "nathom/filetype.nvim",
-    config = function()
-      require("core.various").config "filetype"
-    end,
-  }
-  use {
     "ethanholz/nvim-lastplace",
     config = function()
       require("core.various").config "nvim-lastplace"
