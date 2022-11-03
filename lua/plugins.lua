@@ -276,7 +276,6 @@ return packer.startup(function()
     -- event = "BufRead",
     config = function()
       require("core.various").config "scrollbar"
-      require("scrollbar.handlers.search").setup()
     end,
   }
   use {

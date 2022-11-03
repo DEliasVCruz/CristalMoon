@@ -113,7 +113,7 @@ local configs = {
     folds = true,
     handlers = {
       diagnostics = true,
-      search = true,
+      -- search = true,
     },
     exclude_buftypes = {
       "quickfix",

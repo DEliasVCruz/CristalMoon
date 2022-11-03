@@ -13,7 +13,10 @@ M.config = function()
       right_mouse_command = nil,
       left_mouse_command = nil,
       middle_mouse_command = nil,
-      indicator_icon = "▎",
+      indicator = {
+        icon = "▎",
+        style = "icon",
+      },
       modified_icon = "● ",
       left_trunc_marker = " ",
       right_trunc_marker = " ",

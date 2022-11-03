@@ -56,3 +56,5 @@ require("hlslens").setup {
     render.set_virt(0, lnum - 1, col - 1, chunks, nearest)
   end,
 }
+
+require("scrollbar.handlers.search").setup()
