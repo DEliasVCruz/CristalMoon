@@ -10,7 +10,7 @@ local highlights = {
 
   -- Basic colors
   -- TSField = { fg = "#96CDFB" },
-  -- String = { fg = "#ABE9B3" },
+  String = { fg = "LightGray" },
   TSField = { fg = "#89DCEB" },
   -- TSField = { fg = "aqua" }, -- Needs more contrast
 
@@ -49,7 +49,7 @@ local highlights = {
   Beacon = { bg = "white" },
 
   -- Transparent background floating
-  NormalFloat = { bg = "#10081D" },
+  NormalFloat = { bg = nil },
   CmpDocWin = { bold = false, bg = nil },
   Pmenu = { bg = nil },
   PmenuSbar = { bg = nil },
