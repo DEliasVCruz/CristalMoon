@@ -128,31 +128,33 @@ function funcs.lang_select()
   local pickers = require "telescope.pickers"
   local finders = require "telescope.finders"
   local conf = require("telescope.config").values
-  pickers.new(opts, {
-    prompt_title = "Language",
-    finder = finders.new_table {
-      results = {
-        { "    English", "en_us" },
-        { "    Spanish", "es" },
+  pickers
+    .new(opts, {
+      prompt_title = "Language",
+      finder = finders.new_table {
+        results = {
+          { "    English", "en_us" },
+          { "    Spanish", "es" },
+        },
+        entry_maker = function(entry)
+          return {
+            value = entry,
+            display = entry[1],
+            ordinal = entry[1],
+          }
+        end,
       },
-      entry_maker = function(entry)
-        return {
-          value = entry,
-          display = entry[1],
-          ordinal = entry[1],
-        }
+      sorter = conf.generic_sorter(opts),
+      attach_mappings = function(prompt_bufnr, map)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+          vim.o.spelllang = selection["value"][2]
+        end)
+        return true
       end,
-    },
-    sorter = conf.generic_sorter(opts),
-    attach_mappings = function(prompt_bufnr, map)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-        vim.opt.spelllang = selection["value"][2]
-      end)
-      return true
-    end,
-  }):find()
+    })
+    :find()
 end
 
 return funcs
