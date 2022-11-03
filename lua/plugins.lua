@@ -78,6 +78,14 @@ return packer.startup(function()
     end,
   }
   use {
+    "scalameta/nvim-metals",
+    requires = "nvim-lua/plenary.nvim",
+    module = "metals",
+    config = function()
+      require("lsp.scala_metals_lsp").config()
+    end,
+  }
+  use {
     "jose-elias-alvarez/null-ls.nvim",
     after = "nvim-lspconfig",
     config = function()
@@ -150,12 +158,9 @@ return packer.startup(function()
       require("core.telescope_conf").config()
       vim.api.nvim_set_hl(0, "TelescopeNormal", { bg = nil })
     end,
-    module = "telescope",
   }
   use {
     "nvim-telescope/telescope-fzf-native.nvim",
-    module = { "cmp", "telescope" },
-    after = { "telescope.nvim" },
     config = function()
       require("telescope").load_extension "fzf"
     end,
