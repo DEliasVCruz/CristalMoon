@@ -1,7 +1,7 @@
-vim.opt.colorcolumn = ""
-vim.opt.signcolumn = "yes:1"
-vim.opt.number = false
-vim.opt.buflisted = false
+vim.o.colorcolumn = ""
+vim.o.signcolumn = "yes:1"
+vim.o.number = false
+vim.o.buflisted = false
 
 --[[ vim.keymap.set("n", "<leader>ar", function()
   require("replacer").run()

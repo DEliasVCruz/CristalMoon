@@ -114,4 +114,4 @@ for group, options in pairs(highlights) do
   vim.api.nvim_set_hl(0, group, options)
 end
 
-vim.opt.winhighlight = "SpecialKey:SpecialKeyWin"
+vim.o.winhighlight = "SpecialKey:SpecialKeyWin"

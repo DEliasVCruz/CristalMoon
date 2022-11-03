@@ -5,10 +5,10 @@ local opt = vim.opt
 CACHE_PATH = vim.fn.stdpath "cache"
 
 -- Setting Different Options
-opt.shortmess:append "c"
-opt.viewoptions:append { "slash", "unix" }
-opt.viewoptions:remove { "cursor", "curdir" }
-opt.fillchars:append { eob = " " }
+vim.opt.shortmess:append "c"
+vim.opt.viewoptions:append { "slash", "unix" }
+vim.opt.viewoptions:remove { "cursor", "curdir" }
+vim.opt.fillchars:append { eob = " " }
 opt.fileencoding = "utf-8" -- The encoding written to file
 opt.guicursor = "n-sm:block,i-ci-ve-c:ver25-Cursor,r-cr-o-v:hor20,n-v-c-i:blinkon10,i:blinkwait10"
 opt.hidden = true
@@ -40,6 +40,7 @@ opt.splitbelow = true
 opt.cursorline = true
 opt.clipboard = "unnamedplus"
 opt.laststatus = 3
+opt.mouse = nil
 
 -- Having longer update leads to noticeable delays and poor user experience
 opt.updatetime = 50

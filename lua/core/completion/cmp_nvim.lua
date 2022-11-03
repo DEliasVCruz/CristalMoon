@@ -10,8 +10,8 @@ if not ok then
 end
 
 -- Pmenu options
-vim.opt.completeopt = "menuone,noselect"
-vim.opt.pumheight = 7 -- Makes popup menu smaller
+vim.o.completeopt = "menuone,noselect"
+vim.o.pumheight = 7 -- Makes popup menu smaller
 
 -- nvim-cmp setup
 cmp.setup {

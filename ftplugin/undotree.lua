@@ -1,1 +1,1 @@
-vim.opt.list = false
+vim.o.list = false
