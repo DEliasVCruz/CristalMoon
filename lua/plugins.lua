@@ -404,13 +404,6 @@ return packer.startup(function()
     end,
     after = "nvim-cmp",
   }
-  use { -- TODO: Pull request to define your own "spec_per_type" highlight group
-    "AckslD/nvim-neoclip.lua",
-    -- event = "TextYankPost",
-    config = function()
-      require("core.various").config "neoclip"
-    end,
-  }
   -- use {
   -- "tami5/sqlite.lua",
   -- module = "sqlite",
@@ -441,7 +434,6 @@ return packer.startup(function()
   -- use {"VonHeikemen/fine-cmdline.nvim"} -- A floting window based Ex: cmd line
 
   -- Neovim startup fixes
-  use { "antoinemadec/FixCursorHold.nvim" }
   use { "lewis6991/impatient.nvim" }
   use {
     "ethanholz/nvim-lastplace",
