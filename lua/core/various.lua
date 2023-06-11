@@ -30,12 +30,6 @@ local configs = {
     end,
   },
 
-  ["better_escape"] = {
-    mapping = { "jk" },
-    timeout = 200,
-    keys = "<esc>l",
-  },
-
   ["neogit"] = {
     disable_hint = true,
     disable_context_highlighting = true,
@@ -111,6 +105,7 @@ local configs = {
     show = true,
     set_highlights = false,
     folds = true,
+    hide_if_all_visible = true,
     handlers = {
       diagnostics = true,
       -- search = true,

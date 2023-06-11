@@ -45,6 +45,25 @@ M.capabilities = function(capabilities)
       "additionalTextEdits",
     },
   }
+  return capabilities
+end
+
+M.get_typescript_server_path = function(root_dir)
+  local util = require "lspconfig.util"
+
+  local global_ts = "/home/danielv/.local/share/nvm/versions/node/v18.11.0/lib/node_modules/typescript/lib"
+  local found_ts = ""
+  local function check_dir(path)
+    found_ts = util.path.join(path, "node_modules", "typescript", "lib")
+    if util.path.exists(found_ts) then
+      return path
+    end
+  end
+  if util.search_ancestors(root_dir, check_dir) then
+    return found_ts
+  else
+    return global_ts
+  end
 end
 
 M.attach = function(client, bufnr)

@@ -30,10 +30,30 @@ local sources = {
 
   -- JS html css stuff
   b.formatting.prettierd.with {
-    filetypes = { "html", "json", "markdown.pandoc", "markdown", "scss", "css", "javascript", "javascriptreact" },
+    filetypes = {
+      "html",
+      "json",
+      "markdown.pandoc",
+      "markdown",
+      "scss",
+      "css",
+      "javascript",
+      "typescript",
+      "javascriptreact",
+      "vue",
+    },
+  },
+  b.formatting.stylelint.with {
+    filetypes = { "scss", "less", "css", "sass", "vue" },
+  },
+  b.code_actions.eslint_d.with {
+    filetypes = { "html", "json", "markdown.pandoc", "markdown", "scss", "css", "javascript", "javascriptreact", "vue" },
   },
   b.diagnostics.eslint.with {
     command = "eslint_d",
+  },
+  b.diagnostics.stylelint.with {
+    filetypes = { "scss", "less", "css", "sass", "vue" },
   },
 
   -- R code

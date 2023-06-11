@@ -19,7 +19,7 @@ local trim_white = {
   ["BufWritePost"] = {
     "*",
     function()
-      require("utils.functions").trim_whitespaces()
+      -- require("utils.functions").trim_whitespaces()
     end,
   },
 }

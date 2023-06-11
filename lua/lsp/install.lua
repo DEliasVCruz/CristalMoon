@@ -11,7 +11,7 @@ M.config = function()
     },
   }
   require("mason-lspconfig").setup {
-    ensure_installed = { "sumneko_lua", "vimls" },
+    ensure_installed = { "lua_ls", "vimls", "tailwindcss" },
     automatic_installation = true,
   }
 end
@@ -19,18 +19,21 @@ end
 M.setup = function()
   local lspconf = require "lspconfig"
   local servers = {
-    "sumneko_lua",
+    "lua_ls",
     "bashls",
-    "emmet_ls",
+    "volar",
+    "tailwindcss",
+    "terraformls",
+    -- "emmet_ls",
     "html",
     "taplo",
     "texlab",
     "vimls",
     "yamlls",
     "pyright",
-    "jsonls",
+    -- "jsonls",
     "gopls",
-    "tsserver",
+    -- "tsserver",
   }
 
   local attach = require("lsp").attach
@@ -50,7 +53,14 @@ M.setup = function()
     }
   end
 
-  lspconf.sumneko_lua.setup {
+  require("lspconfig").volar.setup {
+    on_new_config = function(new_config, new_root_dir)
+      new_config.init_options.typescript.tsdk = require("lsp").get_typescript_server_path(new_root_dir)
+    end,
+    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+  }
+
+  lspconf.lua_ls.setup {
     settings = {
       Lua = {
         diagnostics = {
@@ -78,6 +88,7 @@ M.setup = function()
           unusedparams = true,
         },
         staticcheck = true,
+        memoryMode = "DegradeClosed",
       },
     },
     init_options = {
@@ -86,26 +97,19 @@ M.setup = function()
     },
   }
 
-  lspconf.jsonls.setup = {
-    settings = {
-      json = {
-        format = {
-          enable = false,
-          schemas = require("schemastore").json.schemas(),
-        },
-      },
-    },
-    init_options = {
-      provideFormatter = false,
-    },
-  }
-  lspconf.tsserver.setup {
-    on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = false
-      client.resolved_capabilities.document_range_formatting = false
-      attach(client, bufnr)
-    end,
-  }
+  -- lspconf.jsonls.setup = {
+  --   settings = {
+  --     json = {
+  --       format = {
+  --         enable = false,
+  --         schemas = require("schemastore").json.schemas(),
+  --       },
+  --     },
+  --   },
+  --   init_options = {
+  --     provideFormatter = false,
+  --   },
+  -- }
 end
 
 return M

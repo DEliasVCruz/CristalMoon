@@ -19,11 +19,13 @@ local highlights = {
   -- CursorLineNR = { bold = true, fg = "white", bg = "#4a358c" },
   CursorLineNR = { bold = true, fg = "white", bg = "#ea9999" },
   Normal = { fg = "#E3E4FD", bg = nil },
+  LineNr = { link = "Comment" },
 
   -- Markdown support
   Conceal = { fg = "#fe8019" },
   pandocDelimitedCodeBlock = { fg = "#b9f27c" },
   pandocNoFormatted = { fg = "#CF4F6D" },
+  pandocBlockquote = { fg = "LightGray" },
 
   -- Highligh Folding
   Folded = { fg = "#96e2f0", bg = nil },
@@ -33,8 +35,8 @@ local highlights = {
   HlSearchLens = { fg = "#fb6b1d", bg = nil, bold = true, italic = true },
 
   -- Whichkey colors
-  WhichKeyDesc = { link = "Keyword" },
-  WhichKeyGroup = { link = "Identifier" },
+  WhichKeyDesc = { fg = "#f7454b" },
+  WhichKeyGroup = { fg = "#34b4fe" },
 
   -- Qf colors
   qfPath = { fg = "#FF5C8F" },

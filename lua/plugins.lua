@@ -15,41 +15,10 @@ return packer.startup(function()
 
   -- Colorschemes
   use {
-    "eddyekofo94/gruvbox-flat.nvim",
-    opt = true,
-    setup = function()
-      require("colors_conf").setup()
-    end,
-    config = function()
-      require("colors_conf").config()
-    end,
-  }
-  use {
-    "EdenEast/nightfox.nvim",
-    opt = true,
-    config = function()
-      require "colors.fox_conf"
-    end,
-  } -- Curly underline diagnosis, matchparen, cmp
-  use {
     "kyazdani42/nvim-web-devicons",
     after = "vn-night.nvim",
     config = function()
       require "core.icons_conf"
-    end,
-  }
-  use { -- todo: Use the apis for checking colorschemes
-    "Pocco81/Catppuccino.nvim",
-    opt = true,
-    config = function()
-      require "colors.catppuccino_conf"
-    end,
-  }
-  use { -- todo: Use the apis for checking colorschemes
-    "srcery-colors/srcery-vim",
-    opt = true,
-    setup = function()
-      vim.g.srcery_bg_passthrough = 1
     end,
   }
   use {
@@ -113,10 +82,6 @@ return packer.startup(function()
       require("fidget").setup { text = { spinner = "arc" } }
     end,
   } ]]
-  use {
-    "mattn/emmet-vim",
-    ft = { "html", "css" },
-  }
   use {
     "rmagatti/goto-preview",
     module = "goto-preview",
@@ -414,14 +379,6 @@ return packer.startup(function()
   -- module = "sqlite",
   -- }
   use {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    after = "nvim-cmp",
-    config = function()
-      require("core.various").config "better_escape"
-    end,
-  }
-  use {
     "notomo/cmdbuf.nvim",
     module = "cmdbuf",
     config = function()
@@ -479,7 +436,6 @@ return packer.startup(function()
       vim.g.targets_jumpRanges = "rr rb rB bb bB BB ll al Al aa Aa AA"
     end,
   }
-  use { "chaoren/vim-wordmotion", event = "BufRead" }
   -- use {"michaeljsmith/vim-indent-object"} -- Text object to operate on indents
   -- use {"AndrewRadev/splitjoin.vim"} -- Expand constructs like {}
   -- use{"nvim-treesitter/nvim-treesitter-textobjects"} -- Create your own text object

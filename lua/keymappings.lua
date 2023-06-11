@@ -3,6 +3,7 @@ local remap_silent_exp = { noremap = true, silent = true, expr = true }
 
 -- Set leader key
 vim.keymap.set("n", "<Space>", "<NOP>", remap_silent)
+vim.keymap.set("i", "jk", "<ESC>", remap_silent)
 vim.g.mapleader = " "
 
 -- Add lines with enter
@@ -41,10 +42,10 @@ vim.keymap.set("n", "k", function()
 end, remap_silent_exp)
 
 -- Scrolling
-vim.keymap.set("n", "<C-d>", "<C-d>:keepjumps normal M<cr>", remap_silent)
-vim.keymap.set("n", "<C-u>", "<C-u>:keepjumps normal M<cr>", remap_silent)
-vim.keymap.set("n", "<C-e>", "<C-e>:keepjumps normal M<cr>", remap_silent)
-vim.keymap.set("n", "<C-y>", "<C-y>:keepjumps normal M<cr>", remap_silent)
+vim.keymap.set("n", "<C-d>", "<C-d>:keepjumps<cr>", remap_silent)
+vim.keymap.set("n", "<C-u>", "<C-u>:keepjumps<cr>", remap_silent)
+vim.keymap.set("n", "<C-e>", "<C-e>:keepjumps<cr>", remap_silent)
+vim.keymap.set("n", "<C-y>", "<C-y>:keepjumps<cr>", remap_silent)
 vim.keymap.set("n", "<A-l>", "zL", remap_silent)
 vim.keymap.set("n", "<A-h>", "zH", remap_silent)
 

@@ -185,12 +185,12 @@ local nmappings = {
   },
   j = {
     name = "+Jump",
-    l = { "<cmd>setlocal scrolloff=0<CR>Lzz<cmd>silent setlocal scrolloff=8<CR>", "Low End" },
-    i = { "^", "Init Line" },
-    u = { "<cmd>setlocal scrolloff=0<CR>Hzz<cmd>silent setlocal scrolloff=8<CR>", "Upper End" },
+    b = { "Lzz", "Bottom Screen" },
+    i = { "^", "Init Text" },
+    t = { "Hzz", "Top Screen" },
     c = { "M", "Center" },
     e = { "$", "End" },
-    b = { "0", "Begining" },
+    s = { "0", "Start Line" },
     o = {
       "Above",
     },
