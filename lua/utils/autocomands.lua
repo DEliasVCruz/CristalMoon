@@ -24,15 +24,15 @@ local trim_white = {
   },
 }
 
-local _where_am_i = vim.api.nvim_create_augroup("WhereAmI", { clear = true })
-local beacon = {
-  [{ "WinEnter" }] = {
-    "*",
-    function()
-      require("specs").show_specs()
-    end,
-  },
-}
+-- local _where_am_i = vim.api.nvim_create_augroup("WhereAmI", { clear = true })
+-- local beacon = {
+--   [{ "WinEnter" }] = {
+--     "*",
+--     function()
+--       require("specs").show_specs()
+--     end,
+--   },
+-- }
 
 local _yanking_highlight = vim.api.nvim_create_augroup("YankingHighlight", { clear = true })
 local yanking = {
@@ -47,4 +47,4 @@ local yanking = {
 require("utils.augroup").create_commands(settings, _general_settings)
 require("utils.augroup").create_commands(trim_white, _formatting)
 require("utils.augroup").create_commands(yanking, _yanking_highlight)
-require("utils.augroup").create_commands(beacon, _where_am_i)
+-- require("utils.augroup").create_commands(beacon, _where_am_i)

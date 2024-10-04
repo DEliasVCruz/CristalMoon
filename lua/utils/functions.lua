@@ -27,17 +27,17 @@ function funcs.search_notes()
   }
 end
 
-function funcs.jump_behaviour(key)
-  local prefix = ""
-  if vim.v.count > 2 then
-    prefix = "m'" .. vim.v.count
-  end
-  local suffix = ""
-  if vim.v.count > 10 then
-    suffix = "<cmd>lua require('specs').show_specs()<cr>"
-  end
-  return prefix .. key .. suffix
-end
+-- function funcs.jump_behaviour(key)
+--   local prefix = ""
+--   if vim.v.count > 2 then
+--     prefix = "m'" .. vim.v.count
+--   end
+--   local suffix = ""
+--   if vim.v.count > 10 then
+--     suffix = "<cmd>lua require('specs').show_specs()<cr>"
+--   end
+--   return prefix .. key .. suffix
+-- end
 
 -- Toggle colorizer
 function funcs.colorizer_toggle()

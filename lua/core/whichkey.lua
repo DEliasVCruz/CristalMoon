@@ -124,7 +124,7 @@ local nmappings = {
     i = { "<cmd>lua require('nvim-treesitter.incremental_selection').init_selection()<cr>", "IncrSelection" },
     s = { "<cmd>lua require('iswap').iswap_with()<cr>", "SwapArgs" },
     u = { "gU", "UpperCase" },
-    w = { "<cmd>lua require('specs').show_specs()<cr>", "WhereAmI" },
+    -- w = { "<cmd>lua require('specs').show_specs()<cr>", "WhereAmI" },
     -- y = { '"+y', "Yank Clipboard" },
     t = { "<cmd>setlocal scrolloff=0<CR>ztM<cmd>silent setlocal scrolloff=8<CR>", "TopLine" },
     b = { "<cmd>setlocal scrolloff=0<CR>zbM<cmd>silent setlocal scrolloff=8<CR>", "BotLine" },

@@ -157,29 +157,29 @@ M.rename_conf = function()
   }
 end
 
-M.beam_conf = function()
-  local ok, beam = pcall(require, "specs")
-  if not ok then
-    return
-  end
+-- M.beam_conf = function()
+--   local ok, beam = pcall(require, "specs")
+--   if not ok then
+--     return
+--   end
 
-  beam.setup {
-    show_jumps = false,
-    min_jump = 11,
-    popup = {
-      delay_ms = 0, -- delay before popup displays
-      inc_ms = 15, -- time increments used for fade/resize effects
-      blend = 40, -- starting blend, between 0-100 (fully transparent), see :h winblend
-      width = 15,
-      winhl = "SpecsCursorJump",
-      fader = beam.linear_fader,
-      resizer = beam.shrink_resizer,
-    },
-    ignore_filetypes = {},
-    ignore_buftypes = {
-      nofile = true,
-    },
-  }
-end
+--   beam.setup {
+--     show_jumps = false,
+--     min_jump = 11,
+--     popup = {
+--       delay_ms = 0, -- delay before popup displays
+--       inc_ms = 15, -- time increments used for fade/resize effects
+--       blend = 40, -- starting blend, between 0-100 (fully transparent), see :h winblend
+--       width = 15,
+--       winhl = "SpecsCursorJump",
+--       fader = beam.linear_fader,
+--       resizer = beam.shrink_resizer,
+--     },
+--     ignore_filetypes = {},
+--     ignore_buftypes = {
+--       nofile = true,
+--     },
+--   }
+-- end
 
 return M

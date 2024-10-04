@@ -34,12 +34,12 @@ vim.keymap.set("n", "<C-j>", ":cnext<CR>zzzv", { noremap = true, silent = true }
 vim.keymap.set("n", "<C-k>", ":cprev<CR>zzzv", { noremap = true, silent = true })
 
 -- Jumplist mutations
-vim.keymap.set("n", "j", function()
-  return require("utils.functions").jump_behaviour "j"
-end, remap_silent_exp)
-vim.keymap.set("n", "k", function()
-  return require("utils.functions").jump_behaviour "k"
-end, remap_silent_exp)
+-- vim.keymap.set("n", "j", function()
+--   return require("utils.functions").jump_behaviour "j"
+-- end, remap_silent_exp)
+-- vim.keymap.set("n", "k", function()
+--   return require("utils.functions").jump_behaviour "k"
+-- end, remap_silent_exp)
 
 -- Scrolling
 vim.keymap.set("n", "<C-d>", "<C-d>:keepjumps<cr>", remap_silent)

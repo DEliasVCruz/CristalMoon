@@ -110,6 +110,24 @@ local highlights = {
   ScrollbarInfo = { bold = false, fg = "LightBlue", bg = nil },
   ScrollbarHintHandle = { bold = true, fg = "LightGrey", bg = "#EEEADE" },
   ScrollbarHint = { bold = false, fg = "LightGrey", bg = nil },
+
+  Keyword = { fg = "DarkOrange" },
+  Identifier = { fg = "white" },
+  ["@property"] = { fg = "SkyBlue" },
+  ["@namespace"] = { fg = "gray" },
+  ["@parameter"] = { fg = "Magenta" },
+  ["@field"] = { fg = "LightBlue" },
+  ["@constant"] = { fg = "pink" },
+  ["@function"] = { bg = nil },
+  ["@function.call"] = { fg = "#feC34d" },
+  ["@function.declaration"] = { fg = "#feC34d" },
+  ["@lsp.type.variable"] = { fg = nil },
+  ["@lsp.type.property"] = { fg = nil },
+
+  -- Semantic highlights of golang
+  ["@lsp.type.namespace.go"] = { fg = "Gray" },
+  ["@lsp.type.parameter.go"] = { fg = "Magenta" },
+  ["@lsp.type.variable.go"] = { fg = nil },
 }
 
 for group, options in pairs(highlights) do

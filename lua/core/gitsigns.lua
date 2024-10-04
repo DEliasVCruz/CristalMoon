@@ -26,13 +26,9 @@ M.config = function()
     },
     numhl = false,
     linehl = false,
-    -- diff_opts = {
-    -- algorithm = "histogram",
-    -- },
-    keymaps = {},
     watch_gitdir = {
-      interval = 100,
       follow_files = true,
+      virt_text_pos = "overlay",
     },
     current_line_blame_opts = {
       delay = 0,

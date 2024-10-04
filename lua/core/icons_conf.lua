@@ -25,10 +25,10 @@ icons.setup {
       color = "#50EAFA",
       name = "Dockerfile",
     },
-    html = {
-      icon = " ",
+    pug = {
+      icon = "🐶",
       color = "#F4C2C2",
-      name = "html",
+      name = "pug",
     },
     jpeg = {
       icon = " ",

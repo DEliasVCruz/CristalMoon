@@ -28,7 +28,6 @@ end
 M.capabilities = function(capabilities)
   capabilities.textDocument.completion.completionItem.documentationFormat = {
     "markdown",
-    "markdown.pandoc",
     "plaintext",
   }
   capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -74,6 +73,16 @@ M.attach = function(client, bufnr)
 
   -- Setup lsp attach
   require("lsp-format").on_attach(client)
+
+  -- Golang semantic tokens confgi
+  if client.name == "gopls" and not client.server_capabilities.semanticTokensProvider then
+    local semantic = client.config.capabilities.textDocument.semanticTokens
+    client.server_capabilities.semanticTokensProvider = {
+      full = true,
+      legend = { tokenModifiers = semantic.tokenModifiers, tokenTypes = semantic.tokenTypes },
+      range = true,
+    }
+  end
 
   -- Diagnostic Mappings.
   local opts = { noremap = true, silent = true }

@@ -116,7 +116,7 @@ return packer.startup(function()
   -- use{"nvim-lua/lsp-status.nvim"} -- Utility to get diagnistic and lsp messages to use in statusline
 
   -- Telescope
-  use { "nvim-lua/plenary.nvim", event = "BufRead" }
+  use { "nvim-lua/plenary.nvim" }
   use {
     "nvim-telescope/telescope.nvim",
     config = function()
@@ -129,7 +129,7 @@ return packer.startup(function()
     config = function()
       require("telescope").load_extension "fzf"
     end,
-    run = "make",
+    run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
   }
   -- use({ "nvim-telescope/telescope-smart-history.nvim" }) -- Smart history based on project
   -- use{"mrjones2014/tldr.nvim"} -- Brwose tldr from telescope (needs installed client)
@@ -299,13 +299,13 @@ return packer.startup(function()
       require "core.blankline"
     end,
   }
-  use {
-    "edluffy/specs.nvim",
-    module = "specs",
-    config = function()
-      require("core.various").beam_conf()
-    end,
-  }
+  -- use {
+  --   "edluffy/specs.nvim",
+  --   module = "specs",
+  --   config = function()
+  --     require("core.various").beam_conf()
+  --   end,
+  -- }
   use {
     "folke/trouble.nvim",
     module = "trouble",

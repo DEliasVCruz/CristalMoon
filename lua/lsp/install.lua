@@ -24,6 +24,7 @@ M.setup = function()
     "volar",
     "tailwindcss",
     "terraformls",
+    "cssls",
     -- "emmet_ls",
     "html",
     "taplo",
@@ -33,8 +34,12 @@ M.setup = function()
     "pyright",
     -- "jsonls",
     "gopls",
-    -- "tsserver",
+    "tsserver",
   }
+
+  local mason_registry = require "mason-registry"
+  local vue_language_server_path = mason_registry.get_package("vue-language-server"):get_install_path()
+    .. "/node_modules/@vue/language-server"
 
   local attach = require("lsp").attach
 
@@ -53,12 +58,21 @@ M.setup = function()
     }
   end
 
-  require("lspconfig").volar.setup {
-    on_new_config = function(new_config, new_root_dir)
-      new_config.init_options.typescript.tsdk = require("lsp").get_typescript_server_path(new_root_dir)
-    end,
-    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+  lspconf.tsserver.setup {
+    init_options = {
+      plugins = {
+        {
+          name = "@vue/typescript-plugin",
+          location = vue_language_server_path,
+          languages = { "vue" },
+        },
+      },
+    },
+    filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue" },
   }
+
+  -- No need to set `hybridMode` to `true` as it's the default value
+  lspconf.volar.setup {}
 
   lspconf.lua_ls.setup {
     settings = {
@@ -81,19 +95,29 @@ M.setup = function()
     },
   }
 
-  lspconf.gopls.setup = {
+  lspconf.gopls.setup {
     settings = {
       gopls = {
-        analysis = {
+        semanticTokens = true,
+        analyses = {
           unusedparams = true,
         },
         staticcheck = true,
-        memoryMode = "DegradeClosed",
       },
     },
     init_options = {
       usePlaceholders = true,
       completeUnimported = true,
+    },
+  }
+
+  lspconf.html.setup {
+    settings = {
+      html = {
+        format = {
+          templating = true,
+        },
+      },
     },
   }
 
