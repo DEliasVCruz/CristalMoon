@@ -94,8 +94,8 @@ cmp.setup {
     documentation = {
       winhighlight = "NormalFloat:CmpDocWin",
       border = "single",
-      max_width = 40,
-      max_height = 20,
+      max_width = 70,
+      max_height = 60,
     },
     completion = {
       border = nil,

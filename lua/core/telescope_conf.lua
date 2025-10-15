@@ -43,9 +43,9 @@ M.config = function()
       borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
       color_devicons = true,
       set_env = { ["COLORTERM"] = "truecolor" }, -- default = nil,
-      file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-      grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-      qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+      file_previewer = require("telescope.previewers").cat.new,
+      grep_previewer = require("telescope.previewers").vimgrep.new,
+      qflist_previewer = require("telescope.previewers").qflist.new,
       dynamic_preview_title = true,
 
       -- Developer configurations: Not meant for general override
@@ -57,7 +57,7 @@ M.config = function()
           ["<C-c>"] = actions.close,
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+          ["<c-t>"] = require("trouble.sources.telescope").open,
           -- To disable a keymap, put [map] = false
           -- So, to not map "<C-n>", just put
           -- ["<c-x>"] = false,
@@ -75,7 +75,7 @@ M.config = function()
         n = {
           ["<C-j>"] = actions.move_selection_next,
           ["<C-k>"] = actions.move_selection_previous,
-          ["<c-t>"] = require("trouble.providers.telescope").open_with_trouble,
+          ["<c-t>"] = require("trouble.sources.telescope").open,
           -- ["<C-i>"] = my_cool_custom_action,
         },
       },

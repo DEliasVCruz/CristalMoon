@@ -39,7 +39,8 @@ local yanking = {
   ["TextYankPost"] = {
     "*",
     function()
-      require("vim.highlight").on_yank { higroup = "YankHighlight", timeout = 200 }
+      -- In Neovim 0.11+, vim.highlight is a built-in table, not a module
+      vim.highlight.on_yank({ higroup = "YankHighlight", timeout = 200 })
     end,
   },
 }

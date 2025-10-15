@@ -6,6 +6,7 @@ CACHE_PATH = vim.fn.stdpath "cache"
 
 -- Setting Different Options
 vim.opt.shortmess:append "c"
+vim.opt.shortmess:append "I"
 vim.opt.viewoptions:append { "slash", "unix" }
 vim.opt.viewoptions:remove { "cursor", "curdir" }
 vim.opt.fillchars:append { eob = " " }
@@ -37,7 +38,7 @@ opt.lazyredraw = true
 opt.grepprg = "rg --vimgrep --no-heading --smart-case"
 opt.grepformat = "%f:%l:%c:%m"
 opt.splitbelow = true
-opt.cursorline = true
+opt.cursorline = false
 opt.clipboard = "unnamedplus"
 opt.laststatus = 3
 opt.mouse = nil

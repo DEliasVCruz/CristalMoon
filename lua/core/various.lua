@@ -1,45 +1,6 @@
 local M = {}
 
-local function is_whitespace(line)
-  return vim.fn.match(line, [[^\s*$]]) ~= -1
-end
-
-local function all(tbl, check)
-  for _, entry in ipairs(tbl) do
-    if not check(entry) then
-      return false
-    end
-  end
-  return true
-end
-
 local configs = {
-
-  ["neoclip"] = {
-    enable_persistent_history = false,
-    keys = {
-      telescope = {
-        i = {
-          paste = "<c-y>",
-          paste_behind = "<c-b>",
-        },
-      },
-    },
-    filter = function(data)
-      return not all(data.event.regcontents, is_whitespace)
-    end,
-  },
-
-  ["neogit"] = {
-    disable_hint = true,
-    disable_context_highlighting = true,
-    integrations = { diffview = true },
-    disable_builtin_notifications = true,
-    commit_popup = {
-      kind = "split",
-    },
-    kind = "vsplit",
-  },
 
   ["iswap"] = {
     grey = "disable",

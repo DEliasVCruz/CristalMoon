@@ -18,8 +18,13 @@ local highlights = {
   SignColumn = { fg = "#E3E4FD", bg = nil },
   -- CursorLineNR = { bold = true, fg = "white", bg = "#4a358c" },
   CursorLineNR = { bold = true, fg = "white", bg = "#ea9999" },
-  Normal = { fg = "#E3E4FD", bg = nil },
+  -- #dadbec
+  Normal = { fg = "#E3E4FD", bg = "#2B2C47" },
+  -- Normal = { fg = "#E3E4FD", bg = nil },
   LineNr = { link = "Comment" },
+
+  -- Buffer Line
+  BufferLineFill = { bg = "#202135" },
 
   -- Markdown support
   Conceal = { fg = "#fe8019" },
@@ -52,8 +57,8 @@ local highlights = {
 
   -- Transparent background floating
   NormalFloat = { bg = nil },
-  CmpDocWin = { bold = false, bg = nil },
-  Pmenu = { bg = nil },
+  CmpDocWin = { bold = false, bg = "#141533" },
+  Pmenu = { bg = "#222338" },
   PmenuSbar = { bg = nil },
   PmenuThumb = { bg = "white" },
   PmenuSel = { bold = true, fg = "#24283b", bg = "#b9f27c" },
@@ -64,6 +69,7 @@ local highlights = {
   CmpItemAbbrDeprecated = { bg = nil, strikethrough = true, fg = "#808080" },
   CmpItemMenuDefault = { link = "Comment" },
 
+  NeoTreeNormalNC = { bg = "#222338" },
   -- Python highlights
   -- pythonTSComment = { bg = nil, fg = "#6EA8B7" },
 
@@ -81,8 +87,10 @@ local highlights = {
   MatchParen = { italic = true },
 
   -- Galaxyline
-  StatusLine = { bg = nil },
-  StatusLineNC = { bg = nil },
+  -- StatusLine = { bg = nil },
+  -- StatusLineNC = { bg = nil },
+  StatusLine = { bg = "#222338" },
+  StatusLineNC = { bg = "#222338" },
 
   -- Signature help
   LspSignatureActiveParameter = { fg = "#f79617" },
@@ -124,6 +132,7 @@ local highlights = {
   ["@lsp.type.variable"] = { fg = nil },
   ["@lsp.type.property"] = { fg = nil },
 
+  ["@type.builtin.java"] = { link = "Keyword" },
   -- Semantic highlights of golang
   ["@lsp.type.namespace.go"] = { fg = "Gray" },
   ["@lsp.type.parameter.go"] = { fg = "Magenta" },

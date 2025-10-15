@@ -65,6 +65,11 @@ local settings = {
       folder_open = " ",
       default = " ",
     }, ]]
+    icon = {
+      folder_closed = "🖿 ",
+      folder_open = "🗁 ",
+      default = "🗎 ",
+    },
     name = {
       trailing_slash = false,
       use_git_status_colors = true,
@@ -79,7 +84,7 @@ local settings = {
     -- "open_split",  -- netrw disabled, opening a directory opens within the
     -- window like netrw would, regardless of window.position
     -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-    follow_current_file = true, -- This will find and focus the file in the active buffer every time
+    follow_current_file = false, -- This will find and focus the file in the active buffer every time
     -- the current file is changed while the tree is open.
     use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
     -- instead of relying on nvim autocmd events.
@@ -288,7 +293,7 @@ local settings = {
 
 M.config = function()
   vim.g.neo_tree_remove_legacy_commands = 1
-  require("neo-tree").setup()
+  require("neo-tree").setup(settings)
   --[[ local status_ok, tree = pcall(require, "neo-tree")
   if not status_ok then
     return

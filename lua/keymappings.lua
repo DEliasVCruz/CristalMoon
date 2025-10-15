@@ -1,10 +1,9 @@
 local remap_silent = { noremap = true, silent = true }
 local remap_silent_exp = { noremap = true, silent = true, expr = true }
 
--- Set leader key
+-- Leader key is set in init.lua before lazy.nvim loads
 vim.keymap.set("n", "<Space>", "<NOP>", remap_silent)
 vim.keymap.set("i", "jk", "<ESC>", remap_silent)
-vim.g.mapleader = " "
 
 -- Add lines with enter
 vim.keymap.set("n", "<Enter>", "o<ESC>", { noremap = false })
@@ -48,6 +47,14 @@ vim.keymap.set("n", "<C-e>", "<C-e>:keepjumps<cr>", remap_silent)
 vim.keymap.set("n", "<C-y>", "<C-y>:keepjumps<cr>", remap_silent)
 vim.keymap.set("n", "<A-l>", "zL", remap_silent)
 vim.keymap.set("n", "<A-h>", "zH", remap_silent)
+
+vim.keymap.set("n", "<A-o>", "<C-^>", remap_silent)
+vim.keymap.set("n", "<A-k>", function()
+  return require("buffer_manager.ui").nav_next()
+end, remap_silent)
+vim.keymap.set("n", "<A-j>", function()
+  return require("buffer_manager.ui").nav_prev()
+end, remap_silent)
 
 -- Back and forward full words with ctrl instead of mayus
 vim.keymap.set("n", "<C-b>", "B", remap_silent)
