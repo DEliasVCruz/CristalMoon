@@ -19,6 +19,9 @@ local default = {
       node_decremental = "<C-j>",
     },
   },
+  -- Explicitly enable injections for embedded languages
+  -- This allows YAML frontmatter and Liquid syntax in HTML
+  ensure_installed = { "html", "yaml", "liquid" },
 }
 
 local M = {}

@@ -10,7 +10,7 @@ local highlights = {
 
   -- Basic colors
   -- TSField = { fg = "#96CDFB" },
-  String = { fg = "LightGray" },
+  String = { fg = "#b9f27c" },
   TSField = { fg = "#89DCEB" },
   -- TSField = { fg = "aqua" }, -- Needs more contrast
 
@@ -56,7 +56,7 @@ local highlights = {
   Beacon = { bg = "white" },
 
   -- Transparent background floating
-  NormalFloat = { bg = nil },
+  NormalFloat = { bg = "#222338" },
   CmpDocWin = { bold = false, bg = "#141533" },
   Pmenu = { bg = "#222338" },
   PmenuSbar = { bg = nil },
@@ -127,12 +127,48 @@ local highlights = {
   ["@field"] = { fg = "LightBlue" },
   ["@constant"] = { fg = "pink" },
   ["@function"] = { bg = nil },
+  ["@variable"] = { fg = "white" },
   ["@function.call"] = { fg = "#feC34d" },
   ["@function.declaration"] = { fg = "#feC34d" },
   ["@lsp.type.variable"] = { fg = nil },
   ["@lsp.type.property"] = { fg = nil },
 
+  ["@string.lua"] = { fg = "LightGray" },
+
+  ["@variable.parameter.javascript"] = { fg = "Magenta" },
+  ["@variable.builtin.javascript"] = { fg = "Gray" },
+  ["@function.method.call.javascript"] = { link = "@function.call" },
+
+  -- Semantic highlights of Javascript
+  ["@lsp.typemod.variable.defaultLibrary.javascript"] = { link = "@variable.builtin.javascript" },
+  ["@lsp.type.method.javascript"] = { link = "@function.method.call.javascript" },
+  ["@lsp.type.property.javascript"] = { fg = "SkyBlue" },
+  ["@lsp.type.parameter.javascript"] = { link = "@variable.parameter.javascript" },
+
   ["@type.builtin.java"] = { link = "Keyword" },
+  -- ["@variable.parameter.java"] = { fg = "LightGray" },
+  ["@keyword.operator.java"] = { link = "Keyword" },
+  ["@keyword.exception.java"] = { fg = "#f7454b" },
+  ["@variable.member.java"] = { fg = "SkyBlue" },
+  ["@variable.builtin.java"] = { fg = "Magenta" },
+  ["@constant.builtin.java"] = { fg = "Gray" },
+
+  -- Semantic highlights of java
+  ["@lsp.type.modifier.java"] = { link = "Keyword" },
+  ["@lsp.type.method.java"] = { link = "@function.declaration" },
+  -- ["@lsp.mod.declaration.java"] = { link = "Type" },
+  ["@lsp.typemod.method.declaration.java"] = { link = "@function.call" },
+  ["@lsp.typemod.variable.declaration.java"] = { link = "@variable" },
+  ["@lsp.typemod.parameter.declaration.java"] = { link = "@variable" },
+  ["@lsp.type.property.java"] = { link = "@variable.member.java" },
+  ["@lsp.typemod.property.declaration.java"] = { link = "@variable.member.java" },
+  ["@lsp.typemod.property.readonly.java"] = { fg = "Gray" },
+  -- ["@lsp.type.parameter.java"] = { link = "@variable.parameter.java" },
+  ["@lsp.type.class.java"] = { fg = "LightMagenta", bold = true },
+  -- ["@lsp.type.class.java"] = { link = "Type" },
+  -- ["@lsp.typemod.class.constructor.java"] = { link = "Type", bold = false },
+  ["@lsp.typemod.class.constructor.java"] = { fg = "#E3E4FD" },
+
   -- Semantic highlights of golang
   ["@lsp.type.namespace.go"] = { fg = "Gray" },
   ["@lsp.type.parameter.go"] = { fg = "Magenta" },
